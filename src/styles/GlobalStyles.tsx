@@ -1,27 +1,34 @@
 import { createGlobalStyle } from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
 import './normalize.css';
+import './themes.css';
 
 const GlobalStyles = createGlobalStyle`
-  html, body, #root {
-    font-family: 'Roboto', sans-serif;
-    width: 100%;
-    height: 100%;
+  :root {
+    font-family: 'Roboto', system-ui, sans-serif;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    color: var(--text-active-primary);
+    background: var(--base-active);
   }
 
   html {
     font-size: 16px;
   }
 
+  html, body, #root {
+    width: 100%;
+    height: 100%;
+  }
+
   * {
     box-sizing: border-box;
   }
 
-  body {
-    color: var(--neutrals-text);
-    background: var(--neutrals-background);
-    -webkit-font-smoothing: antialiased;
-  }
 
   body, input, button {
     font-size: 1rem;
@@ -41,8 +48,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
-      width: 6px!important;
-      height: 6px!important;
+      width: 6px !important;
+      height: 6px !important;
   }
 
   ::-webkit-scrollbar-track {
