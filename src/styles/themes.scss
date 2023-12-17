@@ -173,3 +173,68 @@
   --success-800: rgba(236,253,243,1);
   --success-900: rgba(241,254,246,1);
 }
+
+$gradient-values: 25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900;
+$theme-values: 'success', 'error', 'warning', 'primary', 'secondary', 'gray';
+
+/*
+output example: 
+  .primary-25 {
+    color: var(--primary-25);
+  }
+  .bg-primary-25 {
+    color: var(--primary-25);
+  }
+*/
+@each $gradient-item in $gradient-values {
+  @each $theme-item in $theme-values {
+    .#{$theme-item}-#{$gradient-item} {
+      color: var(--#{$theme-item}-#{$gradient-item});
+    }
+    .bg-#{$theme-item}-#{$gradient-item} {
+      background-color: var(--#{$theme-item}-#{$gradient-item});
+    }
+  }
+}
+
+.text-active {
+  color: var(--text-active-primary);
+}
+
+.text-active-secondary {
+  color: var(--text-active-secondary);
+}
+
+.text-active-tertiary {
+  color: var(--text-active-tertiary);
+}
+
+.text-active-quarternary {
+  color: var(--text-active-quarternary);
+}
+
+.text-contrast {
+  color: var(--text-contrast-primary);
+}
+
+.text-contrast-secondary {
+  color: var(--text-contrast-secondary);
+}
+
+.text-contrast-tertiary {
+  color: var(--text-contrast-tertiary);
+}
+
+.text-contrast-quarternary {
+  color: var(--text-contrast-quarternary);
+}
+
+.bg-active {
+  background-color: var(--base-active);
+}
+
+.bg-contrast {
+  background-color: var(--base-contrast);
+}
+
+
