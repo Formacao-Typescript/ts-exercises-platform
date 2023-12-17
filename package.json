@@ -1,7 +1,9 @@
 {
   "name": "ts-exercises-platform",
-  "private": true,
-  "version": "0.0.0",
+  "author": "Wellington S. Almeida (@WellsSA)",
+  "version": "0.0.1",
+  "description": "A platform inspired by Lucas Santos (@lsantosdev | @kahosdoctor) to practice TypeScript",
+  "private": false,
   "type": "module",
   "scripts": {
     "dev": "vite",
