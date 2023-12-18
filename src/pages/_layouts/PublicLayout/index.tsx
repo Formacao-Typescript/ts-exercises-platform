@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Container, Content, Sidebar } from './styles';
+import { Container, Content } from './styles';
+import Sidebar from './Sidebar';
 
 const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -12,15 +13,7 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
       </header>
       <main>
         <Content>{children}</Content>
-        <Sidebar className="bg-gray-100">
-          <header>
-            <h2>section title </h2>
-            <button type="button">X</button>
-          </header>
-          <div className="navigation-list">
-            <div>abo</div>
-          </div>
-        </Sidebar>
+        <Sidebar />
       </main>
       <footer className="bg-primary-25">
         <p>Lsantos copyrights</p>

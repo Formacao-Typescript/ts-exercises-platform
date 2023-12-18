@@ -36,4 +36,26 @@ export const Container = styled.aside`
       text-overflow: ellipsis;
     }
   }
+
+  .navigation-list {
+    list-style: none;
+
+    &-info {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      border-bottom: 1px solid var(--gray-300);
+      box-shadow: 4px 4px 13px -7px var(--gray-300);
+    }
+  }
+  .activity-list {
+    cursor: pointer;
+    list-style: none;
+    &-item {
+      padding: 8px;
+      border-bottom: 1px solid var(--gray-300);
+    }
+  }
 `;
