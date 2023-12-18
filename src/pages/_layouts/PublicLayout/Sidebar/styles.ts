@@ -48,6 +48,10 @@ export const Container = styled.aside`
 
       border-bottom: 1px solid var(--gray-300);
       box-shadow: 4px 4px 13px -7px var(--gray-300);
+
+      svg {
+        margin-right: 8px;
+      }
     }
   }
   .activity-list {

@@ -36,6 +36,28 @@ const Sidebar: React.FC = () => {
             <li className="activity-list-item">Activity 3</li>
           </ul>
         </li>
+        <li className="navigation-list-item">
+          <div className="navigation-list-info">
+            <h3>Literal types</h3>
+            <ArrowDownIcon />
+          </div>
+          <ul className="activity-list">
+            <li className="activity-list-item">Activity 1</li>
+            <li className="activity-list-item">Activity 2</li>
+            <li className="activity-list-item">Activity 3</li>
+          </ul>
+        </li>
+        <li className="navigation-list-item">
+          <div className="navigation-list-info">
+            <h3>Tipos nulos</h3>
+            <ArrowDownIcon />
+          </div>
+          <ul className="activity-list">
+            <li className="activity-list-item">Activity 1</li>
+            <li className="activity-list-item">Activity 2</li>
+            <li className="activity-list-item">Activity 3</li>
+          </ul>
+        </li>
       </ol>
     </Container>
   );
