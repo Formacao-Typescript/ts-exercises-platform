@@ -26,5 +26,5 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex: 1;
-  background: var(--primary-200);
+  background: #131313;
 `;
