@@ -6,5 +6,4 @@ interface IProps {
 
 export const Container = styled.div<IProps>`
   width: 100%;
-  height: ${props => props.$height + 'px' || '200px'};
 `;

@@ -25,17 +25,39 @@ const MonacoEditor: React.FC<MonacoEditorProps> = ({ code }) => {
     );
   }, [code]);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   if (!editor) return;
+  //   editor.onDidChangeModelContent(() => {
+  //     const model = editor.getModel();
+  //     const markers = monaco.editor.getModelMarkers({ resource: model?.uri });
+
+  //     console.log({ model, markers });
+  //   });
+  // }, [editor]);
+
+  function action() {
     if (!editor) return;
-    editor.onDidChangeModelContent(() => {
-      const model = editor.getModel();
-      const markers = monaco.editor.getModelMarkers({ resource: model?.uri });
 
-      console.log({ model, markers });
+    const model = editor.getModel();
+    const markers = monaco.editor.getModelMarkers({ resource: model?.uri });
+
+    console.log({ model, markers });
+    markers.forEach(marker => {
+      alert(`
+      ATENÇÃO CHEFIA
+      ERRO: ${marker.message}
+      LÁ NA LINHA: ${marker.startLineNumber}
+      NÍVEL DE GRAVIDADE: ${marker.severity}`);
     });
-  }, [editor]);
-
-  return <Container ref={editorRef} $height={height}></Container>;
+  }
+  return (
+    <Container>
+      <div ref={editorRef} style={{ height }}></div>
+      <button type="button" onClick={action}>
+        Check
+      </button>
+    </Container>
+  );
 };
 
 export default MonacoEditor;
