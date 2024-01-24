@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.aside`
   --width: 350px;
   width: var(--width);
+  height: 100%;
 
   > header {
     height: 60px;
@@ -39,6 +40,8 @@ export const Container = styled.aside`
 
   .navigation-list {
     list-style: none;
+    height: 70%;
+    overflow: auto;
 
     &-info {
       cursor: pointer;
