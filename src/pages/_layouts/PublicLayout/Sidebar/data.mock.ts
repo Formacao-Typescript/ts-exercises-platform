@@ -1,4 +1,26 @@
-const journey = {
+interface IJourney {
+  id: string;
+  name: string;
+  shortDescription: string;
+  longDescription: string;
+  topics: ITopic[];
+}
+
+interface ITopic {
+  id: string;
+  name: string;
+  description: string;
+  activities: IActivity[];
+}
+
+interface IActivity {
+  id: string;
+  name: string;
+  description: string;
+  source: string;
+}
+
+const journey: IJourney = {
   id: 'typescript-iniciante-tipos-asduiD',
   name: 'Typescript iniciante - tipos',
   shortDescription: 'Aprenda a trabalhar com tipos',

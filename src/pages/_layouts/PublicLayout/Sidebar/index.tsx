@@ -5,6 +5,7 @@ import {
   MdOutlineKeyboardArrowDown as ArrowDownIcon,
   MdClose as CloseIcon,
 } from 'react-icons/md';
+import MOCK_DATA from './data.mock';
 
 const Sidebar: React.FC = () => {
   return (
@@ -14,6 +15,30 @@ const Sidebar: React.FC = () => {
         <CloseIcon />
       </header>
       <ol className="navigation-list">
+        {MOCK_DATA.topics.map(topic => {
+          return (
+            <li key={topic.id} className="navigation-list-item">
+              <div className="navigation-list-info">
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <h3>{topic.name}</h3>
+                  <p>{topic.description}</p>
+                </div>
+                <ArrowDownIcon />
+              </div>
+              <ul className="activity-list">
+                {topic.activities.map(activity => {
+                  return (
+                    <li key={activity.id} className="activity-list-item">
+                      {activity.name}
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+          );
+        })}
+      </ol>
+      {/* <ol className="navigation-list">
         <div className="navigation-list-info">
           <h3>Compatibilidade de tipos</h3>
           <ArrowDownIcon />
@@ -58,7 +83,7 @@ const Sidebar: React.FC = () => {
             <li className="activity-list-item">Activity 3</li>
           </ul>
         </li>
-      </ol>
+      </ol>  */}
     </Container>
   );
 };
