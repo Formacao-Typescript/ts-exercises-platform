@@ -4,27 +4,44 @@
 
 import React, { useEffect } from 'react';
 import { Container } from './styles';
+import Markdown from 'react-markdown';
+import MonacoEditor from '../MonacoEditor';
 
 interface ExerciseRendererProps {
   source: string;
 }
+
 const PATH = '../../../';
+
 const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({ source }) => {
+  const [rawMarkdown, setRawMarkdown] = React.useState<string>('');
+
   useEffect(() => {
     async function load(fileSource: string) {
-      const something = await import(PATH + fileSource);
-      //   import("./assets/article.md").then(res => {
-      //     fetch(res.default)
-      //     .then(response => response.text())
-      //     .then(text => console.log(text))
-      // })
-
-      console.log({ something });
+      const response = await fetch(PATH + fileSource);
+      const text = await response.text();
+      setRawMarkdown(text);
     }
 
     void load(source);
   }, [source]);
-  return <Container></Container>;
+  return (
+    <Container>
+      <Markdown
+        components={{
+          code: node => {
+            const isInline = !node.children?.toString().includes('\n');
+
+            if (isInline) return <code>{node.children}</code>;
+
+            return <MonacoEditor code={node.children} />;
+          },
+        }}
+      >
+        {rawMarkdown}
+      </Markdown>
+    </Container>
+  );
 };
 
 export default ExerciseRenderer;
