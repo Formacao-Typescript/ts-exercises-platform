@@ -8,7 +8,8 @@ interface MonacoEditorProps {
 
 const MonacoEditor: React.FC<MonacoEditorProps> = ({ code }) => {
   const editorRef = useRef(null);
-  const [, setEditor] = React.useState<monaco.editor.IStandaloneCodeEditor>();
+  const [editor, setEditor] =
+    React.useState<monaco.editor.IStandaloneCodeEditor>();
 
   const height = code ? code.split('\n').length * 19 + 20 : 0;
 
@@ -23,6 +24,16 @@ const MonacoEditor: React.FC<MonacoEditorProps> = ({ code }) => {
       })
     );
   }, [code]);
+
+  useEffect(() => {
+    if (!editor) return;
+    editor.onDidChangeModelContent(() => {
+      const model = editor.getModel();
+      const markers = monaco.editor.getModelMarkers({ resource: model?.uri });
+
+      console.log({ model, markers });
+    });
+  }, [editor]);
 
   return <Container ref={editorRef} $height={height}></Container>;
 };
