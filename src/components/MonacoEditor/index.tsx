@@ -10,7 +10,7 @@ const MonacoEditor: React.FC<MonacoEditorProps> = ({ code }) => {
   const editorRef = useRef(null);
   const [, setEditor] = React.useState<monaco.editor.IStandaloneCodeEditor>();
 
-  const height = code.split('\n').length * 19 + 20;
+  const height = code ? code.split('\n').length * 19 + 20 : 0;
 
   useEffect(() => {
     if (!editorRef.current) return;
