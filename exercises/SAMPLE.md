@@ -1,7 +1,3 @@
----
-sidebar: false
----
-
 # Exercício brabo de tipos
 
 Tipos são uns bagulho meio : Maluco que pode ficar `Complicado<T, K>`. Lorem ipsum dolor sit amet
