@@ -2,6 +2,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './routes';
 import { ToastContainer } from 'react-toastify';
 import GlobalStyles from './styles/GlobalStyles';
+import './styles/index.css';
 
 const App: React.FC = () => {
   return (
