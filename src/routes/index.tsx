@@ -1,7 +1,7 @@
 import { Routes as RouterRoutes, Route } from 'react-router-dom';
 
 import PublicRoute from './PublicRoute';
-import { Activity, Dashboard, Journey } from '../pages';
+import { Dashboard, Journey, Topic, Activity } from '../pages';
 
 const Routes: React.FC = () => {
   return (
@@ -23,8 +23,8 @@ const Routes: React.FC = () => {
           </PublicRoute>
         }
       >
-        <Route path="topic/:topicId" element={<Journey />}>
-          <Route path="activiy/:activityId" element={<Activity />} />
+        <Route path="topic/:topicId" element={<Topic />}>
+          <Route path="activity/:activityId" element={<Activity />} />
         </Route>
       </Route>
     </RouterRoutes>

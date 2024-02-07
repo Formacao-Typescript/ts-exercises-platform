@@ -1,9 +1,5 @@
 import React from 'react';
-// import MonacoMockup from '../../../assets/monaco-mockup.png';
-
 import ExerciseRenderer from '@/components/ExerciseRenderer';
-// import MonacoEditor from '@/components/MonacoEditor';
-// import { Alert, Card, Progress } from 'flowbite-react';
 import { useParams } from 'react-router-dom';
 import { useActivity, useTopic } from '@/hooks';
 
@@ -15,7 +11,6 @@ const Activity: React.FC = () => {
   }>();
   const topic = useTopic(journeyId, topicId);
   const activity = useActivity(topic, activityId);
-  // const navigate = useNavigate();
 
   if (!activity)
     return (
@@ -25,10 +20,10 @@ const Activity: React.FC = () => {
     );
 
   return (
-    <div className="p-4 w-full bg-gray-900 text-white">
+    <div className="p-4 w-full h-full bg-gray-900 text-white">
       <h1>{activity.name}</h1>
 
-      <ExerciseRenderer source={activity.source}></ExerciseRenderer>
+      {/* <ExerciseRenderer source={activity?.source}></ExerciseRenderer> */}
     </div>
   );
 };
