@@ -31,7 +31,8 @@
     }
   },
   "include": [
-    "src"
+    "src/**/*",
+    "node_modules/**/*"
   ],
   "references": [
     {
