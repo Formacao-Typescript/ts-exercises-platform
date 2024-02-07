@@ -1,7 +1,7 @@
 import { Routes as RouterRoutes, Route } from 'react-router-dom';
 
 import PublicRoute from './PublicRoute';
-import { Dashboard } from '../pages';
+import { Dashboard, Journey } from '../pages';
 
 const Routes: React.FC = () => {
   return (
@@ -12,6 +12,14 @@ const Routes: React.FC = () => {
         element={
           <PublicRoute>
             <Dashboard />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/journey/:id"
+        element={
+          <PublicRoute>
+            <Journey />
           </PublicRoute>
         }
       />
