@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
 import './normalize.css';
-import './themes.scss';
+// import './themes.scss';
 
 const GlobalStyles = createGlobalStyle`
   :root {
