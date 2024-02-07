@@ -14,6 +14,7 @@ import { Button, Navbar, Footer } from 'flowbite-react';
 
 import LogoImg from '@/assets/logo-formacaots-hotmart.webp';
 import { Container, Content } from './styles';
+import { Link } from 'react-router-dom';
 // import Sidebar from './Sidebar';
 
 const LINKS = {
@@ -32,7 +33,7 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
   return (
     <Container>
       <Navbar fluid>
-        <Navbar.Brand href={LINKS.formacao}>
+        <Link to="/" className="flex">
           <img
             src={LogoImg}
             className="mr-3 h-6 sm:h-9"
@@ -41,7 +42,8 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             Plataforma de exercícios
           </span>
-        </Navbar.Brand>
+        </Link>
+
         <div className="flex md:order-2">
           <Button>Sign in</Button>
           <Navbar.Toggle />
