@@ -5,7 +5,7 @@ import {
   MdOutlineKeyboardArrowDown as ArrowDownIcon,
   MdClose as CloseIcon,
 } from 'react-icons/md';
-import MOCK_DATA from './data.mock';
+import MOCK_DATA from '@/assets/data.mock';
 
 const Sidebar: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const Sidebar: React.FC = () => {
         <CloseIcon />
       </header>
       <ol className="navigation-list">
-        {MOCK_DATA.topics.map(topic => {
+        {MOCK_DATA[0].topics.map(topic => {
           return (
             <li key={topic.id} className="navigation-list-item">
               <div className="navigation-list-info">

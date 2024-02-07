@@ -20,7 +20,7 @@ interface IActivity {
   source: string;
 }
 
-const journey: IJourney = {
+const journey1: IJourney = {
   id: 'typescript-iniciante-tipos-asduiD',
   name: 'Typescript iniciante - tipos',
   shortDescription: 'Aprenda a trabalhar com tipos',
@@ -144,4 +144,6 @@ const journey: IJourney = {
   ],
 };
 
-export default journey;
+const journeys: IJourney[] = [journey1, journey1, journey1];
+
+export default journeys;
