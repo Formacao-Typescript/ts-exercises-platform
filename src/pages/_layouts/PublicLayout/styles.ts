@@ -7,14 +7,8 @@ export const Container = styled.div`
 
   > main {
     display: flex;
+    /* min-height: calc(100% - 110px); */
     height: 100%;
-  }
-
-  > footer {
-    height: 40px;
-    display: flex;
-    align-items: center;
-    padding: 8px 16px;
   }
 `;
 

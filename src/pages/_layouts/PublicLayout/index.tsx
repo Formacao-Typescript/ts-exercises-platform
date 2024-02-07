@@ -1,10 +1,30 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */ // @FIXME: react-icons/something is throwing this error, check later
 import React from 'react';
 
+import {
+  BsFacebook as FacebookIcon,
+  BsInstagram as InstagramIcon,
+  BsTwitter as TwitterIcon,
+  BsYoutube as YoutubeIcon,
+  BsLinkedin as LinkedinIcon,
+  BsMailbox as MailIcon,
+} from 'react-icons/bs';
+
+import { Button, Navbar, Footer } from 'flowbite-react';
+
+import LogoImg from '@/assets/logo-formacaots-hotmart.webp';
 import { Container, Content } from './styles';
 // import Sidebar from './Sidebar';
-import Logo from '@/assets/logo-formacaots-hotmart.webp';
 
-import { Button, Navbar } from 'flowbite-react';
+const LINKS = {
+  formacao: 'https://formacaots.com.br/',
+  instagram: 'https://formacaots.com.br/instagram.lsantos.dev',
+  facebook: 'https://formacaots.com.br/facebook.lsantos.dev',
+  twitter: 'https://formacaots.com.br/twitter.lsantos.dev',
+  youtube: 'https://formacaots.com.br/youtube.lsantos.dev',
+  linkedin: 'https://formacaots.com.br/linkedin.lsantos.dev',
+  mail: 'mailto:hello@lsantos.dev',
+};
 
 const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -12,8 +32,12 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
   return (
     <Container>
       <Navbar fluid rounded>
-        <Navbar.Brand href="https://formacaots.com.br/">
-          <img src={Logo} className="mr-3 h-6 sm:h-9" alt="Formação TS Logo" />
+        <Navbar.Brand href={LINKS.formacao}>
+          <img
+            src={LogoImg}
+            className="mr-3 h-6 sm:h-9"
+            alt="Formação TS Logo"
+          />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             Plataforma de exercícios
           </span>
@@ -37,9 +61,30 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
         <Content>{children}</Content>
         {/* <Sidebar /> */}
       </main>
-      <footer className="bg-primary-25">
-        <p>Lsantos copyrights</p>
-      </footer>
+      <Footer className="px-4 py-2 rounded-none">
+        <div className="w-full sm:flex sm:items-center sm:justify-between">
+          <div className="sm:flex sm:items-center space-x-4">
+            <Footer.Brand
+              href={LINKS.formacao}
+              src={LogoImg}
+              alt="Formação Typescript Logo"
+            />
+            <Footer.Copyright
+              href={LINKS.formacao}
+              by="LSantosDev"
+              year={2024}
+            />
+          </div>
+          <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+            <Footer.Icon href={LINKS.instagram} icon={InstagramIcon} />
+            <Footer.Icon href={LINKS.facebook} icon={FacebookIcon} />
+            <Footer.Icon href={LINKS.twitter} icon={TwitterIcon} />
+            <Footer.Icon href={LINKS.youtube} icon={YoutubeIcon} />
+            <Footer.Icon href={LINKS.linkedin} icon={LinkedinIcon} />
+            <Footer.Icon href={LINKS.mail} icon={MailIcon} />
+          </div>
+        </div>
+      </Footer>
     </Container>
   );
 };
