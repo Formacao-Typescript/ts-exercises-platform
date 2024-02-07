@@ -42,16 +42,16 @@ const Journey: React.FC = () => {
       <h2>{journey.shortDescription}</h2>
       <h4>{journey.longDescription}</h4>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         {journey.topics.map(topic => (
           <div key={topic.id} className="col-span-1">
             <Card
               className="max-w-sm"
               renderImage={() => (
                 <img
-                  src="https://placehold.co/500x500"
-                  width={500}
-                  height={500}
+                  src="https://placehold.co/300x300"
+                  width={300}
+                  height={300}
                   alt="image 1"
                 />
               )}
@@ -76,12 +76,6 @@ const Journey: React.FC = () => {
           </div>
         ))}
       </div>
-      <Alert color="info">
-        <span className="font-medium">Info alert!</span> Change a few things up
-        and try submitting again.
-      </Alert>
-      {/* <MonacoEditor code="console.log('banana')" /> */}
-      <ExerciseRenderer source="exercises/SAMPLE.md"></ExerciseRenderer>
     </div>
   );
 };
