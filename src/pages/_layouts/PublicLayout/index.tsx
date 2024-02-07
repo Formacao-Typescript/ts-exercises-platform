@@ -31,7 +31,7 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   return (
     <Container>
-      <Navbar fluid rounded>
+      <Navbar fluid>
         <Navbar.Brand href={LINKS.formacao}>
           <img
             src={LogoImg}
@@ -62,8 +62,26 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
         {/* <Sidebar /> */}
       </main>
       <Footer className="px-4 py-2 rounded-none">
-        <div className="w-full sm:flex sm:items-center sm:justify-between">
-          <div className="sm:flex sm:items-center space-x-4">
+        <div className="w-full">
+          <div className="w-full sm:flex sm:items-center sm:justify-between">
+            <div className="sm:flex sm:items-center space-x-4">
+              <Footer.Copyright
+                href={LINKS.formacao}
+                by="LSantosDev"
+                year={2024}
+              />
+            </div>
+            <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+              <Footer.Icon href={LINKS.instagram} icon={InstagramIcon} />
+              <Footer.Icon href={LINKS.facebook} icon={FacebookIcon} />
+              <Footer.Icon href={LINKS.twitter} icon={TwitterIcon} />
+              <Footer.Icon href={LINKS.youtube} icon={YoutubeIcon} />
+              <Footer.Icon href={LINKS.linkedin} icon={LinkedinIcon} />
+              <Footer.Icon href={LINKS.mail} icon={MailIcon} />
+            </div>
+          </div>
+          <Footer.Divider className="m-4" />
+          <div className="flex sm:items-center sm:justify-between mb-2">
             <Footer.Brand
               href={LINKS.formacao}
               src={LogoImg}
@@ -71,17 +89,8 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
             />
             <Footer.Copyright
               href={LINKS.formacao}
-              by="LSantosDev"
-              year={2024}
+              by="LS Consulting CNPJ: 480.719.05/0001-89. Todos os direitos reservados."
             />
-          </div>
-          <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-            <Footer.Icon href={LINKS.instagram} icon={InstagramIcon} />
-            <Footer.Icon href={LINKS.facebook} icon={FacebookIcon} />
-            <Footer.Icon href={LINKS.twitter} icon={TwitterIcon} />
-            <Footer.Icon href={LINKS.youtube} icon={YoutubeIcon} />
-            <Footer.Icon href={LINKS.linkedin} icon={LinkedinIcon} />
-            <Footer.Icon href={LINKS.mail} icon={MailIcon} />
           </div>
         </div>
       </Footer>

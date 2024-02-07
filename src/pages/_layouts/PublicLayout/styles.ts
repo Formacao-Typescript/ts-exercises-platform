@@ -7,8 +7,8 @@ export const Container = styled.div`
 
   > main {
     display: flex;
-    /* min-height: calc(100% - 110px); */
-    height: 100%;
+    min-height: calc(100% - 100px);
+    /* height: 100%; */
   }
 `;
 
