@@ -31,7 +31,8 @@ const Journey: React.FC = () => {
       const topicId = topic.id;
       // TODO: here we can get the latest activity the user is in that topic
       const activityId = topic.activities[0].id;
-      navigate(`topic/${topicId}/activity/${activityId}`);
+      // navigate(`topic/${topicId}/activity/${activityId}`);
+      navigate(`topic/${topicId}?activityId=${activityId}`);
     },
   };
 

@@ -23,9 +23,7 @@ const Routes: React.FC = () => {
           </PublicRoute>
         }
       >
-        <Route path="topic/:topicId" element={<Topic />}>
-          <Route path="activity/:activityId" element={<Activity />} />
-        </Route>
+        <Route path="topic/:topicId" element={<Topic />}></Route>
       </Route>
     </RouterRoutes>
   );
