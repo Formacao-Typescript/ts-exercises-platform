@@ -2484,6 +2484,15 @@ flowbite-react@^0.7.2:
     sharp "^0.32.6"
     tailwind-merge "^2.0.0"
 
+flowbite-typography@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/flowbite-typography/-/flowbite-typography-1.0.3.tgz#837f1150437af66914a7f3332d9b7a3ae2574a48"
+  integrity sha512-UbdQFIIOb7xx2TS+QQrqr79B6ZSkSZurxYWzV0npth6Wns3/j7KfeDJoH9QFU+Zs7zjrvejNtyzgzWLWyCrdiA==
+  dependencies:
+    lodash.castarray "^4.4.0"
+    lodash.isplainobject "^4.0.6"
+    lodash.merge "^4.6.2"
+
 flowbite@^2.0.0, flowbite@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/flowbite/-/flowbite-2.2.1.tgz#9e22be9ff746bccb9fcf87979bbc5e41a16eaf7a"
@@ -3472,6 +3481,16 @@ lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==
+
+lodash.castarray@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.castarray/-/lodash.castarray-4.4.0.tgz#c02513515e309daddd4c24c60cfddcf5976d9115"
+  integrity sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==
+
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  integrity sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==
 
 lodash.merge@4.6.2, lodash.merge@^4.6.2:
   version "4.6.2"

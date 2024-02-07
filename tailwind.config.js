@@ -12,5 +12,5 @@ export default {
     './src/**/*.{js,jsx,ts,tsx}',
     'node_modules/flowbite-react/lib/esm/**/*.js',
   ],
-  plugins: [require('flowbite/plugin')],
+  plugins: [require('flowbite/plugin'), require('flowbite-typography')],
 };

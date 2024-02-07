@@ -38,9 +38,13 @@ const Journey: React.FC = () => {
 
   return (
     <div className="p-4 w-full bg-gray-900 text-white">
-      <h1>{journey.name}</h1>
-      <h2>{journey.shortDescription}</h2>
-      <h4>{journey.longDescription}</h4>
+      <div className="format dark:format-invert mb-4">
+        <h1 className="mb-2">{journey.name}</h1>
+        <h2 className="text-md text-gray-500 mt-2 mb-4">
+          {journey.shortDescription}
+        </h2>
+        <p>{journey.longDescription}</p>
+      </div>
 
       <div className="grid grid-cols-5 gap-4">
         {journey.topics.map(topic => (
