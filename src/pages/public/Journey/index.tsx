@@ -1,17 +1,12 @@
 import React from 'react';
 // import MonacoMockup from '../../../assets/monaco-mockup.png';
 
-import MOCK_DATA from '@/assets/data.mock';
 import ExerciseRenderer from '@/components/ExerciseRenderer';
 // import MonacoEditor from '@/components/MonacoEditor';
 import { Alert, Card, Progress } from 'flowbite-react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import { ITopic } from '@/types';
-
-const useJourney = (id?: string) => {
-  if (!id) return null;
-  return MOCK_DATA.find(journey => journey.id === id);
-};
+import { useJourney } from '@/hooks';
 
 const Journey: React.FC = () => {
   const { journeyId, topicId } = useParams<{
