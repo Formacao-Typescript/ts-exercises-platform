@@ -12,18 +12,19 @@ const Activity: React.FC = () => {
   const topic = useTopic(journeyId, topicId);
   const activity = useActivity(topic, activityId);
 
-  if (!activity)
-    return (
-      <div className="p-4 bg-gray-900 text-white">
-        <h1>Activity not found</h1>
-      </div>
-    );
+  // if (!activity)
+  //   return (
+  //     <div className="p-4 bg-gray-900 text-white">
+  //       <h1>Activity not found</h1>
+  //     </div>
+  //   );
 
   return (
     <div className="p-4 w-full h-full bg-gray-900 text-white">
-      <h1>{activity.name}</h1>
+      <h1>{activity?.name}</h1>
 
       {/* <ExerciseRenderer source={activity?.source}></ExerciseRenderer> */}
+      <ExerciseRenderer source="exercises/SAMPLE.md"></ExerciseRenderer>
     </div>
   );
 };
