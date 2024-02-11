@@ -1,0 +1,14 @@
+[
+  {
+    "id": "string-e-number-wiosj2",
+    "name": "String e number",
+    "description": "como o typescript lida com tipos primitivos",
+    "source": "SAMPLE.md"
+  },
+  {
+    "id": "string-e-boolean-xlskdm",
+    "name": "String e boolean",
+    "description": "como o typescript lida com tipos primitivos",
+    "source": "SAMPLE-2.md"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "string-e-number-asdhuas",
+    "name": "String e number",
+    "description": "como o typescript lida com a compatibilidade de tipos",
+    "source": "SAMPLE.md"
+  },
+  {
+    "id": "string-e-boolean-xmlzks",
+    "name": "String e boolean",
+    "description": "como o typescript lida com a compatibilidade de tipos",
+    "source": "SAMPLE-2.md"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "typescript-iniciante-tipos",
+    "name": "Typescript iniciante - tipos",
+    "shortDescription": "Aprenda a trabalhar com tipos",
+    "longDescription": "Jornada de aprendizado de typescript iniciante - com foco nas caracteristicas fundamentais para trabalhar com tipos",
+    "topicCount": 3,
+    "source": "ts-iniciante-tipos"
+  },
+  {
+    "id": "typescript-avancado-tipos",
+    "name": "Typescript avançado - tipos",
+    "shortDescription": "Aprenda a trabalhar com interface",
+    "longDescription": "Jornada de aprendizado de typescript avançado - com foco nas caracteristicas fundamentais para trabalhar com tipos",
+    "topicCount": 1,
+    "source": "ts-avancado-tipos"
+  }
+]
