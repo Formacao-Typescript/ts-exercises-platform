@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import MonacoMockup from '../../../assets/monaco-mockup.png';
 
 import MOCK_DATA from '@/assets/data.mock';
 import JourneyCard from '@/components/journey/JourneyCard';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '@/store/user';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
+  const [user] = useUser();
+  useEffect(() => {
+    console.log('user', user);
+    // user.progress = [1, 2, 3];
+    // console.log('user', user);
+  }, []);
   return (
     <div className="p-4 bg-gray-600 min-h-full">
       <div className="grid grid-cols-3 gap-4">
