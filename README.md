@@ -41,37 +41,39 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
   - [ ] Showcase da comunidade e contribuições dos alunos
     > Brainstorm rápido a ser discutido no futuro: Salvar as soluções de cada aluno pras atividades? Talvez só pras atividades mais complexas no futuro? Permitir que os alunos compartilhem/vejam as soluções, tipo num “fórum stackoverflow de soluções”?
 
-## Idéia geral
+## Sobre o projeto
+
+### Idéia geral
 
 A idéia é construir uma plataforma de resolução de exercícios Typescript que:
 
 - Sirva como um material de apoio direto ao curso (afinal um dos grandes pontos positivos do curso em si é ter a organização do conteúdo e uma estrutura definida pra seguir)
 - Seja um projeto open-source da comunidade, Incentivando os alunos a aprender a colaborar em projetos open-source (e, consequentemente, usar o github. Ou seja: forks, issues, PRs. O ideal é documentar esses processos no projeto e na comunidade do discord, trazendo algumas atividades que incentivem os alunos - mais detalhes abaixo)
-  Seja aberta à todos (alunos ou não), “free-forever” e 100% código aberto
+- Seja aberta à todos (alunos ou não), “free-forever” e 100% código aberto
 
-## Uso da plataforma e funcionalidades
+### Uso da plataforma e funcionalidades
 
-### Plataforma aberta:
+- **Plataforma aberta**:
 
-- Sem login necessário, porta de entrada da comunidade, simples e rápido, acesso direto ao conteúdo com os exercícios
-- Acesso a todos os exercícios
-- Linkar material de apoio aberto (artigos públicos e/ou do Lucas)
-- Linkar material de apoio extra (links - ou somente menções - pra aulas relevantes da formação pra quem for aluno ter acesso fácil)
-- Organização de conteúdo por módulo
-- Aulas escritas + exercícios. Os exercícios não serão somente um “codepen”, mas sim uma mini-aula voltada a um assunto, possivelmente com várias sessões de exercícios numa mesma “aula”
+  - Sem login necessário, porta de entrada da comunidade, simples e rápido, acesso direto ao conteúdo com os exercícios
+  - Acesso a todos os exercícios
+  - Linkar material de apoio aberto (artigos públicos e/ou do Lucas)
+  - Linkar material de apoio extra (links - ou somente menções - pra aulas relevantes da formação pra quem for aluno ter acesso fácil)
+  - Organização de conteúdo por módulo
+  - Aulas escritas + exercícios. Os exercícios não serão somente um “codepen”, mas sim uma mini-aula voltada a um assunto, possivelmente com várias sessões de exercícios numa mesma “aula”
 
-### Área persistente:
+- **Área persistente**:
 
-- Login da plataforma
-- Salvar checklist de atividades feitas
-- Contagem arbitrária de pontos (XP)
-- Possibilita estratégias de gamificação e criação de comunidade com a resolução dos exercícios no futuro
+  - Login da plataforma
+  - Salvar checklist de atividades feitas
+  - Contagem arbitrária de pontos (XP)
+  - Possibilita estratégias de gamificação e criação de comunidade com a resolução dos exercícios no futuro
 
-### Showcase da comunidade:
+- **Showcase da comunidade**:
 
-- Área(s) onde incentivamos as contribuições open-source dos alunos, trazendo áreas que reflitam atividades passadas pra fomentar a parte da colaboração
-- Exemplo 1: Uma área chamada “membros da comunidade”, onde mostramos um badge com a imagem de cada entusiasta(não aluno)/aluno, e redes como linkedin, discord e github dele, mas o diferencial é que essa é uma atividade “hello world” onde o aluno forka o projeto e submete um PR colocando o card dele na comunidade - ou seja: Só quem aparece na área de membros da comunidade é quem interagiu com o projeto e subiu um PR!
-- Exemplo 2: Seguindo o mesmo conceito de “o aluno cria o próprio card com algumas informação e submete”, podemos ter uma área chamada “projetos da comunidade”, onde o aluno pode expor algum projeto que ele fez (exemplo: pokedex em React com TS), mas pro card estar lá o aluno precisa submeter um PR onde ele mesmo monta o card com algumas imagens do projeto, descrição, um tutorial breve de como foi feito (opcional), e outras informações úteis (deixando tipo uma “steam de projetos dos alunos/não alunos” - que pode ser ótimo pra quem tiver começando e quiser buscar inspirações de projetos pessoais pra fazer)
+  - Área(s) onde incentivamos as contribuições open-source dos alunos, trazendo áreas que reflitam atividades passadas pra fomentar a parte da colaboração
+  - Exemplo 1: Uma área chamada “membros da comunidade”, onde mostramos um badge com a imagem de cada entusiasta(não aluno)/aluno, e redes como linkedin, discord e github dele, mas o diferencial é que essa é uma atividade “hello world” onde o aluno forka o projeto e submete um PR colocando o card dele na comunidade - ou seja: Só quem aparece na área de membros da comunidade é quem interagiu com o projeto e subiu um PR!
+  - Exemplo 2: Seguindo o mesmo conceito de “o aluno cria o próprio card com algumas informação e submete”, podemos ter uma área chamada “projetos da comunidade”, onde o aluno pode expor algum projeto que ele fez (exemplo: pokedex em React com TS), mas pro card estar lá o aluno precisa submeter um PR onde ele mesmo monta o card com algumas imagens do projeto, descrição, um tutorial breve de como foi feito (opcional), e outras informações úteis (deixando tipo uma “steam de projetos dos alunos/não alunos” - que pode ser ótimo pra quem tiver começando e quiser buscar inspirações de projetos pessoais pra fazer)
 
 ## Como contribuir?
 
