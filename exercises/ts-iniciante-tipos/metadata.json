@@ -3,18 +3,21 @@
     "id": "compatibilidade-de-tipos-aHUAsas",
     "name": "Compatibilidade de tipos",
     "description": "como o typescript lida com a compatibilidade de tipos",
-    "source": "compatibilidade-de-tipos"
+    "source": "compatibilidade-de-tipos",
+    "activityCount": 2
   },
   {
     "id": "tipos-primitivos-xjlas",
     "name": "Tipos primitivos",
     "description": "como o typescript lida com tipos primitivos",
-    "source": "tipos-primitivos"
+    "source": "tipos-primitivos",
+    "activityCount": 2
   },
   {
     "id": "tipos-literais-xjlas",
     "name": "Tipos literais",
     "description": "como o typescript lida com tipos literais",
-    "source": "tipos-literais"
+    "source": "tipos-literais",
+    "activityCount": 2
   }
 ]
