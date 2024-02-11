@@ -8,12 +8,13 @@ import { useUser } from '@/store/user';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
-  const [user] = useUser();
+  const [user, , updateUser] = useUser();
   useEffect(() => {
     console.log('user', user);
-    // user.progress = [1, 2, 3];
-    // console.log('user', user);
-  }, []);
+    if (user.name !== 'jose') {
+      updateUser(user => (user.name = 'jose'));
+    }
+  }, [user]);
   return (
     <div className="p-4 bg-gray-600 min-h-full">
       <div className="grid grid-cols-3 gap-4">

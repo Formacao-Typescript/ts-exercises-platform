@@ -1,6 +1,7 @@
 import { IUser } from '@/types';
-import { createLocalStore, updateValue, useValue } from '@/util/localStore';
-const STORE_KEY = 'user';
+import store from './setup';
+
+const STATE_KEY = 'user';
 const INITIAL_STATE: IUser = {
   id: '',
   name: '',
@@ -8,14 +9,10 @@ const INITIAL_STATE: IUser = {
   progress: [],
 };
 
-const store = createLocalStore<IUser>(STORE_KEY, INITIAL_STATE);
-
-export const login = (user: IUser) => {
-  updateValue(store, STORE_KEY, user);
-};
+store.setState<IUser>(STATE_KEY, INITIAL_STATE);
 
 export const useUser = () => {
-  return useValue(store, STORE_KEY);
+  return store.useState<IUser>(STATE_KEY);
 };
 
 export default store;
