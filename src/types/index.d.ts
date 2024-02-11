@@ -23,4 +23,11 @@ export interface IActivity {
   source: string;
 }
 
+export interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  progress: IJourney[];
+}
+
 // --- MOCK DATA --- //
