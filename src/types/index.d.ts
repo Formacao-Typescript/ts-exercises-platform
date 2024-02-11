@@ -34,4 +34,8 @@ export interface IUser {
   };
 }
 
+export interface IExercises {
+  journeys: IJourney[];
+}
+
 // --- MOCK DATA --- //

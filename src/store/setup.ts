@@ -4,7 +4,7 @@ const KEY_PREFIX = 'ts-platform:';
 const store = createStore();
 
 store.persist({
-  PERSIST_ENTIRE_STORE: true, // Use this only if you want to persist the entire store
+  // PERSIST_ENTIRE_STORE: true, // Use this only if you want to persist the entire store
   saveState: function (key, value, isInitialSet) {
     const doStateSaving = () => {
       try {

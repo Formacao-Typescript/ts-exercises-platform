@@ -14,7 +14,7 @@ const INITIAL_STATE: IUser = {
   },
 };
 
-store.setState<IUser>(STATE_KEY, INITIAL_STATE);
+store.setState<IUser>(STATE_KEY, INITIAL_STATE, { persist: true });
 
 export const useUser = () => {
   return store.useState<IUser>(STATE_KEY);
