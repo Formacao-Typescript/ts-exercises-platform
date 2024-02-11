@@ -13,11 +13,11 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 - [x] Definir sistema de estilização padronizado e customizável
 - [x] Definir sistema de roteamento e aninhamento de rotas da aplicação.
   - Optamos por: React Router DOM com no máximo 2 níveis de aninhamento, para evitar problemas com a integração do Monaco Editor. Portando a navegação principal fica: `base-url/journey/ts-pra-iniciantes/topic/tipos-primitivos?activityId=string-e-boolean`
-- [ ] Estabelecer modelo de dados persistidos do usuário
-  - [ ] Permitir tracking de quais atividades o usuário já fez
-  - [ ] Permitir armazenamento de badges/conquistas e XP (estratégias a definir)
-  - [ ] Implementar armazenamento local (usuários não-autenticados).
-- [ ] Definir integração utilitária com local storage
+- [x] Estabelecer modelo de dados persistidos do usuário
+  - [x] Permitir tracking de quais atividades o usuário já fez
+  - [x] Permitir armazenamento de badges/conquistas e XP (estratégias a definir)
+  - [x] Implementar armazenamento local (usuários não-autenticados).
+- [x] Definir integração utilitária com local storage
 
 ### v1 - Lançamento - deploy
 
