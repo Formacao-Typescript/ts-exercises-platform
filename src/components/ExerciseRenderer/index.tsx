@@ -11,14 +11,12 @@ interface ExerciseRendererProps {
   source: string;
 }
 
-const PATH = '../../../';
-
 const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({ source }) => {
   const [rawMarkdown, setRawMarkdown] = React.useState<string>('');
 
   useEffect(() => {
-    async function load(fileSource: string) {
-      const response = await fetch(PATH + fileSource);
+    async function load(_source: string) {
+      const response = await fetch(_source);
       const text = await response.text();
       setRawMarkdown(text);
     }

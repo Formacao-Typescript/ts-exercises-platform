@@ -24,7 +24,7 @@ const Topic: React.FC = () => {
     <div className="p-4 w-full h-full bg-gray-900 text-white">
       {activity.name}
       <div className="flex justify-between">
-        <ExerciseRenderer source="exercises/SAMPLE.md"></ExerciseRenderer>
+        <ExerciseRenderer source={activity.source}></ExerciseRenderer>
         <ActivityListSidebar activities={activities} />
       </div>
     </div>

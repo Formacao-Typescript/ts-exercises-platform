@@ -21,10 +21,13 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 
 ### v1 - Lançamento - deploy
 
+- [x] Definir estratégia de indexação e consumo dos exercícios em Markdown a partir do github
+- [x] Implementar uso da indexação e metadados do github na plataforma
+- [x] Implementar carregamento de Jornadas, Tópicos e Atividades sob demanda
+- [x] Implementar renderização de exercícios com base na versão disponibilizada no github
 - [ ] Implementar deploy no Github Pages
 - [ ] Definir estratégias de Login/SSO
 - [ ] Definir integração com storage em nuvem (Deno Kv)
-- [ ] Definir estratégia de indexação e consumo dos exercícios em Markdown a partir do github
 - [ ] Estabelecer modelo de dados persistidos do usuário
   - [ ] Em nuvem (usuários autenticados).
 - [ ] Ajustar identidade visual de acordo com a Formação TS
