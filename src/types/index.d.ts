@@ -37,6 +37,7 @@ export interface IUser {
 export interface IExercises {
   isLoading: boolean;
   journeys: IJourney[];
+  selectedJourney: IJourney | null;
 }
 
 // --- MOCK DATA --- //

@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import JourneyCard from '@/components/journey/JourneyCard';
 import { useNavigate } from 'react-router-dom';
 import { updateActivityProgress, useUser } from '@/store/user';
-import { useExercises } from '@/store/exercises';
+import { useExercises } from '@/hooks';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
