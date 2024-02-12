@@ -35,6 +35,7 @@ export interface IUser {
 }
 
 export interface IExercises {
+  isLoading: boolean;
   journeys: IJourney[];
 }
 
