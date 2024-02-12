@@ -22,7 +22,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="p-4 bg-gray-600 min-h-full">
-      <button
+      {/* <button
         type="button"
         onClick={() =>
           updateActivityProgress('journey-id-1', 'topic-id-1', 'activity-id-1')
@@ -37,7 +37,7 @@ const Dashboard: React.FC = () => {
         }
       >
         Atualizar atividade eu fiz 2
-      </button>
+      </button> */}
       <div className="grid grid-cols-3 gap-4">
         {journeys.map(journey => (
           <JourneyCard

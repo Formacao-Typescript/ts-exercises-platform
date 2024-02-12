@@ -29,7 +29,7 @@ const useExercises = () => {
   };
 
   useEffect(() => {
-    if (exercises.journeys.length === 0) {
+    if (exercises?.journeys?.length === 0) {
       loadJourneys();
     }
   }, [exercises]);
