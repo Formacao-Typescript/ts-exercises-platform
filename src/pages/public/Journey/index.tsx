@@ -9,12 +9,14 @@ const Journey: React.FC = () => {
     journeyId: string;
     topicId: string;
   }>();
-  const journey = useJourney(journeyId);
+  const { journey, isLoading, isEmpty } = useJourney(journeyId);
   const navigate = useNavigate();
 
   if (topicId) return <Outlet />;
 
-  if (!journey)
+  if (isLoading) return <div>Loading...</div>;
+
+  if (isEmpty)
     return (
       <div className="p-4 bg-gray-900 text-white">
         <h1>Journey not found</h1>

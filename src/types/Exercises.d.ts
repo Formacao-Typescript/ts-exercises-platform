@@ -21,3 +21,19 @@ export interface IJourney {
   progress: number;
   topics: ITopic[];
 }
+
+export interface IRawTopic {
+  id: string;
+  name: string;
+  description: string;
+  activityCount: number;
+}
+
+export interface ITopic {
+  id: string;
+  name: string;
+  description: string;
+  activityCount: number;
+  progress: number;
+  activities: IActivity[];
+}
