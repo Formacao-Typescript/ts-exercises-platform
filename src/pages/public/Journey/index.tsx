@@ -1,9 +1,5 @@
 import React from 'react';
-// import MonacoMockup from '../../../assets/monaco-mockup.png';
-
-import ExerciseRenderer from '@/components/ExerciseRenderer';
-// import MonacoEditor from '@/components/MonacoEditor';
-import { Alert, Card, Progress } from 'flowbite-react';
+import { Card, Progress } from 'flowbite-react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import { ITopic } from '@/types';
 import { useJourney } from '@/hooks';
