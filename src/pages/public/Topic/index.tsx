@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useActivity, useSearchParams, useTopic } from '@/hooks';
+import { useActivity, useSearchParams } from '@/hooks';
 import ExerciseRenderer from '@/components/ExerciseRenderer';
 import ActivityListSidebar from './ActivityListSidebar';
 
@@ -11,10 +11,9 @@ const Topic: React.FC = () => {
     activityId: string;
   }>();
   const { activityId } = useSearchParams('activityId');
-  const topic = useTopic(journeyId, topicId);
-  const activity = useActivity(topic, activityId);
+  const { activity, activities } = useActivity(journeyId, topicId, activityId);
 
-  if (!topic)
+  if (!activity)
     return (
       <div className="p-4 bg-gray-900 text-white">
         <h1>Topic not found</h1>
@@ -23,11 +22,10 @@ const Topic: React.FC = () => {
 
   return (
     <div className="p-4 w-full h-full bg-gray-900 text-white">
-      {topic.name}
-      {activity?.name}
+      {activity.name}
       <div className="flex justify-between">
         <ExerciseRenderer source="exercises/SAMPLE.md"></ExerciseRenderer>
-        <ActivityListSidebar activities={topic.activities} />
+        <ActivityListSidebar activities={activities} />
       </div>
     </div>
   );
