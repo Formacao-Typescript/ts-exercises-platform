@@ -1,7 +1,7 @@
 import { Routes as RouterRoutes, Route } from 'react-router-dom';
 
 import PublicRoute from './PublicRoute';
-import { Dashboard, Journey, Topic, Activity } from '../pages';
+import { Dashboard, Journey, Topic } from '../pages';
 
 const Routes: React.FC = () => {
   return (
