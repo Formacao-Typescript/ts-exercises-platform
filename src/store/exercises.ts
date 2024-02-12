@@ -12,7 +12,7 @@ const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL;
 
 store.setState(STATE_KEY, INITIAL_STATE);
 
-export const useJourneys = () => {
+export const useExercises = () => {
   const [exercises, , updateExercises] = store.useState<IExercises>(STATE_KEY);
   const [journeys, setJourneys] = useState(exercises.journeys);
 

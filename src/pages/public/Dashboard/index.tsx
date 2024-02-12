@@ -4,12 +4,12 @@ import React, { useEffect } from 'react';
 import JourneyCard from '@/components/journey/JourneyCard';
 import { useNavigate } from 'react-router-dom';
 import { updateActivityProgress, useUser } from '@/store/user';
-import { useJourneys } from '@/store/exercises';
+import { useExercises } from '@/store/exercises';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [user, , updateUser] = useUser();
-  const { isLoading, isEmpty, journeys } = useJourneys();
+  const { isLoading, isEmpty, journeys } = useExercises();
   useEffect(() => {
     // console.log('user', user);
     if (user.name !== 'jose') {
