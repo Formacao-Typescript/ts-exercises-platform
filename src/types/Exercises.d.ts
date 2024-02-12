@@ -2,6 +2,7 @@ export interface IExercisesStoreState {
   isLoading: boolean;
   journeys: IJourney[];
   selectedJourney: IJourney | null;
+  activities: IActivity[];
 }
 
 export interface IRawJourney {
@@ -36,4 +37,11 @@ export interface ITopic {
   activityCount: number;
   progress: number;
   activities: IActivity[];
+}
+
+export interface IActivity {
+  id: string;
+  name: string;
+  description: string;
+  source: string;
 }

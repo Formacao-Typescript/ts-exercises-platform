@@ -2,13 +2,6 @@ export * from './Exercises';
 
 // --- MOCK DATA --- //
 
-export interface IActivity {
-  id: string;
-  name: string;
-  description: string;
-  source: string;
-}
-
 export interface IUser {
   id: string;
   name: string;

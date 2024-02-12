@@ -6,6 +6,7 @@ const INITIAL_STATE: IExercisesStoreState = {
   isLoading: true,
   journeys: [],
   selectedJourney: null,
+  activities: [],
 };
 
 store.setState(STATE_KEY, INITIAL_STATE);
