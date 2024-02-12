@@ -1,8 +1,8 @@
-import { IExercises, IJourney } from '@/types';
+import { IExercisesStoreState } from '@/types';
 import store from './setup';
 
 const STATE_KEY = 'exercises';
-const INITIAL_STATE: IExercises = {
+const INITIAL_STATE: IExercisesStoreState = {
   isLoading: true,
   journeys: [],
   selectedJourney: null,

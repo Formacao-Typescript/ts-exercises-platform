@@ -1,13 +1,6 @@
-// --- MOCK DATA --- //
+export * from './Exercises';
 
-export interface IJourney {
-  id: string;
-  name: string;
-  shortDescription: string;
-  longDescription: string;
-  progress?: number;
-  topics: ITopic[];
-}
+// --- MOCK DATA --- //
 
 export interface ITopic {
   id: string;
@@ -32,12 +25,6 @@ export interface IUser {
     topics: Record<ITopic[id], number>;
     activities: IActivity[id][];
   };
-}
-
-export interface IExercises {
-  isLoading: boolean;
-  journeys: IJourney[];
-  selectedJourney: IJourney | null;
 }
 
 // --- MOCK DATA --- //
