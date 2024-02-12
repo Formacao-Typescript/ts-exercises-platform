@@ -7,8 +7,13 @@ const useExercises = () => {
   const [exercises] = store.useState<IExercisesStoreState>(STATE_KEY);
   const [journeys, setJourneys] = useState(exercises.journeys);
 
+  useEffect(() => {
+    if (exercises?.journeys?.length === 0) {
+      loadJourneys();
+    }
+  }, [exercises]);
+
   const loadJourneys = async () => {
-    console.log('useJourneys.loadJourneys');
     startLoading();
     const response = await fetch(`${BASE_URL}/metadata.json`);
     const data = (await response.json()) as IRawJourney[];
@@ -27,12 +32,6 @@ const useExercises = () => {
     setJourneys(journeys);
     store.setState(STATE_KEY, { journeys: data, isLoading: false });
   };
-
-  useEffect(() => {
-    if (exercises?.journeys?.length === 0) {
-      loadJourneys();
-    }
-  }, [exercises]);
 
   return {
     isLoading: exercises.isLoading,

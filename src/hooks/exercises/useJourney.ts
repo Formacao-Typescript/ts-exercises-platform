@@ -5,7 +5,6 @@ import { useExercises } from '..';
 const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL;
 
 const useJourney = (journeyId?: IJourney['id']) => {
-  console.log('useJourney', journeyId);
   const { isLoading, journeys } = useExercises();
   const [journey, setJourney] = useState(
     journeys.find(j => j.id === journeyId)
@@ -29,7 +28,6 @@ const useJourney = (journeyId?: IJourney['id']) => {
   if (isLoading) return { journey: null, isLoading: true };
 
   const loadTopics = async (_journey: IJourney) => {
-    console.log('useJourney.loadTopics');
     startLoading();
     const response = await fetch(`${BASE_URL}/${_journey.id}/metadata.json`);
     const data = (await response.json()) as IRawTopic[];
