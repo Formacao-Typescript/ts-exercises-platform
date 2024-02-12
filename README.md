@@ -29,7 +29,9 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 - [ ] Definir estratégias de Login/SSO
 - [ ] Definir integração com storage em nuvem (Deno Kv)
 - [ ] Estabelecer modelo de dados persistidos do usuário
-  - [ ] Em nuvem (usuários autenticados).
+  - [ ] Consumir dados localmente nas interações do sistema
+  - [ ] Salvar dados em nuvem (para usuários autenticados)
+  - [ ] Interpolar dados em nuvem com dados locais no login
 - [ ] Ajustar identidade visual de acordo com a Formação TS
 - [ ] Adicionar aviso de não compatibilidade com dispositivos móveis (por hora)
 - [ ] Criar ao menos 1 trilha com 3 tópicos e 5 atividades cada (15 exercícios)
