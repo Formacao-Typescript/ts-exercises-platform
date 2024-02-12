@@ -1,4 +1,4 @@
-import { store, STATE_KEY } from '@/store/exercises';
+import { store, STATE_KEY, startLoading } from '@/store/exercises';
 import { IExercises } from '@/types';
 import { useEffect, useState } from 'react';
 const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL;
@@ -9,7 +9,7 @@ const useExercises = () => {
 
   const loadJourneys = async () => {
     console.log('useJourneys.loadJourneys');
-    updateExercises(_exercises => ({ ..._exercises, isLoading: true }));
+    startLoading();
     const response = await fetch(`${BASE_URL}/metadata.json`);
     const data = await response.json();
     setJourneys(data);
