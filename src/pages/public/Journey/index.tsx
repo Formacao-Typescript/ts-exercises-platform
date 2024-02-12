@@ -16,7 +16,7 @@ const Journey: React.FC = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (isEmpty)
+  if (isEmpty || !journey)
     return (
       <div className="p-4 bg-gray-900 text-white">
         <h1>Journey not found</h1>
@@ -27,10 +27,7 @@ const Journey: React.FC = () => {
     navigateToTopic: (topic: ITopic) => {
       console.log('navigateToTopic', topic.id);
       const topicId = topic.id;
-      // TODO: here we can get the latest activity the user is in that topic
-      const activityId = topic.activities[0].id;
-      // navigate(`topic/${topicId}/activity/${activityId}`);
-      navigate(`topic/${topicId}?activityId=${activityId}`);
+      navigate(`topic/${topicId}`);
     },
   };
 
