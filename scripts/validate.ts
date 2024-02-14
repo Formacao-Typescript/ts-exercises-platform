@@ -17,17 +17,17 @@ interface ActivityMetadata {
   description: string;
 }
 
-function readExerciseMetadata(exerciseFolderPath: string): ExerciseMetadata[] {
-  const metadataPath = path.join(exerciseFolderPath, 'metadata.json');
+function readExerciseMetadata(exercisesFolderPath: string): ExerciseMetadata[] {
+  const metadataPath = path.join(exercisesFolderPath, 'metadata.json');
   const metadataContent = fs.readFileSync(metadataPath, 'utf-8');
   return JSON.parse(metadataContent);
 }
 
 function writeExerciseMetadata(
-  exerciseFolderPath: string,
+  exercisesFolderPath: string,
   metadata: ExerciseMetadata[]
 ): void {
-  const metadataPath = path.join(exerciseFolderPath, 'metadata.json');
+  const metadataPath = path.join(exercisesFolderPath, 'metadata.json');
   fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
 }
 
@@ -45,18 +45,39 @@ function writeTopicMetadata(
   fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
 }
 
-function readActivityMetadata(activityFolderPath: string): ActivityMetadata[] {
-  const metadataPath = path.join(activityFolderPath, 'metadata.json');
-  const metadataContent = fs.readFileSync(metadataPath, 'utf-8');
-  return JSON.parse(metadataContent);
-}
+function writeActivityMetadata(activityFolderPath: string): void {
+  const activityFiles = fs
+    .readdirSync(activityFolderPath)
+    .filter(file => file.endsWith('.md'));
 
-function writeActivityMetadata(
-  activityFolderPath: string,
-  metadata: ActivityMetadata[]
-): void {
+  const activityMetadata: ActivityMetadata[] = activityFiles.map(file => {
+    const id = path.parse(file).name;
+
+    const activityFilePath = path.join(activityFolderPath, file);
+    const activityContent = fs.readFileSync(activityFilePath, 'utf-8');
+    const frontmatterMatch = activityContent.match(/^---([\s\S]*?)---/);
+
+    if (frontmatterMatch) {
+      const frontmatter = frontmatterMatch[1];
+      const frontmatterObj = JSON.parse(`{${frontmatter}}`);
+
+      return {
+        id,
+        name: frontmatterObj.name || '',
+        description: frontmatterObj.description || '',
+      };
+    }
+
+    // TODO: return error on this point
+    return {
+      id,
+      name: '',
+      description: '',
+    };
+  });
+
   const metadataPath = path.join(activityFolderPath, 'metadata.json');
-  fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
+  fs.writeFileSync(metadataPath, JSON.stringify(activityMetadata, null, 2));
 }
 
 function updateExerciseMetadata(exercisesFolderPath: string): void {
@@ -84,31 +105,7 @@ function updateExerciseMetadata(exercisesFolderPath: string): void {
 
       topic.activityCount = activityCount;
 
-      const activities = readActivityMetadata(activityFolderPath);
-
-      const updatedActivities = activities.map(activity => {
-        const activityFilePath = path.join(
-          activityFolderPath,
-          `${activity.id}.md`
-        );
-        const activityContent = fs.readFileSync(activityFilePath, 'utf-8');
-        const frontmatterMatch = activityContent.match(/^---([\s\S]*?)---/);
-
-        if (frontmatterMatch) {
-          const frontmatter = frontmatterMatch[1];
-          const frontmatterObj = JSON.parse(`{${frontmatter}}`);
-
-          return {
-            id: activity.id,
-            name: frontmatterObj.name || '',
-            description: frontmatterObj.description || '',
-          };
-        }
-
-        return activity;
-      });
-
-      writeActivityMetadata(activityFolderPath, updatedActivities);
+      writeActivityMetadata(activityFolderPath);
     });
 
     writeTopicMetadata(topicFolderPath, topics);
