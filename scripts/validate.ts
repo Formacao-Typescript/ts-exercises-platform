@@ -1,5 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import createDebug from 'debug';
+
+const debug = createDebug('ts-exercises:validate');
 
 interface ExerciseMetadata {
   id: string;
@@ -18,6 +21,8 @@ interface ActivityMetadata {
 }
 
 function readExerciseMetadata(exercisesFolderPath: string): ExerciseMetadata[] {
+  debug(`Reading exercise metadata from ${exercisesFolderPath}`);
+
   const metadataPath = path.join(exercisesFolderPath, 'metadata.json');
   const metadataContent = fs.readFileSync(metadataPath, 'utf-8');
   return JSON.parse(metadataContent);
@@ -61,19 +66,20 @@ function writeActivityMetadata(activityFolderPath: string): void {
       const frontmatter = frontmatterMatch[1];
       const frontmatterObj = JSON.parse(`{${frontmatter}}`);
 
+      if (!frontmatterObj.name || !frontmatterObj.description) {
+        throw new Error(
+          `Activity file '${file}' is missing 'name' and/or 'description' in frontmatter.`
+        );
+      }
+
       return {
         id,
-        name: frontmatterObj.name || '',
-        description: frontmatterObj.description || '',
+        name: frontmatterObj.name,
+        description: frontmatterObj.description,
       };
     }
 
-    // TODO: return error on this point
-    return {
-      id,
-      name: '',
-      description: '',
-    };
+    throw new Error(`Activity file '${file}' is missing frontmatter.`);
   });
 
   const metadataPath = path.join(activityFolderPath, 'metadata.json');
@@ -81,9 +87,13 @@ function writeActivityMetadata(activityFolderPath: string): void {
 }
 
 function updateExerciseMetadata(exercisesFolderPath: string): void {
+  debug(`Updating exercise metadata for folder: ${exercisesFolderPath}`);
+
   const exerciseMetadata = readExerciseMetadata(exercisesFolderPath);
 
   exerciseMetadata.forEach(exercise => {
+    debug(`Processing exercise with id: ${exercise.id}`);
+
     const topicFolderPath = path.join(
       exercisesFolderPath,
       exercise.id,
@@ -94,6 +104,8 @@ function updateExerciseMetadata(exercisesFolderPath: string): void {
     exercise.topicCount = topics.length;
 
     topics.forEach(topic => {
+      debug(`Processing topic with id: ${topic.id}`);
+
       const activityFolderPath = path.join(
         topicFolderPath,
         topic.id,
@@ -105,7 +117,12 @@ function updateExerciseMetadata(exercisesFolderPath: string): void {
 
       topic.activityCount = activityCount;
 
-      writeActivityMetadata(activityFolderPath);
+      try {
+        writeActivityMetadata(activityFolderPath);
+      } catch (error) {
+        debug(`Error writing activity metadata: ${error.message}`);
+        // Handle the error or log additional information if needed
+      }
     });
 
     writeTopicMetadata(topicFolderPath, topics);
@@ -115,5 +132,8 @@ function updateExerciseMetadata(exercisesFolderPath: string): void {
 }
 
 // Example usage
-const exercisesFolderPath = '/path/to/exercises';
+// use fs and path to specify exercises folder on the project root
+// use fs and path to specify exercises folder on the project root
+
+const exercisesFolderPath = path.resolve('..', 'exercises-script-test');
 updateExerciseMetadata(exercisesFolderPath);
