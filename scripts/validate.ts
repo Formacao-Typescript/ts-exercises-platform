@@ -26,14 +26,19 @@ const utils = {
     fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
   },
   readMarkdownGroup: (folderPath: string): string[] => {
-    return fs.readdirSync(folderPath).filter(file => file.endsWith('.md'));
+    return fs
+      .readdirSync(folderPath)
+      .filter(file => file.endsWith('.md') && file !== 'INFO.md');
   },
   readOnlyFolders: (folderPath: string): string[] => {
     return fs
       .readdirSync(folderPath)
       .filter(file => file.split('.').length === 1);
   },
-  extractFrontMatter: (filePath: string, keys: string[]) => {
+  extractFrontMatter: <T = Record<string, any>>(
+    filePath: string,
+    keys: string[]
+  ): T => {
     const activityContent = fs.readFileSync(filePath, 'utf-8');
     const { data: frontmatterObj } = matter(activityContent);
 
@@ -45,14 +50,23 @@ const utils = {
       }
     });
 
-    return frontmatterObj;
+    return frontmatterObj as T;
   },
 };
 
 const handlers = {
   journey: {
-    read: (folderPath: string) => {
-      return utils.readMetadata<IRawJourney[]>(folderPath);
+    read: (folderPath: string): IRawJourney[] => {
+      const journeyFolders = utils.readOnlyFolders(folderPath);
+      return journeyFolders.map(folder => {
+        const id = path.parse(folder).name;
+        const infoFilePath = path.join(folderPath, folder, 'INFO.md');
+        const data = utils.extractFrontMatter<Partial<IRawJourney>>(
+          infoFilePath,
+          ['name', 'shortDescription', 'longDescription']
+        );
+        return { id, topicCount: 0, ...data } as IRawJourney;
+      });
     },
     write: (folderPath: string, journeys: IJourney[]) => {
       const dataToWrite: IRawJourney[] = journeys.map(journey => ({
@@ -72,8 +86,17 @@ const handlers = {
     },
   },
   topic: {
-    read: (folderPath: string) => {
-      return utils.readMetadata<IRawTopic[]>(folderPath);
+    read: (folderPath: string): IRawTopic[] => {
+      const topicFolders = utils.readOnlyFolders(folderPath);
+      return topicFolders.map(folder => {
+        const id = path.parse(folder).name;
+        const infoFilePath = path.join(folderPath, folder, 'INFO.md');
+        const data = utils.extractFrontMatter<Partial<IRawTopic>>(
+          infoFilePath,
+          ['name', 'description']
+        );
+        return { id, activityCount: 0, ...data } as IRawTopic;
+      });
     },
     write: (folderPath: string, topics: ITopic[]) => {
       const dataToWrite: IRawTopic[] = topics.map(topic => ({

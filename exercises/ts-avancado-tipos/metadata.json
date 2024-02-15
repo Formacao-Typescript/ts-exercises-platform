@@ -6,15 +6,15 @@
     "activityCount": 2
   },
   {
-    "id": "tipos-primitivos",
-    "name": "Tipos primitivos",
-    "description": "como o typescript lida com tipos primitivos",
-    "activityCount": 2
-  },
-  {
     "id": "tipos-literais",
     "name": "Tipos literais",
     "description": "como o typescript lida com tipos literais",
+    "activityCount": 2
+  },
+  {
+    "id": "tipos-primitivos",
+    "name": "Tipos primitivos",
+    "description": "como o typescript lida com tipos primitivos",
     "activityCount": 2
   }
 ]
