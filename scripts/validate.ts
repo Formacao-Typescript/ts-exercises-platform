@@ -3,8 +3,6 @@ import * as path from 'path';
 import createDebug from 'debug';
 import matter from 'gray-matter';
 
-class UsageError extends Error {}
-
 import {
   IActivity,
   IJourney,
@@ -12,6 +10,8 @@ import {
   IRawTopic,
   ITopic,
 } from '../src/types';
+
+class UsageError extends Error {}
 
 const debug = createDebug('ts-exercises:validate');
 
@@ -123,66 +123,16 @@ const handlers = {
     },
   },
 };
-interface ExerciseMetadata {
-  id: string;
-  topicCount: number;
-}
-
-interface TopicMetadata {
-  id: string;
-  activityCount: number;
-}
-
-interface ActivityMetadata {
-  id: string;
-  name: string;
-  description: string;
-}
-
-function writeActivityMetadata(activityFolderPath: string): void {
-  const activityFiles = fs
-    .readdirSync(activityFolderPath)
-    .filter(file => file.endsWith('.md'));
-
-  const activityMetadata: ActivityMetadata[] = activityFiles.map(file => {
-    const id = path.parse(file).name;
-
-    const activityFilePath = path.join(activityFolderPath, file);
-    const activityContent = fs.readFileSync(activityFilePath, 'utf-8');
-    const frontmatterMatch = activityContent.match(/^---([\s\S]*?)---/);
-
-    if (frontmatterMatch) {
-      const frontmatter = frontmatterMatch[1];
-      const frontmatterObj = JSON.parse(`{${frontmatter}}`);
-
-      if (!frontmatterObj.name || !frontmatterObj.description) {
-        throw new Error(
-          `Activity file '${file}' is missing 'name' and/or 'description' in frontmatter.`
-        );
-      }
-
-      return {
-        id,
-        name: frontmatterObj.name,
-        description: frontmatterObj.description,
-      };
-    }
-
-    throw new Error(`Activity file '${file}' is missing frontmatter.`);
-  });
-
-  const metadataPath = path.join(activityFolderPath, 'metadata.json');
-  fs.writeFileSync(metadataPath, JSON.stringify(activityMetadata, null, 2));
-}
 
 function updateExercisesMetadata(exercisesFolderPath: string): void {
   debug(`updateExercisesMetadata for folder: ${exercisesFolderPath}`);
 
   try {
+    // --- READING AND VALIDATING ---
     shared.journeys = handlers.journey.read(exercisesFolderPath);
     handlers.journey.validate(shared.journeys);
-
     debug('Successfully read journeys');
+
     shared.journeys.forEach(journey => {
       const topicsFolderPath = path.join(exercisesFolderPath, journey.id!);
       const topics = handlers.topic.read(topicsFolderPath) as ITopic[];
@@ -205,6 +155,7 @@ function updateExercisesMetadata(exercisesFolderPath: string): void {
       });
     });
 
+    // --- WRITING ---
     shared.journeys.forEach(journey => {
       journey.topics!.forEach(topic => {
         const activityFolderPath = path.join(
@@ -235,32 +186,6 @@ function updateExercisesMetadata(exercisesFolderPath: string): void {
     console.error('Unexpected error.', error);
     process.exit(1);
   }
-
-  // topics.forEach(topic => {
-  //   debug(`Processing topic with id: ${topic.id}`);
-
-  //   const activityFolderPath = path.join(
-  //     topicFolderPath,
-  //     topic.id,
-  //     'activity'
-  //   );
-  //   const activityCount = fs
-  //     .readdirSync(activityFolderPath)
-  //     .filter(file => file.endsWith('.md')).length;
-
-  //   topic.activityCount = activityCount;
-
-  //   try {
-  //     writeActivityMetadata(activityFolderPath);
-  //   } catch (error) {
-  //     debug(`Error writing activity metadata: ${error.message}`);
-  //     // Handle the error or log additional information if needed
-  //   }
-  // });
-
-  //   writeTopicMetadata(topicFolderPath, topics);
-
-  // writeExerciseMetadata(exercisesFolderPath, exerciseMetadata);
 }
 
 const exercisesFolderPath = path.resolve('exercises-script-test');
