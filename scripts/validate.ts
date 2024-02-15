@@ -15,12 +15,6 @@ class UsageError extends Error {}
 
 const debug = createDebug('ts-exercises:validate');
 
-const shared: {
-  journeys: Partial<IJourney>[];
-} = {
-  journeys: [],
-};
-
 const utils = {
   readMetadata: <T = any>(folderPath: string): T => {
     const metadataPath = path.join(folderPath, 'metadata.json');
@@ -72,8 +66,8 @@ const handlers = {
       utils.writeMetadata(folderPath, dataToWrite);
     },
     validate: (journeys: Partial<IRawJourney>[]) => {
-      if (!Array.isArray(journeys)) {
-        throw new Error('Invalid metadata format');
+      if (!Array.isArray(journeys) || journeys.length === 0) {
+        throw new UsageError('You must provide at least one journey');
       }
     },
   },
@@ -91,8 +85,8 @@ const handlers = {
       utils.writeMetadata(folderPath, dataToWrite);
     },
     validate: (topics: IRawTopic[]) => {
-      if (!Array.isArray(topics)) {
-        throw new Error('Invalid metadata format');
+      if (!Array.isArray(topics) || topics.length === 0) {
+        throw new UsageError('Each journey must have at least one topic');
       }
     },
   },
@@ -113,8 +107,8 @@ const handlers = {
       utils.writeMetadata(folderPath, activities);
     },
     validate: (activities: IActivity[]) => {
-      if (!Array.isArray(activities)) {
-        throw new Error('Invalid metadata format');
+      if (!Array.isArray(activities) || activities.length === 0) {
+        throw new UsageError('Each topic must have at least one activity');
       }
     },
   },
@@ -125,11 +119,12 @@ function updateExercisesMetadata(exercisesFolderPath: string): void {
 
   try {
     // --- READING AND VALIDATING ---
-    shared.journeys = handlers.journey.read(exercisesFolderPath);
-    handlers.journey.validate(shared.journeys);
+    const journeys: Partial<IJourney>[] =
+      handlers.journey.read(exercisesFolderPath);
+    handlers.journey.validate(journeys);
     debug('Successfully read journeys');
 
-    shared.journeys.forEach(journey => {
+    journeys.forEach(journey => {
       const topicsFolderPath = path.join(exercisesFolderPath, journey.id!);
       const topics = handlers.topic.read(topicsFolderPath) as ITopic[];
       handlers.topic.validate(topics);
@@ -152,7 +147,7 @@ function updateExercisesMetadata(exercisesFolderPath: string): void {
     });
 
     // --- WRITING ---
-    shared.journeys.forEach(journey => {
+    journeys.forEach(journey => {
       journey.topics!.forEach(topic => {
         const activityFolderPath = path.join(
           exercisesFolderPath,
@@ -171,7 +166,7 @@ function updateExercisesMetadata(exercisesFolderPath: string): void {
     });
     debug('Successfully wrote topics');
 
-    handlers.journey.write(exercisesFolderPath, shared.journeys as IJourney[]);
+    handlers.journey.write(exercisesFolderPath, journeys as IJourney[]);
     debug('Successfully wrote journeys');
   } catch (error) {
     if (error instanceof UsageError) {
