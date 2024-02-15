@@ -43,19 +43,15 @@ const utils = {
     const activityContent = fs.readFileSync(filePath, 'utf-8');
     const { data: frontmatterObj } = matter(activityContent);
 
-    // Developer note: not using reduce with spread operator here, too many iterations already
-    let finalObj = {};
-
     keys.forEach(key => {
       if (!frontmatterObj[key]) {
         throw new UsageError(
           `Activity file '${filePath}' is missing '${key}' in frontmatter.`
         );
       }
-      finalObj[key] = frontmatterObj[key];
     });
 
-    return finalObj;
+    return frontmatterObj;
   },
 };
 
@@ -182,11 +178,10 @@ function updateExercisesMetadata(exercisesFolderPath: string): void {
       console.error('ATTENTION: ', error.message);
       process.exit(1);
     }
-    debug(`Error reading exercise metadata: ${error.message}`);
     console.error('Unexpected error.', error);
     process.exit(1);
   }
 }
 
-const exercisesFolderPath = path.resolve('exercises-script-test');
+const exercisesFolderPath = path.resolve('exercises');
 updateExercisesMetadata(exercisesFolderPath);
