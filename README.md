@@ -29,9 +29,11 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
   - [ ] Consumir dados localmente nas interações do sistema
   - [ ] Salvar dados em nuvem (para usuários autenticados)
   - [ ] Interpolar dados em nuvem com dados locais no login
-- [ ] Criar script de validação ao inserir exercícios novos que deve:
-  - [ ] Validar se todos os IDs dos exercícios são únicos
-  - [ ] Extrair dados do Frontmatter de exercícios e gerar o metadado de exercícios para cada Tema
+- [x] Criar script de validação ao inserir exercícios novos que deve:
+  - [x] Validar se todos os IDs dos exercícios são únicos
+  - [x] Extrair dados do front-matter de atividade e gerar o metadado geral de atividades para cada Tema
+  - [x] Reconhecer os diretórios de temas, ler front-matter de cada tema e gerar o metadado geral de cada Jornada
+  - [x] Reconhecer os diretórios de jornadas, ler o front-matter de cada jornada e gerar o metadado geral raiz do projeto
 - [ ] Implementar deploy no Github Pages
 - [ ] Definir estratégias de Login/SSO
 - [ ] Definir integração com storage em nuvem (Deno Kv)
