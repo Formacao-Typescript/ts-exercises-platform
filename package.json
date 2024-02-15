@@ -3,6 +3,7 @@
   "author": "Wellington S. Almeida (@WellsSA)",
   "version": "0.0.1",
   "description": "A platform inspired by Lucas Santos (@lsantosdev | @kahosdoctor) to practice TypeScript",
+  "license": "MIT",
   "private": false,
   "type": "module",
   "scripts": {
