@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import createDebug from 'debug';
+import matter from 'gray-matter';
 
 class UsageError extends Error {}
 
@@ -40,15 +41,7 @@ const utils = {
   },
   extractFrontMatter: (filePath: string, keys: string[]) => {
     const activityContent = fs.readFileSync(filePath, 'utf-8');
-    const frontmatterMatch = activityContent.match(/^---([\s\S]*?)---/);
-
-    if (!frontmatterMatch) {
-      throw new UsageError(
-        `Activity file '${filePath}' is missing frontmatter.`
-      );
-    }
-    const frontmatter = frontmatterMatch[1];
-    const frontmatterObj = JSON.parse(`{${frontmatter}}`);
+    const { data: frontmatterObj } = matter(activityContent);
 
     // Developer note: not using reduce with spread operator here, too many iterations already
     let finalObj = {};
@@ -71,7 +64,17 @@ const handlers = {
     read: (folderPath: string) => {
       return utils.readMetadata<IRawJourney[]>(folderPath);
     },
-    write: () => {},
+    write: (folderPath: string, journeys: IJourney[]) => {
+      const dataToWrite: IRawJourney[] = journeys.map(journey => ({
+        id: journey.id,
+        name: journey.name,
+        shortDescription: journey.shortDescription,
+        longDescription: journey.longDescription,
+        topicCount: journey.topicCount,
+      }));
+
+      utils.writeMetadata(folderPath, dataToWrite);
+    },
     validate: (journeys: Partial<IRawJourney>[]) => {
       if (!Array.isArray(journeys)) {
         throw new Error('Invalid metadata format');
@@ -82,7 +85,15 @@ const handlers = {
     read: (folderPath: string) => {
       return utils.readMetadata<IRawTopic[]>(folderPath);
     },
-    write: () => {},
+    write: (folderPath: string, topics: ITopic[]) => {
+      const dataToWrite: IRawTopic[] = topics.map(topic => ({
+        id: topic.id,
+        name: topic.name,
+        description: topic.description,
+        activityCount: topic.activityCount,
+      }));
+      utils.writeMetadata(folderPath, dataToWrite);
+    },
     validate: (topics: IRawTopic[]) => {
       if (!Array.isArray(topics)) {
         throw new Error('Invalid metadata format');
@@ -102,7 +113,9 @@ const handlers = {
         return { id, ...data } as IActivity;
       });
     },
-    write: () => {},
+    write: (folderPath: string, activities: IActivity[]) => {
+      utils.writeMetadata(folderPath, activities);
+    },
     validate: (activities: IActivity[]) => {
       if (!Array.isArray(activities)) {
         throw new Error('Invalid metadata format');
@@ -169,12 +182,12 @@ function updateExercisesMetadata(exercisesFolderPath: string): void {
     shared.journeys = handlers.journey.read(exercisesFolderPath);
     handlers.journey.validate(shared.journeys);
 
-    debug(`Journeys: ${JSON.stringify(shared.journeys, null, 2)}`);
+    debug('Successfully read journeys');
     shared.journeys.forEach(journey => {
       const topicsFolderPath = path.join(exercisesFolderPath, journey.id!);
       const topics = handlers.topic.read(topicsFolderPath) as ITopic[];
       handlers.topic.validate(topics);
-      debug(`Topics: ${JSON.stringify(topics, null, 2)}`);
+      debug('Successfully read topics');
 
       journey.topicCount = topics.length;
       journey.topics = topics;
@@ -188,15 +201,31 @@ function updateExercisesMetadata(exercisesFolderPath: string): void {
         topic.activityCount = activities.length;
         topic.activities = activities;
 
-        console.log('activities', JSON.stringify(activities, null, 2));
-        //   try {
-        //     writeActivityMetadata(activityFolderPath);
-        //   } catch (error) {
-        //     debug(`Error writing activity metadata: ${error.message}`);
-        //     // Handle the error or log additional information if needed
-        //   }
+        debug('Successfully read activities');
       });
     });
+
+    shared.journeys.forEach(journey => {
+      journey.topics!.forEach(topic => {
+        const activityFolderPath = path.join(
+          exercisesFolderPath,
+          journey.id!,
+          topic.id
+        );
+
+        handlers.activity.write(activityFolderPath, topic.activities);
+      });
+      debug('Successfully wrote activities');
+
+      handlers.topic.write(
+        path.join(exercisesFolderPath, journey.id!),
+        journey.topics!
+      );
+    });
+    debug('Successfully wrote topics');
+
+    handlers.journey.write(exercisesFolderPath, shared.journeys as IJourney[]);
+    debug('Successfully wrote journeys');
   } catch (error) {
     if (error instanceof UsageError) {
       console.error('ATTENTION: ', error.message);
