@@ -27,7 +27,7 @@ const useActivity = (
     // no activity specified
     if (!activityId) {
       // load latest user activity from this topic OR first activity available
-      if (user.progress.activities.length !== 0) {
+      if (user.progress.activities?.length !== 0) {
         const remainingActivities = _.difference(
           activities,
           user.progress.activities
@@ -60,7 +60,7 @@ const useActivity = (
     const data = (await response.json()) as IActivity[];
     const _activities = data.map(rawActivity => ({
       ...rawActivity,
-      source: `${BASE_URL}/${journeyId}/${topicId}/${rawActivity.source}`,
+      source: `${BASE_URL}/${journeyId}/${topicId}/${rawActivity.id}.md`,
     }));
     setActivities(_activities);
     store.setState(STATE_KEY, { activities: _activities, isLoading: false });
