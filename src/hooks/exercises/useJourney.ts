@@ -1,7 +1,9 @@
 import { store, STATE_KEY, startLoading } from '@/store/exercises';
+import { useUser } from '@/store/user';
 import { IJourney, IRawTopic, ITopic } from '@/types';
 import { useEffect, useState } from 'react';
 import { useExercises } from '..';
+
 const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL;
 
 const useJourney = (journeyId?: IJourney['id']) => {
@@ -9,6 +11,7 @@ const useJourney = (journeyId?: IJourney['id']) => {
   const [journey, setJourney] = useState(
     journeys.find(j => j.id === journeyId)
   );
+  const [user] = useUser();
 
   useEffect(() => {
     if (!journeyId) return void 0;
@@ -38,7 +41,7 @@ const useJourney = (journeyId?: IJourney['id']) => {
         name: rawJourney.name,
         description: rawJourney.description,
         activityCount: rawJourney.activityCount,
-        progress: 0, // TODO: get from user state
+        progress: user.progress.topics[rawJourney.id] || 0,
         activities: [],
       };
     });
