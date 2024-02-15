@@ -26,7 +26,7 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 - [x] Implementar carregamento de Jornadas, Tópicos e Atividades sob demanda
 - [x] Implementar renderização de exercícios com base na versão disponibilizada no github
 - [ ] Estabelecer modelo de dados persistidos do usuário
-  - [ ] Consumir dados localmente nas interações do sistema
+  - [x] Consumir dados localmente nas interações do sistema
   - [ ] Salvar dados em nuvem (para usuários autenticados)
   - [ ] Interpolar dados em nuvem com dados locais no login
 - [x] Criar script de validação ao inserir exercícios novos que deve:
