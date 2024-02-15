@@ -1,5 +1,7 @@
 import { store, STATE_KEY, startLoading } from '@/store/exercises';
+import { useUser } from '@/store/user';
 import { IActivity, IExercisesStoreState, IJourney, ITopic } from '@/types';
+import _ from 'lodash';
 import { useEffect, useState } from 'react';
 const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL;
 
@@ -11,6 +13,7 @@ const useActivity = (
   const [exercises] = store.useState<IExercisesStoreState>(STATE_KEY);
   const [activity, setActivity] = useState<IActivity>();
   const [activities, setActivities] = useState<IActivity[]>([]);
+  const [user] = useUser();
 
   useEffect(() => {
     if (!journeyId || !topicId) return void 0;
@@ -23,7 +26,18 @@ const useActivity = (
 
     // no activity specified
     if (!activityId) {
-      // TODO: load latest user activity from this topic OR first activity available
+      // load latest user activity from this topic OR first activity available
+      if (user.progress.activities.length !== 0) {
+        const remainingActivities = _.difference(
+          activities,
+          user.progress.activities
+        );
+        if (remainingActivities.length !== 0) {
+          setActivity(remainingActivities[0]);
+          return void 0;
+        }
+      }
+
       setActivity(activities[0]);
       return void 0;
     }
