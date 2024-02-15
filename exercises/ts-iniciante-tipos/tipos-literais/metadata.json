@@ -1,14 +1,12 @@
 [
   {
-    "id": "string-e-number-wiosj3",
-    "name": "String e number",
-    "description": "como o typescript lida com tipos literais",
-    "source": "SAMPLE.md"
+    "id": "string-e-boolean",
+    "name": "String e boolean",
+    "description": "como o typescript lida com tipos primitivos"
   },
   {
-    "id": "string-e-boolean-xlsBdm",
-    "name": "String e boolean",
-    "description": "como o typescript lida com tipos literais",
-    "source": "SAMPLE-2.md"
+    "id": "string-e-number",
+    "name": "String e number",
+    "description": "como o typescript lida com tipos primitivos"
   }
 ]
