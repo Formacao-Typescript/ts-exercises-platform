@@ -32,6 +32,7 @@ const useJourney = (journeyId?: IJourney['id']) => {
 
   const loadTopics = async (_journey: IJourney) => {
     startLoading();
+    // TODO: refactor this. Since we added the INFO.md we can use it instead of loading all the metadata.json
     const response = await fetch(`${BASE_URL}/${_journey.id}/metadata.json`);
     const data = (await response.json()) as IRawTopic[];
 

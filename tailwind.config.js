@@ -3,6 +3,13 @@ export default {
   darkMode: 'media', // or 'class'
   theme: {
     extend: {
+      width: {
+        300: '300px',
+      },
+      height: {
+        300: '300px',
+        600: '600px',
+      },
       screens: {
         'dark-mode': { raw: '(prefers-color-scheme: dark)' },
       },
