@@ -6,6 +6,13 @@ export default {
       screens: {
         'dark-mode': { raw: '(prefers-color-scheme: dark)' },
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
+    },
+    fontFamily: {
+      body: ['Roboto', 'ui-sans-serif', 'system-ui'],
+      sans: ['Roboto', 'ui-sans-serif', 'system-ui'],
     },
   },
   content: [
