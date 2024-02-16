@@ -6,6 +6,7 @@ import matter from 'gray-matter';
 import {
   IActivity,
   IJourney,
+  IRawActivity,
   IRawJourney,
   IRawTopic,
   ITopic,
@@ -114,7 +115,7 @@ const handlers = {
     },
   },
   activity: {
-    read: (folderPath: string): IActivity[] => {
+    read: (folderPath: string): IRawActivity[] => {
       const activityFiles = utils.readMarkdownGroup(folderPath);
       return activityFiles.map(file => {
         const id = path.parse(file).name;
@@ -123,13 +124,13 @@ const handlers = {
           'name',
           'description',
         ]);
-        return { id, ...data } as IActivity;
+        return { id, ...data } as IRawActivity;
       });
     },
-    write: (folderPath: string, activities: IActivity[]) => {
+    write: (folderPath: string, activities: IRawActivity[]) => {
       utils.writeMetadata(folderPath, activities);
     },
-    validate: (activities: IActivity[]) => {
+    validate: (activities: IRawActivity[]) => {
       if (!Array.isArray(activities) || activities.length === 0) {
         throw new UsageError('Each topic must have at least one activity');
       }
@@ -159,7 +160,9 @@ function updateExercisesMetadata(exercisesFolderPath: string): void {
       journey.topics.forEach(topic => {
         const activityFolderPath = path.join(topicsFolderPath, topic.id);
 
-        const activities = handlers.activity.read(activityFolderPath);
+        const activities = handlers.activity.read(
+          activityFolderPath
+        ) as IActivity[];
         handlers.activity.validate(activities);
 
         topic.activityCount = activities.length;

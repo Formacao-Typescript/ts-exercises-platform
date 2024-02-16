@@ -18,6 +18,7 @@ const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({ source }) => {
     async function load(_source: string) {
       const response = await fetch(_source);
       const text = await response.text();
+      // TODO: remove frontmatter
       setRawMarkdown(text);
     }
 

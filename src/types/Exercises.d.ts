@@ -39,8 +39,15 @@ export interface ITopic {
   activities: IActivity[];
 }
 
+export interface IRawActivity {
+  id: string;
+  name: string;
+  description: string;
+}
+
 export interface IActivity {
   id: string;
   name: string;
   description: string;
+  source: string;
 }
