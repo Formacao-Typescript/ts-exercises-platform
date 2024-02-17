@@ -3,6 +3,14 @@ export default {
   darkMode: 'media', // or 'class'
   theme: {
     extend: {
+      colors: {
+        'trade-light-blue': '#04ABCA',
+        'trade-blue': '#0164FE',
+        'trade-light-purple': '#B902C6',
+        'trade-purple': '#5E00FF',
+        'trade-light-red': '#FC5900',
+        'trade-red': '#C70100',
+      },
       width: {
         300: '300px',
       },

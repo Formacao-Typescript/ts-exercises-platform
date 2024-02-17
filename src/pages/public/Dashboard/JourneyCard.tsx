@@ -18,10 +18,10 @@ const JourneyCard: React.FC<Props> = ({ journey, onClick }) => {
       )}
       onClick={onClick}
     >
-      <div className="h-full rounded-lg w-3/6 bg-gradient-radial from-gray-600 to-gray-800 flex flex-col justify-center items-center">
+      <div className="h-full rounded-lg w-3/6 p-2 bg-gradient-radial from-gray-600 to-gray-800 flex flex-col justify-center items-center">
         <span className="text-6xl border-l text-white">TS</span>
-        <span className="text-5xl bg-gradient-to-l from-indigo-500 to-blue-600 inline-block text-transparent bg-clip-text">
-          Iniciante
+        <span className="text-5xl bg-gradient-to-l from-trade-light-red to-trade-red inline-block text-transparent bg-clip-text">
+          Avançado
         </span>
       </div>
       <div className="p-5 w-5/6">
