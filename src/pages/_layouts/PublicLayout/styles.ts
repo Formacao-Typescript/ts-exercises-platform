@@ -12,7 +12,3 @@ export const Container = styled.div`
     /* overflow: auto; */
   }
 `;
-
-export const Content = styled.div`
-  width: 100%;
-`;
