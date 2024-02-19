@@ -25,7 +25,7 @@ const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({ source }) => {
     void load(source);
   }, [source]);
   return (
-    <Container className="format-lg dark:format-invert">
+    <Container className="xs:format-sm md:format-lg dark:format-invert">
       <Markdown
         components={{
           code: node => {
