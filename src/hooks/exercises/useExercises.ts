@@ -10,7 +10,7 @@ const useExercises = () => {
   const [user] = useUser();
 
   useEffect(() => {
-    if (exercises?.journeys?.length === 0) {
+    if (!exercises || !exercises.journeys || exercises.journeys.length === 0) {
       loadJourneys();
     }
   }, [exercises]);
@@ -37,7 +37,6 @@ const useExercises = () => {
 
   return {
     isLoading: exercises.isLoading,
-    isEmpty: journeys.length === 0,
     journeys,
     loadJourneys,
   };

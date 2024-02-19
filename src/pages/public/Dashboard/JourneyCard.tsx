@@ -35,9 +35,11 @@ const JourneyCard: React.FC<Props> = ({ journey, onClick }) => {
           {journey.longDescription}
         </p>
         <Progress
-          progress={journey.progress / journey.topicCount}
+          progress={(journey.progress || 0) / journey.topicCount}
           progressLabelPosition="outside"
-          textLabel={`${journey.progress}/${journey.topicCount} Temas explorados`}
+          textLabel={`${journey.progress || 0}/${
+            journey.topicCount
+          } Temas explorados`}
           textLabelPosition="outside"
           size="lg"
           labelProgress

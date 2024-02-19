@@ -11,7 +11,7 @@ import { AiOutlinePicture } from 'react-icons/ai';
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [user, , updateUser] = useUser();
-  const { isLoading, isEmpty, journeys } = useExercises();
+  const { isLoading, journeys } = useExercises();
   useEffect(() => {
     console.log('user', user);
     // if (user.name !== 'jose') {
@@ -36,7 +36,7 @@ const Dashboard: React.FC = () => {
           </p>
         </div>
         <LoadSkeleton
-          isLoading={true}
+          isLoading={isLoading}
           skeleton={() => (
             <div className="flex flex-col md:flex-row">
               {Array(2)
@@ -65,7 +65,7 @@ const Dashboard: React.FC = () => {
           )}
         >
           <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
-            {journeys.map(journey => (
+            {journeys?.map(journey => (
               <JourneyCard
                 key={journey.id}
                 journey={journey}

@@ -39,7 +39,7 @@ const Journey: React.FC = () => {
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:px-6 ">
           <div className="text-left mb-4">
             <LoadSkeleton
-              isLoading={true}
+              isLoading={isLoading}
               skeleton={() => (
                 <div className="w-full pr-4">
                   <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>

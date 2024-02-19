@@ -15,12 +15,10 @@ const LoadSkeleton: React.FC<Props> = ({
   const [internalLoading, setInternalLoading] = useState(isLoading);
 
   useEffect(() => {
-    if (isLoading) {
-      const timeout = setTimeout(() => {
-        setInternalLoading(false);
-      }, 800);
-      return () => clearTimeout(timeout);
-    }
+    const timeout = setTimeout(() => {
+      setInternalLoading(false);
+    }, 800);
+    return () => clearTimeout(timeout);
   }, []);
 
   if (internalLoading) return <Skeleton />;
