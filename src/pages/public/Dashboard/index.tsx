@@ -1,26 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 // import MonacoMockup from '../../../assets/monaco-mockup.png';
 
-import JourneyCard from './JourneyCard';
-import { useNavigate } from 'react-router-dom';
-import { updateActivityProgress, useUser } from '@/store/user';
-import { useExercises } from '@/hooks';
 import LoadSkeleton from '@/components/LoadSkeleton';
+import { useExercises } from '@/hooks';
 import { AiOutlinePicture } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
+import JourneyCard from './JourneyCard';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
-  const [user, , updateUser] = useUser();
   const { isLoading, journeys } = useExercises();
-  useEffect(() => {
-    console.log('user', user);
-    // if (user.name !== 'jose') {
-    //   updateUser(user => (user.name = 'jose'));
-    // }
-  }, [user]);
-
-  // if (isLoading) return <div>Loading...</div>;
-  // if (isEmpty) return <div>No journeys found</div>;
 
   return (
     <>
