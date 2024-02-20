@@ -5,11 +5,7 @@ import ExerciseRenderer from '@/components/ExerciseRenderer';
 import ActivityListSidebar from './ActivityListSidebar';
 
 const Topic: React.FC = () => {
-  const { journeyId, topicId } = useParams<{
-    journeyId: string;
-    topicId: string;
-    activityId: string;
-  }>();
+  const { journeyId, topicId } = useParams();
   const { activityId } = useSearchParams('activityId');
   const { activity, activities } = useActivity(journeyId, topicId, activityId);
 
@@ -24,8 +20,15 @@ const Topic: React.FC = () => {
     <>
       {activity.name}
       <div className="flex justify-between">
-        <ExerciseRenderer source={activity.source}></ExerciseRenderer>
-        <ActivityListSidebar activities={activities} />
+        {/* <ExerciseRenderer source={activity.source}></ExerciseRenderer> */}
+        <ActivityListSidebar
+          activityIdentifier={{
+            journeyId: journeyId!,
+            topicId: topicId!,
+            activityId: activity.id,
+          }}
+          activities={activities}
+        />
       </div>
     </>
   );
