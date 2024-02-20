@@ -25,6 +25,18 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 - [x] Implementar uso da indexação e metadados do github na plataforma
 - [x] Implementar carregamento de Jornadas, Tópicos e Atividades sob demanda
 - [x] Implementar renderização de exercícios com base na versão disponibilizada no github
+- [ ] Ajustar navegação/usabilidade da aplicação
+  - [x] Refatoração do consumo de metadados em JSON e Markdown
+  - [x] Implementar skeleton loading nas páginas principais (dasboard e listagem de tópicos)
+  - [ ] Implementar skeleton loading na página de atividades
+  - [ ] Marcador de progresso do tópico na sidebar
+  - [ ] Permitir usuário marcar/desmarcar atividade feita
+- [ ] Implementar deploy no Github Pages
+- [ ] Definir estratégias de Login/SSO
+- [ ] Definir integração com storage em nuvem (Deno Kv)
+- [ ] Ajustar renderizador de exercícios
+  - [ ] Remover frontmatter antes do rendering
+  - [ ] Adicionar formatação apropriada e estilos para títulos, paragrafos e afins
 - [ ] Estabelecer modelo de dados persistidos do usuário
   - [x] Consumir dados localmente nas interações do sistema
   - [ ] Salvar dados em nuvem (para usuários autenticados)
@@ -34,9 +46,6 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
   - [x] Extrair dados do front-matter de atividade e gerar o metadado geral de atividades para cada Tema
   - [x] Reconhecer os diretórios de temas, ler front-matter de cada tema e gerar o metadado geral de cada Jornada
   - [x] Reconhecer os diretórios de jornadas, ler o front-matter de cada jornada e gerar o metadado geral raiz do projeto
-- [ ] Implementar deploy no Github Pages
-- [ ] Definir estratégias de Login/SSO
-- [ ] Definir integração com storage em nuvem (Deno Kv)
 - [ ] Ajustar identidade visual de acordo com a Formação TS
 - [ ] Adicionar aviso de não compatibilidade com dispositivos móveis (por hora)
 - [ ] Criar ao menos 1 trilha com 3 tópicos e 5 atividades cada (15 exercícios)
