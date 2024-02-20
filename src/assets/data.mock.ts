@@ -1,5 +1,6 @@
 // --- MOCK DATA --- //
-import { IJourney, ITopic } from '@/types';
+type IJourney = any;
+type ITopic = any;
 
 const topics: ITopic[] = [
   {
