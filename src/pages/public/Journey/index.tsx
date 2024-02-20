@@ -2,7 +2,7 @@ import React from 'react';
 import { Progress } from 'flowbite-react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import { ITopic } from '@/types';
-import { useJourney } from '@/hooks';
+import { useJourney, useTopics } from '@/hooks';
 import LoadSkeleton from '@/components/LoadSkeleton';
 import { AiOutlinePicture } from 'react-icons/ai';
 
@@ -11,19 +11,13 @@ const Journey: React.FC = () => {
     journeyId: string;
     topicId: string;
   }>();
-  const { journey, isLoading, isEmpty } = useJourney(journeyId);
+  const [journey, isLoadingJourney] = useJourney(journeyId);
+  const [topics, isLoadingTopics] = useTopics(journeyId);
+
   const navigate = useNavigate();
 
+  // nested route rendering
   if (topicId) return <Outlet />;
-
-  // if (isLoading) return <div>Loading...</div>;
-
-  // if (isEmpty || !journey)
-  //   return (
-  //     <div className="p-4 bg-gray-900 text-white">
-  //       <h1>Journey not found</h1>
-  //     </div>
-  //   );
 
   const actions = {
     navigateToTopic: (topic: ITopic) => {
@@ -37,7 +31,7 @@ const Journey: React.FC = () => {
     <>
       <div className="text-left mb-4">
         <LoadSkeleton
-          isLoading={isLoading}
+          isLoading={isLoadingJourney}
           skeleton={() => (
             <div className="w-full pr-4">
               <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
@@ -62,7 +56,7 @@ const Journey: React.FC = () => {
       </div>
       <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-3">
         <LoadSkeleton
-          isLoading={true}
+          isLoading={isLoadingTopics}
           skeleton={() => (
             <>
               {Array(3)
@@ -90,7 +84,7 @@ const Journey: React.FC = () => {
             </>
           )}
         >
-          {(journey?.topics || []).map(topic => (
+          {topics.map(topic => (
             <div
               key={topic.id}
               className="bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 cursor-pointer flex flex-col"
