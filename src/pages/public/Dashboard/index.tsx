@@ -2,14 +2,14 @@ import React from 'react';
 // import MonacoMockup from '../../../assets/monaco-mockup.png';
 
 import LoadSkeleton from '@/components/LoadSkeleton';
-import { useExercises } from '@/hooks';
+import { useJourneys } from '@/hooks';
 import { AiOutlinePicture } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import JourneyCard from './JourneyCard';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
-  const { isLoading, journeys } = useExercises();
+  const { isLoading, journeys } = useJourneys();
 
   return (
     <>
