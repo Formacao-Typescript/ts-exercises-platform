@@ -51,3 +51,9 @@ export interface IActivity {
   description: string;
   source: string;
 }
+
+export interface IActivityIdentifier {
+  journeyId: IJourney['id'];
+  topicId: ITopic['id'];
+  activityId: IActivity['id'];
+}

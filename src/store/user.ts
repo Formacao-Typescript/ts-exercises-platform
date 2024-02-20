@@ -1,3 +1,4 @@
+import { IActivityIdentifier } from './../types/Exercises.d';
 import { IActivity, IJourney, ITopic, IUser } from '@/types';
 import store from './setup';
 import _ from 'lodash';
@@ -20,11 +21,11 @@ export const useUser = () => {
   return store.useState<IUser>(STATE_KEY);
 };
 
-export const updateActivityProgress = (
-  journeyId: IJourney['id'],
-  topicId: ITopic['id'],
-  activityId: IActivity['id']
-) => {
+export const updateActivityProgress = ({
+  journeyId,
+  topicId,
+  activityId,
+}: IActivityIdentifier) => {
   store.getState<IUser>(STATE_KEY).setValue(user => {
     const { journeys, topics, activities } = _.cloneDeep(user.progress);
 
