@@ -23,15 +23,17 @@ const useJourney = (
 
   const loadJourney = async (_journeyId: IJourney['id']) => {
     setIsLoading(true);
-    const data = await fetchMetadataMarkdown<IRawJourney>(BASE_URL);
+    const data = await fetchMetadataMarkdown<IRawJourney>(
+      `${BASE_URL}/${_journeyId}`
+    );
 
     const journey: IJourney = {
-      id: data.id,
+      id: _journeyId,
       name: data.name,
       shortDescription: data.shortDescription,
       longDescription: data.longDescription,
-      topicCount: data.topicCount,
       progress: user.progress.journeys[data.id] || 0,
+      topicCount: 0,
       topics: [],
     };
 
