@@ -1,6 +1,7 @@
 import { store, STATE_KEY, startLoading } from '@/store/exercises';
 import { useUser } from '@/store/user';
 import { IExercisesStoreState, IJourney, IRawJourney } from '@/types';
+import { fetchMetadataJSON } from '@/utils/metadata';
 import { useEffect, useState } from 'react';
 const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL;
 
@@ -17,8 +18,7 @@ const useExercises = () => {
 
   const loadJourneys = async () => {
     startLoading();
-    const response = await fetch(`${BASE_URL}/metadata.json`);
-    const data = (await response.json()) as IRawJourney[];
+    const data = await fetchMetadataJSON<IRawJourney[]>(BASE_URL);
 
     const journeys: IJourney[] = data.map(rawJourney => {
       return {
