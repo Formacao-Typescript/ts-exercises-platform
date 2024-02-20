@@ -5,7 +5,7 @@ import { fetchMetadataJSON } from '@/utils/metadata';
 import { useEffect, useState } from 'react';
 const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL;
 
-const useJourneys = () => {
+const useJourneys = (): [IJourney[], boolean, () => Promise<void>] => {
   const [exercises] = store.useState<IExercisesStoreState>(STATE_KEY);
   const [journeys, setJourneys] = useState(exercises.journeys);
   const [user] = useUser();
@@ -35,11 +35,7 @@ const useJourneys = () => {
     store.setState(STATE_KEY, { journeys: data, isLoading: false });
   };
 
-  return {
-    isLoading: exercises.isLoading,
-    journeys,
-    loadJourneys,
-  };
+  return [journeys, exercises.isLoading, loadJourneys];
 };
 
 export default useJourneys;

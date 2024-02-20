@@ -9,7 +9,7 @@ import JourneyCard from './JourneyCard';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
-  const { isLoading, journeys } = useJourneys();
+  const [journeys, isLoading] = useJourneys();
 
   return (
     <>
