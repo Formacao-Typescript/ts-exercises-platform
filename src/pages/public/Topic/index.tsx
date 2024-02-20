@@ -20,8 +20,8 @@ const Topic: React.FC = () => {
   return (
     <>
       {activity?.name}
-      <div className="flex justify-between">
-        {/* <ExerciseRenderer source={activity.source}></ExerciseRenderer> */}
+      <div className="w-11/12">
+        <ExerciseRenderer source={activity.source}></ExerciseRenderer>
         <ActivityListSidebar
           activityIdentifier={{
             journeyId: journeyId!,
@@ -29,6 +29,7 @@ const Topic: React.FC = () => {
             activityId: activity!.id,
           }}
           activities={activities}
+          className="absolute top-0 right-0 h-full bg-white dark:bg-gray-800 shadow-lg"
         />
       </div>
     </>

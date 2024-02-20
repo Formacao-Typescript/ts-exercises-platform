@@ -19,10 +19,12 @@ import { updateActivityProgress, useUser } from '@/store/user';
 interface Props {
   activityIdentifier: IActivityIdentifier;
   activities: IActivity[];
+  className?: React.HTMLAttributes<HTMLDivElement>['className'];
 }
 const ActivityListSidebar: React.FC<Props> = ({
   activityIdentifier,
   activities,
+  className,
 }) => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
@@ -44,6 +46,7 @@ const ActivityListSidebar: React.FC<Props> = ({
       aria-label="Sidebar with multi-level dropdown example"
       collapsed={collapsed}
       collapseBehavior="collapse"
+      className={cn('transition-all duration-300 ease-in-out', className)}
     >
       <Sidebar.Items>
         <Sidebar.ItemGroup>

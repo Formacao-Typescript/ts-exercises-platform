@@ -59,7 +59,7 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
           <Navbar.Link href="#">Contact</Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
-      <main className="bg-white dark:bg-gray-900 dark:text-white w-full h-full">
+      <main className="bg-white dark:bg-gray-900 dark:text-white w-full h-full relative">
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
           {children}
         </div>
