@@ -36,6 +36,12 @@ const ActivityListSidebar: React.FC<Props> = ({
       console.log('navigateToActivity', activityId);
       // TODO: can add a warning if the user is currently on an activity and has unsaved changes
       navigate(`?activityId=${activityId}`);
+      /* 
+      Dev note: since Github Pages doesn't support browser history we have to use HashRouter instead of BrowserRouter.
+      Unfortunately, with HashRouter, useNavigate only changes the url but it's not able to navigate to the new url.
+      So we have to force refresh with navigate(0) after changing the url.
+      */
+      navigate(0);
     },
     toggleActivityCheck: (activityId: string) => {
       console.log('toggleActivityCheck', activityId);

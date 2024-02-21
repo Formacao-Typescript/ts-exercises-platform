@@ -7,6 +7,7 @@ import ActivityListSidebar from './ActivityListSidebar';
 const Topic: React.FC = () => {
   const { journeyId, topicId } = useParams();
   const { activityId } = useSearchParams('activityId');
+
   const [activities, isLoadingActivities] = useActivities(journeyId, topicId);
   const [activity, isLoadingActivity] = useActivity(activityId, activities);
 
