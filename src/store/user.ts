@@ -2,6 +2,7 @@ import { IActivityIdentifier } from './../types/Exercises.d';
 import { IActivity, IUser } from '@/types';
 import store from './setup';
 import _ from 'lodash';
+import { toast } from 'react-toastify';
 
 const STATE_KEY = 'user';
 const INITIAL_STATE: IUser = {
@@ -42,6 +43,8 @@ export const updateActivityProgress = ({
         topics[topicId] = 1;
         journeys[journeyId] = (journeys[journeyId] || 0) + 1;
       }
+
+      toast.success('Atividade concluída!');
     } else {
       // unchecking activity
       _.remove<IActivity['id']>(activities, id => id === activityId);
@@ -52,6 +55,7 @@ export const updateActivityProgress = ({
         journeys[journeyId] -= 1;
         if (journeys[journeyId] === 0) delete journeys[journeyId];
       }
+      toast.info('Atividade desmarcada!');
     }
     return { ...user, progress: { journeys, topics, activities } };
   });

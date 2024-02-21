@@ -14,6 +14,9 @@ const GlobalStyles = createGlobalStyle`
 
     color: var(--text-active-primary);
     background: var(--base-active);
+
+    // Toastify theme variables: https://fkhadra.github.io/react-toastify/how-to-style
+    --toastify-color-dark: #1e2638; 
   }
 
   html {

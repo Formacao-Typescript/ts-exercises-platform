@@ -19,6 +19,7 @@ const App: React.FC = () => {
         pauseOnHover
         position="bottom-right"
         rtl={false}
+        theme="dark"
       />
     </Router>
   );
