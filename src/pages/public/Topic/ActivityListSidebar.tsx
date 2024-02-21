@@ -99,10 +99,10 @@ const ActivityListSidebar: React.FC<Props> = ({
                           ? 'text-green-400 hover:text-cyan-400'
                           : 'text-gray-500 hover:text-gray-300'
                       )}
-                      onClick={(e: MouseEvent) =>
-                        void e.stopPropagation() ??
-                        actions.toggleActivityCheck(activity.id)
-                      }
+                      onClick={(e: MouseEvent) => {
+                        e.stopPropagation();
+                        actions.toggleActivityCheck(activity.id);
+                      }}
                     />
                   );
                 }}
