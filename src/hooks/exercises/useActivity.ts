@@ -22,11 +22,16 @@ const useActivity = (
       // load latest user activity from this topic OR first activity available
       if (user.progress.activities?.length !== 0) {
         const remainingActivities = _.difference(
-          activities,
+          activities.map(_activity => _activity.id),
           user.progress.activities
         );
+
         if (remainingActivities.length !== 0) {
-          setActivity(remainingActivities[0]);
+          setActivity(
+            activities.find(
+              _activity => _activity.id === remainingActivities[0]
+            )!
+          );
           return void 0;
         }
       }
