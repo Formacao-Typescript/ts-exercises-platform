@@ -15,4 +15,6 @@ const startLoading = () => {
   store.setState(STATE_KEY, { isLoading: true });
 };
 
-export { store, STATE_KEY, startLoading };
+export { STATE_KEY, startLoading };
+
+export default store;

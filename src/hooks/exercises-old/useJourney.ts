@@ -1,4 +1,4 @@
-import { store, STATE_KEY, startLoading } from '@/store/exercises';
+import store, { STATE_KEY, startLoading } from '@/store/exercises';
 import { useUser } from '@/store/user';
 import { IJourney, IRawTopic, ITopic } from '@/types';
 import { useEffect, useState } from 'react';
