@@ -11,6 +11,8 @@ const Topic: React.FC = () => {
   const [activities, isLoadingActivities] = useActivities(journeyId, topicId);
   const [activity, isLoadingActivity] = useActivity(activityId, activities);
 
+  if (isLoadingActivities || isLoadingActivity) return <div>Loading...</div>;
+
   if (!activity)
     return (
       <div className="p-4 bg-gray-900 text-white">
