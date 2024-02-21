@@ -1,5 +1,5 @@
 import { IActivityIdentifier } from './../types/Exercises.d';
-import { IActivity, IJourney, ITopic, IUser } from '@/types';
+import { IActivity, IUser } from '@/types';
 import store from './setup';
 import _ from 'lodash';
 
