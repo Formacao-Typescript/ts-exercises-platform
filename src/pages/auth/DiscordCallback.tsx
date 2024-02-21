@@ -1,4 +1,5 @@
 import { useSearchParams } from '@/hooks';
+import { buildUrl } from '@/utils/url';
 import React, { useEffect } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -11,11 +12,12 @@ const DiscordCallback: React.FC = () => {
 
   useEffect(() => {
     if (searchParams.error) {
-      const params = new URLSearchParams({
+      const url = buildUrl('/auth', {
         error: searchParams.error,
         platform: 'discord',
       });
-      navigate(`/auth?${params}`);
+
+      navigate(url);
     }
 
     if (searchParams.code) {
