@@ -44,7 +44,7 @@ const Breadcrumb: React.FC<Props> = ({ className }) => {
 
   return (
     <nav aria-label="Breadcrumb" className={cn('flex', className)}>
-      <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+      <ol className="inline-flex items-center">
         <Link
           to="/"
           className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
