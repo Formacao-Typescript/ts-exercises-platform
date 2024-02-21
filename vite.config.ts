@@ -8,6 +8,7 @@ import * as path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/ts-exercises-platform/',
   plugins: [
     react(),
     // @ts-expect-error for some reason vite doesn't resolve the plugin by default, so simply adding `.default` does the trick. however `.default` is not listed as a valid type, thus we have this ts-expect-error. https://github.com/vdesjs/vite-plugin-monaco-editor/issues/21

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import Routes from './routes';
 import { ToastContainer } from 'react-toastify';
 import GlobalStyles from './styles/GlobalStyles';
