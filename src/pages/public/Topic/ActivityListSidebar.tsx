@@ -44,8 +44,12 @@ const ActivityListSidebar: React.FC<Props> = ({
       navigate(0);
     },
     toggleActivityCheck: (activityId: string) => {
-      console.log('toggleActivityCheck', activityId);
-      updateActivityProgress(activityIdentifier);
+      const { journeyId, topicId } = activityIdentifier;
+      updateActivityProgress({
+        journeyId,
+        topicId,
+        activityId,
+      });
     },
   };
   return (
