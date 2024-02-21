@@ -15,6 +15,7 @@ import { Button, Navbar, Footer } from 'flowbite-react';
 import LogoImg from '@/assets/logo-formacaots-hotmart.webp';
 import { Container } from './styles';
 import { Link } from 'react-router-dom';
+import Breadcrumb from './Breadcrumb';
 // import Sidebar from './Sidebar';
 
 const LINKS = {
@@ -59,8 +60,9 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
           <Navbar.Link href="#">Contact</Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
-      <main className="bg-white dark:bg-gray-900 dark:text-white w-full h-full relative">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
+      <main className="bg-white dark:bg-gray-900 dark:text-white w-full h-full relative flex flex-col">
+        <Breadcrumb className="m-2" />
+        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
           {children}
         </div>
       </main>
