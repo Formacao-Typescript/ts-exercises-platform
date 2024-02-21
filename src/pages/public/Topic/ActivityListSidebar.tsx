@@ -21,6 +21,7 @@ interface Props {
   activities: IActivity[];
   className?: React.HTMLAttributes<HTMLDivElement>['className'];
 }
+
 const ActivityListSidebar: React.FC<Props> = ({
   activityIdentifier,
   activities,
@@ -72,23 +73,25 @@ const ActivityListSidebar: React.FC<Props> = ({
             return (
               <Sidebar.Item
                 key={activity.id}
+                className={cn(
+                  'cursor-pointer relative',
+                  isChecked && 'text-green-500'
+                )}
                 icon={({ className, ...props }: SidebarItemProps) => {
-                  const Icon = isChecked ? CheckedIcon : UncheckedIcon;
+                  const Icon = isChecked ? UncheckedIcon : UncheckedIcon;
 
                   return (
                     <Icon
                       {...props}
                       className={cn(
-                        className,
-                        isChecked && 'dark:text-green-400'
+                        'absolute right-0 w-10 h-fit p-1.5 hover:bg-gray-600 cursor-pointer rounded-lg',
+                        isChecked
+                          ? 'text-green-400 hover:text-cyan-400'
+                          : 'text-gray-500 hover:text-gray-300'
                       )}
                     />
                   );
                 }}
-                className={cn(
-                  'cursor-pointer flex-row-reverse',
-                  isChecked && 'text-green-500'
-                )}
                 active={isActive}
                 onClick={() =>
                   isActive
