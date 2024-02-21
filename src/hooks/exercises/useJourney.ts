@@ -22,6 +22,19 @@ const useJourney = (
     loadJourney(journeyId);
   }, []);
 
+  useEffect(() => {
+    if (!journey || !user) return void 0;
+    const _journey = {
+      ...journey,
+      progress: user.progress.journeys[journey.id] || 0,
+    };
+    setJourney(_journey);
+  }, [user]);
+
+  useEffect(() => {
+    store.setState('exercises', { selectedJourney: journey });
+  }, [journey]);
+
   const loadJourney = async (_journeyId: IJourney['id']) => {
     setIsLoading(true);
     const data = await fetchMetadataMarkdown<IRawJourney>(

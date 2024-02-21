@@ -1,4 +1,4 @@
-import { startLoading } from '@/store/exercises';
+import store, { startLoading } from '@/store/exercises';
 import { useUser } from '@/store/user';
 import { IJourney, IRawTopic, ITopic } from '@/types';
 import { useEffect, useState } from 'react';
@@ -19,6 +19,19 @@ const useTopics = (
     loadTopics(journeyId);
   }, []);
 
+  useEffect(() => {
+    if (!topics.length || !user) return void 0;
+    const _topics = topics.map(_topic => ({
+      ..._topic,
+      progress: user.progress.topics[_topic.id] || 0,
+    }));
+    setTopics(_topics);
+  }, [user]);
+
+  useEffect(() => {
+    store.setState('exercises', { selectedTopics: topics });
+  }, [topics]);
+
   const loadTopics = async (_journeyId?: IJourney['id']) => {
     startLoading();
 
@@ -26,13 +39,13 @@ const useTopics = (
       `${BASE_URL}/${_journeyId}`
     );
 
-    const _topics: ITopic[] = data.map(rawJourney => {
+    const _topics: ITopic[] = data.map(rawTopic => {
       return {
-        id: rawJourney.id,
-        name: rawJourney.name,
-        description: rawJourney.description,
-        activityCount: rawJourney.activityCount,
-        progress: user.progress.topics[rawJourney.id] || 0,
+        id: rawTopic.id,
+        name: rawTopic.name,
+        description: rawTopic.description,
+        activityCount: rawTopic.activityCount,
+        progress: user.progress.topics[rawTopic.id] || 0,
         activities: [],
       };
     });

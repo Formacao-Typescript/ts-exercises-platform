@@ -2,6 +2,7 @@ export interface IExercisesStoreState {
   isLoading: boolean;
   journeys: IJourney[];
   selectedJourney: IJourney | null;
+  selectedTopics: ITopic[];
   activities: IActivity[];
 }
 
