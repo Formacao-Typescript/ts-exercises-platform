@@ -31,7 +31,7 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
   - [ ] Implementar skeleton loading na página de atividades
   - [ ] Marcador de progresso do tópico na sidebar
   - [ ] Permitir usuário marcar/desmarcar atividade feita
-- [ ] Implementar deploy no Github Pages
+- [x] Implementar deploy no Github Pages
 - [ ] Definir estratégias de Login/SSO
 - [ ] Definir integração com storage em nuvem (Deno Kv)
 - [ ] Ajustar renderizador de exercícios
