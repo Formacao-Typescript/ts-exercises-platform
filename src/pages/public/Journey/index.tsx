@@ -103,7 +103,9 @@ const Journey: React.FC = () => {
                   {topic.description}
                 </p>
                 <Progress
-                  progress={topic.progress / topic.activityCount}
+                  progress={
+                    +((topic.progress / topic.activityCount) * 100).toFixed(2)
+                  }
                   progressLabelPosition="outside"
                   textLabel={`${topic.progress}/${topic.activityCount} Atividades concluídas`}
                   textLabelPosition="outside"
