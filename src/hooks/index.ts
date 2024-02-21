@@ -1,4 +1,3 @@
-import useTopic from './mock/useTopic';
 import useSearchParams from './util/useSearchParams';
 import useExercises from './exercises-old/useExercises';
 import useActivity from './exercises/useActivity';
@@ -9,7 +8,6 @@ import useTopics from './exercises/useTopics';
 
 export {
   useJourney,
-  useTopic,
   useActivity,
   useSearchParams,
   useExercises,
