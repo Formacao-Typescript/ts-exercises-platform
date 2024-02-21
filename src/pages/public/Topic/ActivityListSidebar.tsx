@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Sidebar } from 'flowbite-react';
+import { Sidebar, SidebarItemProps } from 'flowbite-react';
 import {
   RiMenuFoldLine as SidebarClosedIcon,
   RiMenuUnfoldLine as SidebarOpenedIcon,
@@ -72,7 +72,19 @@ const ActivityListSidebar: React.FC<Props> = ({
             return (
               <Sidebar.Item
                 key={activity.id}
-                icon={isChecked ? CheckedIcon : UncheckedIcon}
+                icon={({ className, ...props }: SidebarItemProps) => {
+                  const Icon = isChecked ? CheckedIcon : UncheckedIcon;
+
+                  return (
+                    <Icon
+                      {...props}
+                      className={cn(
+                        className,
+                        isChecked && 'dark:text-green-400'
+                      )}
+                    />
+                  );
+                }}
                 className={cn(
                   'cursor-pointer flex-row-reverse',
                   isChecked && 'text-green-500'
