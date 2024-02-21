@@ -8,7 +8,7 @@ import {
 
 import {
   GoCheckCircle as UncheckedIcon,
-  GoCheckCircleFill as CheckedIcon,
+  // GoCheckCircleFill as CheckedIcon,
 } from 'react-icons/go';
 
 import { IActivity, IActivityIdentifier } from '@/types';
@@ -78,7 +78,7 @@ const ActivityListSidebar: React.FC<Props> = ({
                   isChecked && 'text-green-500'
                 )}
                 icon={({ className, ...props }: SidebarItemProps) => {
-                  const Icon = isChecked ? UncheckedIcon : UncheckedIcon;
+                  const Icon = UncheckedIcon;
 
                   return (
                     <Icon
@@ -89,14 +89,16 @@ const ActivityListSidebar: React.FC<Props> = ({
                           ? 'text-green-400 hover:text-cyan-400'
                           : 'text-gray-500 hover:text-gray-300'
                       )}
+                      onClick={(e: MouseEvent) =>
+                        void e.stopPropagation() ??
+                        actions.toggleActivityCheck(activity.id)
+                      }
                     />
                   );
                 }}
                 active={isActive}
                 onClick={() =>
-                  isActive
-                    ? actions.toggleActivityCheck(activity.id)
-                    : actions.navigateToActivity(activity.id)
+                  !isActive && actions.navigateToActivity(activity.id)
                 }
               >
                 {activity.name}
