@@ -10,8 +10,8 @@
   "scripts": {
     "dev": "vite",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "build": "tsc && vite build",
-    "build:unsafe": "vite build",
+    "build": "VITE_BUILD_NUMBER=$(date +'%m%d.%H%M') tsc && vite build && cp build/index.html build/404.html",
+    "build:unsafe": "VITE_BUILD_NUMBER=$(date +'%m%d.%H%M') vite build",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
     "validate": "tsx ./scripts/validate.ts",

@@ -28,6 +28,8 @@ const LINKS = {
   mail: 'mailto:hello@lsantos.dev',
 };
 
+const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER;
+
 const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
@@ -87,11 +89,14 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
           </div>
           <Footer.Divider className="m-4" />
           <div className="flex sm:items-center sm:justify-between mb-2">
-            <Footer.Brand
-              href={LINKS.formacao}
-              src={LogoImg}
-              alt="Formação Typescript Logo"
-            />
+            <div className="flex justify-center items-center">
+              <Footer.Brand
+                href={LINKS.formacao}
+                src={LogoImg}
+                alt="Formação Typescript Logo"
+              />
+              <span className="text-slate-600">Build: {BUILD_NUMBER}</span>
+            </div>
             <Footer.Copyright
               href={LINKS.formacao}
               by="LS Consulting CNPJ: 480.719.05/0001-89. Todos os direitos reservados."
