@@ -1,6 +1,7 @@
 import { IUserToken } from '@/types';
 const {
-  VITE_DISCORD_OAUTH_API_URL: DISCORD_API_URL,
+  VITE_DISCORD_API_URL: DISCORD_API_URL,
+  VITE_DISCORD_OAUTH_API_URL: DISCORD_OAUTH_API_URL,
   VITE_DISCORD_OAUTH_REDIRECT_URL: REDIRECT_URL,
   VITE_DISCORD_OAUTH_CLIENT_ID: CLIENT_ID,
   VITE_DISCORD_OAUTH_CLIENT_SECRET: CLIENT_SECRET,
@@ -11,7 +12,7 @@ const {
  * @returns {url: string} - The URL to redirect the user to
  */
 export const getAuthorizationCodeUrl = (): string => {
-  const BASE_URL = DISCORD_API_URL;
+  const BASE_URL = DISCORD_OAUTH_API_URL;
   const params = new URLSearchParams({
     response_type: 'code',
     client_id: CLIENT_ID,
@@ -34,7 +35,7 @@ export const getToken = async (code: string): Promise<IUserToken> => {
     redirect_uri: REDIRECT_URL,
   });
   console.log(params.toString());
-  const response = await fetch(DISCORD_API_URL + '/token', {
+  const response = await fetch(DISCORD_OAUTH_API_URL + '/token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
