@@ -48,7 +48,9 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
         </Link>
 
         <div className="flex md:order-2">
-          <Button>Sign in</Button>
+          <Link to="/auth">
+            <Button>Sign in</Button>
+          </Link>
           <Navbar.Toggle />
         </div>
 
