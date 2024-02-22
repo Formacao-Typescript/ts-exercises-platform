@@ -14,7 +14,7 @@ const {
 const DiscordCallback: React.FC = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
-  const searchParams = useSearchParams('error');
+  const searchParams = useSearchParams('error', 'code');
 
   const informError = (error: string) => {
     const url = buildUrl('/auth', {
@@ -26,6 +26,7 @@ const DiscordCallback: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log('searchParams', searchParams);
     if (searchParams.error) {
       informError(searchParams.error); // access_denied
       return void 0;
@@ -47,7 +48,7 @@ const DiscordCallback: React.FC = () => {
       code: code,
       redirect_uri: REDIRECT_URL,
     });
-
+    console.log(params.toString());
     // headers = {
     //   'Content-Type': 'application/x-www-form-urlencoded'
     // }

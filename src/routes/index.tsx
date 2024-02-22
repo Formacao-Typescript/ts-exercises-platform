@@ -1,7 +1,7 @@
 import { Routes as RouterRoutes, Route } from 'react-router-dom';
 
 import PublicRoute from './PublicRoute';
-import { Dashboard, DiscordCallback, Journey, Topic } from '../pages';
+import { Dashboard, DiscordCallback, Journey, SignIn, Topic } from '../pages';
 import AuthRoute from './AuthRoute';
 
 const Routes: React.FC = () => {
@@ -30,7 +30,7 @@ const Routes: React.FC = () => {
         path="/auth"
         element={
           <AuthRoute>
-            <h1>potencia</h1>
+            <SignIn />
           </AuthRoute>
         }
       >
