@@ -10,6 +10,19 @@ const {
 const AuthLayout: React.FC = () => {
   return (
     <div>
+      <pre>
+        {JSON.stringify(
+          {
+            discUrl: DISCORD_API_URL,
+            response_type: 'code',
+            client_id: CLIENT_ID,
+            redirect_uri: REDIRECT_URL,
+            scope: 'identify',
+          },
+          null,
+          2
+        )}
+      </pre>
       <button
         type="button"
         onClick={() => {
