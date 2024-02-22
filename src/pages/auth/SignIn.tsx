@@ -1,3 +1,4 @@
+import { getAuthorizationCodeUrl } from '@/utils/discord';
 import React from 'react';
 
 const {
@@ -26,16 +27,7 @@ const AuthLayout: React.FC = () => {
       <button
         type="button"
         onClick={() => {
-          const BASE_URL = DISCORD_API_URL;
-          const params = new URLSearchParams({
-            response_type: 'code',
-            client_id: CLIENT_ID,
-            redirect_uri: REDIRECT_URL,
-            scope: 'identify',
-          });
-
-          const url = `${BASE_URL}/authorize?${params}`;
-          window.location.href = url;
+          window.location.href = getAuthorizationCodeUrl();
         }}
       >
         Discord SSO

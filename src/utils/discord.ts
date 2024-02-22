@@ -43,15 +43,16 @@ export const getUser = async (token: IUserToken) => {
   return data;
 };
 
-export const getDiscordLoginUrl = () => {
+export const getAuthorizationCodeUrl = () => {
+  const BASE_URL = DISCORD_API_URL;
   const params = new URLSearchParams({
+    response_type: 'code',
     client_id: CLIENT_ID,
     redirect_uri: REDIRECT_URL,
-    response_type: 'code',
-    scope: 'identify',
+    scope: 'identify email',
   });
 
-  return DISCORD_API_URL + '/authorize?' + params;
+  return `${BASE_URL}/authorize?${params}`;
 };
 
 export const fetchUser = async (code: string) => {
