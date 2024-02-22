@@ -14,3 +14,5 @@ export interface IUser {
     activities: IActivity[id][];
   };
 }
+
+export type IPersistedUser = Pick<IUser, 'progress'>;
