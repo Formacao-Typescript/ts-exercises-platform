@@ -6,6 +6,27 @@ const {
   VITE_DISCORD_OAUTH_CLIENT_SECRET: CLIENT_SECRET,
 } = import.meta.env;
 
+/**
+ * Generates the URL to redirect the user to for Discord OAuth
+ * @returns {url: string} - The URL to redirect the user to
+ */
+export const getAuthorizationCodeUrl = (): string => {
+  const BASE_URL = DISCORD_API_URL;
+  const params = new URLSearchParams({
+    response_type: 'code',
+    client_id: CLIENT_ID,
+    redirect_uri: REDIRECT_URL,
+    scope: 'identify email',
+  });
+
+  return `${BASE_URL}/authorize?${params}`;
+};
+
+/**
+ * Exchanges the code received from the Discord OAuth redirect for a user token
+ * @param code {string} - The code received from the Discord OAuth redirect
+ * @returns {Promise<IUserToken>} - The user token
+ */
 export const getToken = async (code: string): Promise<IUserToken> => {
   const params = new URLSearchParams({
     grant_type: 'authorization_code',
@@ -31,7 +52,12 @@ export const getToken = async (code: string): Promise<IUserToken> => {
   return data;
 };
 
-export const getUser = async (token: IUserToken) => {
+/**
+ * Fetches the user data from Discord
+ * @param token {IUserToken} - The user token
+ * @returns {Promise<any>} - The user data
+ */
+export const getUser = async (token: IUserToken): Promise<any> => {
   const response = await fetch(DISCORD_API_URL + '/users/@me', {
     headers: {
       Authorization: `${token.token_type} ${token.access_token}`,
@@ -43,19 +69,17 @@ export const getUser = async (token: IUserToken) => {
   return data;
 };
 
-export const getAuthorizationCodeUrl = () => {
-  const BASE_URL = DISCORD_API_URL;
-  const params = new URLSearchParams({
-    response_type: 'code',
-    client_id: CLIENT_ID,
-    redirect_uri: REDIRECT_URL,
-    scope: 'identify email',
-  });
-
-  return `${BASE_URL}/authorize?${params}`;
-};
-
-export const fetchUser = async (code: string) => {
+/**
+ * Fetches the user data from Discord
+ * @param code {string} - The code received from the Discord OAuth redirect
+ * @returns {Promise<{ user: any; token: IUserToken }>} - The user data and token
+ * @throws {Error} - If the token request fails
+ * @throws {Error} - If the user request fails
+ * @throws {Error} - If the token or user data is missing
+ */
+export const fetchUser = async (
+  code: string
+): Promise<{ user: any; token: IUserToken }> => {
   const token = await getToken(code);
   const user = await getUser(token);
   return { user, token };
