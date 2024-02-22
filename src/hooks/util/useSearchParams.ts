@@ -1,10 +1,9 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
 type UseSearchParamsReturnType = Record<string, string | undefined>;
 
 const useSearchParams = (...params: string[]): UseSearchParamsReturnType => {
-  const { search } = useLocation();
+  const search = window.location.search;
 
   const query = React.useMemo(() => new URLSearchParams(search), [search]);
 
