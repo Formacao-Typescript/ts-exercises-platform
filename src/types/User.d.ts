@@ -40,7 +40,7 @@ export interface IUser {
   avatar?: IUserAvatar;
   discord_id?: string;
   // google_id?: string;
-  token: IUserToken;
+  token?: IUserToken;
   progress: {
     journeys: Record<IJourney[id], number>;
     topics: Record<ITopic[id], number>;

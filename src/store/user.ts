@@ -7,8 +7,9 @@ import { toast } from 'react-toastify';
 const STATE_KEY = 'user';
 const INITIAL_STATE: IUser = {
   id: '',
-  name: '',
   email: '',
+  username: '',
+  global_name: '',
   progress: {
     journeys: {},
     topics: {},

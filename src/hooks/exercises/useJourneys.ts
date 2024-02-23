@@ -11,6 +11,10 @@ const useJourneys = (): [IJourney[], boolean, () => Promise<void>] => {
   const [user] = useUser();
 
   useEffect(() => {
+    console.log('user', user);
+  }, [user]);
+
+  useEffect(() => {
     if (!exercises || !exercises.journeys || exercises.journeys.length === 0) {
       loadJourneys();
     }

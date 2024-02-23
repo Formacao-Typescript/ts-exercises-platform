@@ -7,12 +7,13 @@ import _ from 'lodash';
 import React, { useEffect } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Callback: React.FC = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
   const searchParams = useSearchParams('platform', 'error', 'code');
-  const [user, , updateUser] = useUser();
+  const [user, setUser] = useUser();
 
   const informError = (error: string) => {
     const url = buildUrl('/auth', {
@@ -41,12 +42,12 @@ const Callback: React.FC = () => {
               searchParams.code
             );
 
+            // TODO: fetch remote user based on discordUser.id
             // TODO: check if user already exists (discordUser.id === remote_user.discord_id)
-
-            const remoteUser = null;
+            const remoteUser = undefined;
 
             if (!remoteUser) {
-              updateUser(_user => ({
+              setUser(_user => ({
                 ..._user,
                 id: _.uniqueId('user_'),
                 email: discordUser.email,
@@ -59,14 +60,25 @@ const Callback: React.FC = () => {
 
               // TODO: save user to remote, including offline user progress
               console.log('new user!', discordUser);
+              toast.success('Bem-vindo(a) a bordo!');
+              navigate('/');
+              return void 0;
             }
 
-            updateUser(_user => ({
+            setUser(_user => ({
               ..._user, // TODO: properly merge local and remote user progress
               remoteUser, // FIXME: this will override local user progress on login
             }));
 
             console.log('existing user!', discordUser);
+            toast.success(
+              _.sample([
+                'Bem-vindo(a) de volta! 👋',
+                'Olha só quem voltou 👋👋',
+                'Salve salve! 👋👋👋',
+              ])
+            );
+            // use lodash to get a random index from an array
             navigate('/');
           })();
         } catch (error) {
