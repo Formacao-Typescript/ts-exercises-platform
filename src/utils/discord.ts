@@ -1,4 +1,4 @@
-import { IUserToken } from '@/types';
+import { IDiscordUser, IUserToken } from '@/types';
 const {
   VITE_DISCORD_API_URL: DISCORD_API_URL,
   VITE_DISCORD_OAUTH_API_URL: DISCORD_OAUTH_API_URL,
@@ -58,7 +58,7 @@ export const getToken = async (code: string): Promise<IUserToken> => {
  * @param token {IUserToken} - The user token
  * @returns {Promise<any>} - The user data
  */
-export const getUser = async (token: IUserToken): Promise<any> => {
+export const getUser = async (token: IUserToken): Promise<IDiscordUser> => {
   const response = await fetch(DISCORD_API_URL + '/users/@me', {
     headers: {
       Authorization: `${token.token_type} ${token.access_token}`,
@@ -80,7 +80,7 @@ export const getUser = async (token: IUserToken): Promise<any> => {
  */
 export const fetchUser = async (
   code: string
-): Promise<{ user: any; token: IUserToken }> => {
+): Promise<{ user: IDiscordUser; token: IUserToken }> => {
   const token = await getToken(code);
   const user = await getUser(token);
   return { user, token };
