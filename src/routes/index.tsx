@@ -1,7 +1,7 @@
 import { Routes as RouterRoutes, Route } from 'react-router-dom';
 
 import PublicRoute from './PublicRoute';
-import { Dashboard, DiscordCallback, Journey, SignIn, Topic } from '../pages';
+import { Dashboard, Callback, Journey, SignIn, Topic } from '../pages';
 import AuthRoute from './AuthRoute';
 
 const Routes: React.FC = () => {
@@ -34,7 +34,7 @@ const Routes: React.FC = () => {
           </AuthRoute>
         }
       >
-        <Route path="discord/callback" element={<DiscordCallback />}></Route>
+        <Route path="callback" element={<Callback />}></Route>
       </Route>
     </RouterRoutes>
   );

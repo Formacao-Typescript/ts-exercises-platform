@@ -1,16 +1,16 @@
 import { useSearchParams } from '@/hooks';
 import { useUser } from '@/store/user';
-import { fetchUser } from '@/utils/discord';
+import { fetchUser as fetchDiscordUser } from '@/utils/discord';
 
 import { buildUrl } from '@/utils/url';
 import React, { useEffect } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const DiscordCallback: React.FC = () => {
+const Callback: React.FC = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
-  const searchParams = useSearchParams('error', 'code');
+  const searchParams = useSearchParams('platform', 'error', 'code');
   const [user, setUser] = useUser();
 
   const informError = (error: string) => {
@@ -23,6 +23,7 @@ const DiscordCallback: React.FC = () => {
   };
 
   useEffect(() => {
+    if (!searchParams.platform) return void 0;
     console.log('searchParams', searchParams);
     if (searchParams.error) {
       informError(searchParams.error); // access_denied
@@ -32,7 +33,7 @@ const DiscordCallback: React.FC = () => {
     if (searchParams.code) {
       // TODO: use code to get info
       try {
-        const data = fetchUser(searchParams.code);
+        const data = fetchDiscordUser(searchParams.code);
         console.log('dscb', data);
       } catch (error) {
         informError('unexpected_error'); // token request failed
@@ -48,4 +49,4 @@ const DiscordCallback: React.FC = () => {
   );
 };
 
-export default DiscordCallback;
+export default Callback;
