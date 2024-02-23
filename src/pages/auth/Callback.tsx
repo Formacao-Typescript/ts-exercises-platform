@@ -59,7 +59,6 @@ const Callback: React.FC = () => {
               }));
 
               // TODO: save user to remote, including offline user progress
-              console.log('new user!', discordUser);
               toast.success('Bem-vindo(a) a bordo!');
               navigate('/');
               return void 0;
@@ -70,7 +69,6 @@ const Callback: React.FC = () => {
               remoteUser, // FIXME: this will override local user progress on login
             }));
 
-            console.log('existing user!', discordUser);
             toast.success(
               _.sample([
                 'Bem-vindo(a) de volta! 👋',

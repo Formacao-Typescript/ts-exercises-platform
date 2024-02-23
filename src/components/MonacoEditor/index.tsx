@@ -31,7 +31,6 @@ const MonacoEditor: React.FC<MonacoEditorProps> = ({ code }) => {
   //     const model = editor.getModel();
   //     const markers = monaco.editor.getModelMarkers({ resource: model?.uri });
 
-  //     console.log({ model, markers });
   //   });
   // }, [editor]);
 
@@ -41,7 +40,6 @@ const MonacoEditor: React.FC<MonacoEditorProps> = ({ code }) => {
     const model = editor.getModel();
     const markers = monaco.editor.getModelMarkers({ resource: model?.uri });
 
-    console.log({ model, markers });
     markers.forEach(marker => {
       alert(`
       ATENÇÃO CHEFIA

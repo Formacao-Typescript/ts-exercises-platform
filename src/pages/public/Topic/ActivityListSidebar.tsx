@@ -33,7 +33,6 @@ const ActivityListSidebar: React.FC<Props> = ({
 
   const actions = {
     navigateToActivity: (activityId: string) => {
-      console.log('navigateToActivity', activityId);
       // TODO: can add a warning if the user is currently on an activity and has unsaved changes
       navigate(`?activityId=${activityId}`);
       /* 

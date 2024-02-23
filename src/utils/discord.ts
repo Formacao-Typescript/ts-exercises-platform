@@ -34,7 +34,7 @@ export const getToken = async (code: string): Promise<IUserToken> => {
     code: code,
     redirect_uri: REDIRECT_URL,
   });
-  console.log(params.toString());
+
   const response = await fetch(DISCORD_OAUTH_API_URL + '/token', {
     method: 'POST',
     headers: {
@@ -45,7 +45,6 @@ export const getToken = async (code: string): Promise<IUserToken> => {
   });
 
   const data = (await response.json()) as IUserToken;
-  console.log(data);
   if (!data.access_token) {
     throw new Error('Token request failed');
   }
@@ -66,7 +65,6 @@ export const getUser = async (token: IUserToken): Promise<IDiscordUser> => {
   });
 
   const data = await response.json();
-  console.log(data);
   return data;
 };
 

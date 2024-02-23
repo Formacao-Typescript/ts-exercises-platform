@@ -21,9 +21,7 @@ const Journey: React.FC = () => {
 
   const actions = {
     navigateToTopic: (topic: ITopic) => {
-      console.log('navigateToTopic', topic.id);
-      const topicId = topic.id;
-      navigate(`topic/${topicId}`);
+      navigate(`topic/${topic.id}`);
     },
   };
 
