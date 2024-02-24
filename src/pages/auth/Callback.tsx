@@ -92,7 +92,13 @@ const Callback: React.FC = () => {
       // unsupported platform. No need to throw user-friendly errors here since this page should be developer-use only.
       return void 0;
     }
-    void handler().then(() => navigate('/'));
+    void handler().then(() => {
+      const { protocol, host, pathname } = window.location;
+      const newUrl = `${protocol}//${host}${pathname}`;
+      // Developer Note: this removes the unnused query params from URL without triggering a page reload
+      window.history.replaceState({}, document.title, newUrl);
+      navigate('/');
+    });
   }, [searchParams, handlers, navigate]);
 
   return (
