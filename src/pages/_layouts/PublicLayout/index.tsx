@@ -1,32 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */ // @FIXME: react-icons/something is throwing this error, check later
 import React from 'react';
 
-import {
-  BsFacebook as FacebookIcon,
-  BsInstagram as InstagramIcon,
-  BsTwitter as TwitterIcon,
-  BsYoutube as YoutubeIcon,
-  BsLinkedin as LinkedinIcon,
-  BsMailbox as MailIcon,
-} from 'react-icons/bs';
-
 import { Button, Navbar, Footer } from 'flowbite-react';
 
-import LogoImg from '@/assets/logo-formacaots-hotmart.webp';
 import { Container } from './styles';
 import { Link } from 'react-router-dom';
 import Breadcrumb from './Breadcrumb';
+import {
+  AppLogo,
+  LINKS,
+  FacebookIcon,
+  InstagramIcon,
+  TwitterIcon,
+  YoutubeIcon,
+  LinkedinIcon,
+  MailIcon,
+} from '@/shared/marketing';
 // import Sidebar from './Sidebar';
-
-const LINKS = {
-  formacao: 'https://formacaots.com.br/',
-  instagram: 'https://formacaots.com.br/instagram.lsantos.dev',
-  facebook: 'https://formacaots.com.br/facebook.lsantos.dev',
-  twitter: 'https://formacaots.com.br/twitter.lsantos.dev',
-  youtube: 'https://formacaots.com.br/youtube.lsantos.dev',
-  linkedin: 'https://formacaots.com.br/linkedin.lsantos.dev',
-  mail: 'mailto:hello@lsantos.dev',
-};
 
 const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER;
 
@@ -38,7 +28,7 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
       <Navbar fluid>
         <Link to="/" className="flex">
           <img
-            src={LogoImg}
+            src={AppLogo}
             className="mr-3 h-6 sm:h-9"
             alt="Formação TS Logo"
           />
@@ -94,7 +84,7 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
             <div className="flex justify-center items-center">
               <Footer.Brand
                 href={LINKS.formacao}
-                src={LogoImg}
+                src={AppLogo}
                 alt="Formação Typescript Logo"
               />
               <span className="text-slate-600">Build: {BUILD_NUMBER}</span>
