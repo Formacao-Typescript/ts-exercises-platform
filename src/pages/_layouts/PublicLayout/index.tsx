@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */ // @FIXME: react-icons/something is throwing this error, check later
 import React from 'react';
 
 import { Button, Navbar, Footer } from 'flowbite-react';
