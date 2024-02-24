@@ -1,3 +1,4 @@
+import LoadingIndicator from '@/components/LoadingIndicator';
 import { useSearchParams } from '@/hooks';
 import { useUser } from '@/store/user';
 import { SupportedPlatforms } from '@/types';
@@ -94,7 +95,11 @@ const Callback: React.FC = () => {
     void handler().then(() => navigate('/'));
   }, [searchParams, handlers, navigate]);
 
-  return <div>loading</div>;
+  return (
+    <div>
+      <LoadingIndicator />
+    </div>
+  );
 };
 
 export default Callback;
