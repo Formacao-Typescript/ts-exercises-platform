@@ -32,12 +32,10 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               Ir para a plataforma &gt;
             </span>
           </Link>
-          <Link to="/">
-            <button type="button">return home</button>
-          </Link>
         </header>
-
-        <main>{children}</main>
+        <main className="h-64 flex items-center justify-center">
+          {children}
+        </main>
         <footer>
           <div className="w-full">
             <Footer.Divider className="m-4" />
