@@ -33,9 +33,15 @@ const Routes: React.FC = () => {
             <SignIn />
           </AuthRoute>
         }
-      >
-        <Route path="callback" element={<Callback />}></Route>
-      </Route>
+      />
+      <Route
+        path="/auth/callback"
+        element={
+          <AuthRoute>
+            <Callback />
+          </AuthRoute>
+        }
+      ></Route>
     </RouterRoutes>
   );
 };
