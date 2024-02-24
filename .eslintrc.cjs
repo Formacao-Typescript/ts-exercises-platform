@@ -20,6 +20,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    '@typescript-eslint/no-unsafe-assignment': 'warn',
   },
   parserOptions: {
     ecmaVersion: 'latest',

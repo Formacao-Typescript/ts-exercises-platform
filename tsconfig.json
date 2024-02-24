@@ -28,11 +28,15 @@
       "#root/*": [
         "./*"
       ]
-    }
+    },
+    "types": [
+      "node",
+      // "node_modules/@types/*"
+    ],
   },
   "include": [
     "src/**/*",
-    "node_modules/**/*"
+    // "node_modules/**/*"
   ],
   "exclude": [
     "node_modules",
