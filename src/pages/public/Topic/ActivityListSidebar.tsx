@@ -83,26 +83,27 @@ const ActivityListSidebar: React.FC<Props> = ({
               <Sidebar.Item
                 key={activity.id}
                 className={cn(
-                  'cursor-pointer relative',
+                  'cursor-pointer relative h-10 flex flex-row-reverse p-0',
                   isChecked && 'text-green-500'
                 )}
                 icon={({ className, ...props }: SidebarItemProps) => {
                   const Icon = UncheckedIcon;
 
                   return (
-                    <Icon
-                      {...props}
-                      className={cn(
-                        'absolute right-0 w-10 h-fit p-1.5 hover:bg-gray-600 cursor-pointer rounded-lg',
-                        isChecked
-                          ? 'text-green-400 hover:text-cyan-400'
-                          : 'text-gray-500 hover:text-gray-300'
-                      )}
-                      onClick={(e: MouseEvent) => {
-                        e.stopPropagation();
-                        actions.toggleActivityCheck(activity.id);
-                      }}
-                    />
+                    <div {...props} className="relative w-10 h-10">
+                      <Icon
+                        className={cn(
+                          'absolute right-0 w-10 h-fit p-1.5 hover:bg-gray-600 cursor-pointer rounded-lg',
+                          isChecked
+                            ? 'text-green-400 hover:text-cyan-400'
+                            : 'text-gray-500 hover:text-gray-300'
+                        )}
+                        onClick={(e: MouseEvent) => {
+                          e.stopPropagation();
+                          actions.toggleActivityCheck(activity.id);
+                        }}
+                      />
+                    </div>
                   );
                 }}
                 active={isActive}
