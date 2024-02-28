@@ -26,7 +26,7 @@ const Journey: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="px-4 mx-auto lg:px-6">
       <div className="text-left mb-4">
         <LoadSkeleton
           isLoading={isLoadingJourney}
@@ -116,7 +116,7 @@ const Journey: React.FC = () => {
           ))}
         </LoadSkeleton>
       </div>
-    </>
+    </div>
   );
 };
 
