@@ -6,12 +6,17 @@ import React, { useEffect } from 'react';
 import { Container } from './styles';
 import Markdown from 'react-markdown';
 import MonacoEditor from '../MonacoEditor';
+import { MdOutlineClose as CloseIcon } from 'react-icons/md';
 
 interface ExerciseRendererProps {
+  title: string;
   source: string;
 }
 
-const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({ source }) => {
+const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({
+  title,
+  source,
+}) => {
   const [rawMarkdown, setRawMarkdown] = React.useState<string>('');
 
   useEffect(() => {
@@ -25,8 +30,15 @@ const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({ source }) => {
     void load(source);
   }, [source]);
   return (
-    <Container className="xs:format-sm md:format-lg dark:format-invert">
-      <Markdown
+    // <Container className="xs:format-sm md:format-lg dark:format-invert">
+    <Container>
+      <div className="editor">
+        <h1 className="editor-title">
+          <span className="text-gray-200">{title}.ts</span>
+          <CloseIcon />
+        </h1>
+      </div>
+      {/* <Markdown
         components={{
           code: node => {
             const isInline = !node.children?.toString().includes('\n');
@@ -38,7 +50,7 @@ const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({ source }) => {
         }}
       >
         {rawMarkdown}
-      </Markdown>
+      </Markdown> */}
     </Container>
   );
 };
