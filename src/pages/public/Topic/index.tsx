@@ -22,9 +22,11 @@ const Topic: React.FC = () => {
 
   return (
     <>
-      {activity?.name}
       <div className="w-11/12">
-        <ExerciseRenderer source={activity.source}></ExerciseRenderer>
+        <ExerciseRenderer
+          title={activity.name}
+          source={activity.source}
+        ></ExerciseRenderer>
         <ActivityListSidebar
           activityIdentifier={{
             journeyId: journeyId!,

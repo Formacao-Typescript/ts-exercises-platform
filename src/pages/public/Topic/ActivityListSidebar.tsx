@@ -28,7 +28,7 @@ const ActivityListSidebar: React.FC<Props> = ({
   className,
 }) => {
   const navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [user] = useUser();
 
   const actions = {
