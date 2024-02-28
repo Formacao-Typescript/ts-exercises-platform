@@ -55,9 +55,7 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
       </Navbar>
       <main className="bg-white dark:bg-gray-900 dark:text-white w-full h-full relative flex flex-col">
         <Breadcrumb className="m-2" />
-        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
-          {children}
-        </div>
+        <div className="max-w-screen-xl">{children}</div>
       </main>
       <Footer className="px-4 py-2 rounded-none">
         <div className="w-full">
