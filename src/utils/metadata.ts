@@ -38,3 +38,9 @@ export const fetchMetadataMarkdown = async <T = Record<string, any>>(
 
   return frontmatterObj as T;
 };
+
+export const removeFrontmatter = (markdownContent: string): string => {
+  const frontmatterRegex = /^---\s*[\s\S]*?\n---\s*\n*/;
+  const textWithoutFrontmatter = markdownContent.replace(frontmatterRegex, '');
+  return textWithoutFrontmatter;
+};

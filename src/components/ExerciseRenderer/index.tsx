@@ -7,6 +7,7 @@ import { Container } from './styles';
 import Markdown from 'react-markdown';
 import MonacoEditor from '../MonacoEditor';
 import { MdOutlineClose as CloseIcon } from 'react-icons/md';
+import { removeFrontmatter } from '@/utils/metadata';
 
 interface ExerciseRendererProps {
   title: string;
@@ -22,8 +23,10 @@ const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({
   useEffect(() => {
     async function load(_source: string) {
       const response = await fetch(_source);
-      const text = await response.text();
-      // TODO: remove frontmatter
+      const rawMdText = await response.text();
+
+      const text = removeFrontmatter(rawMdText);
+
       setRawMarkdown(text);
     }
 
@@ -37,20 +40,20 @@ const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({
           <span className="text-gray-200">{title}.ts</span>
           <CloseIcon />
         </h1>
+        <Markdown
+          components={{
+            code: node => {
+              const isInline = !node.children?.toString().includes('\n');
+
+              if (isInline) return <code>{node.children}</code>;
+
+              return <MonacoEditor code={node.children} />;
+            },
+          }}
+        >
+          {rawMarkdown}
+        </Markdown>
       </div>
-      {/* <Markdown
-        components={{
-          code: node => {
-            const isInline = !node.children?.toString().includes('\n');
-
-            if (isInline) return <code>{node.children}</code>;
-
-            return <MonacoEditor code={node.children} />;
-          },
-        }}
-      >
-        {rawMarkdown}
-      </Markdown> */}
     </Container>
   );
 };
