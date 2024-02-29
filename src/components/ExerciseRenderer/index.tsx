@@ -40,19 +40,21 @@ const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({
           <span className="text-gray-200">{title}.ts</span>
           <CloseIcon />
         </h1>
-        <Markdown
-          components={{
-            code: node => {
-              const isInline = !node.children?.toString().includes('\n');
+        <div className="editor-content">
+          <Markdown
+            components={{
+              code: node => {
+                const isInline = !node.children?.toString().includes('\n');
 
-              if (isInline) return <code>{node.children}</code>;
+                if (isInline) return <code>{node.children}</code>;
 
-              return <MonacoEditor code={node.children} />;
-            },
-          }}
-        >
-          {rawMarkdown}
-        </Markdown>
+                return <MonacoEditor code={node.children} />;
+              },
+            }}
+          >
+            {rawMarkdown}
+          </Markdown>
+        </div>
       </div>
     </Container>
   );

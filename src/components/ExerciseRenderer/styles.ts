@@ -38,6 +38,7 @@ export const Container = styled.div<IProps>`
 
   --foreground-color: #44475a;
   --accent-color: #8be9fd;
+  --accent-color-2: #66e8f9;
   --background-color: #282a36;
 
   @keyframes gradient {
@@ -53,8 +54,6 @@ export const Container = styled.div<IProps>`
   }
 
   width: 100%;
-  height: 400px;
-  background: red;
   padding: 4px;
   border-radius: 12px;
   background: linear-gradient(-45deg, #0164fe, #b902c6, #5e00ff, #fc5900);
@@ -70,6 +69,7 @@ export const Container = styled.div<IProps>`
     height: calc(100% - 40px);
     margin-top: 40px;
     border-radius: 0 12px 12px 12px;
+    padding: 16px;
 
     &-title {
       position: absolute;
@@ -86,6 +86,51 @@ export const Container = styled.div<IProps>`
       span,
       svg {
         margin-left: 8px;
+      }
+    }
+
+    &-content {
+      h1 {
+        font-size: 1.75rem;
+        line-height: 2.5rem;
+        margin-bottom: 1rem;
+
+        &:before {
+          content: '# ';
+          color: #c0c0c0;
+        }
+      }
+      p {
+        font-size: 1.05rem;
+      }
+      code {
+        background: var(--accent-color-2);
+        color: var(--foreground-color); //#424660;
+        padding: 4px;
+        border-radius: 4px;
+
+        &:before {
+          content: '// ';
+          color: #45afbd;
+          font-size: 1.2rem;
+        }
+
+        &:after {
+          content: ' //';
+          color: #45afbd;
+          font-size: 1.2rem;
+        }
+      }
+      em {
+        font-style: italic;
+        background: rgba(0, 0, 0, 0.1);
+        text-decoration: underline;
+      }
+      strong {
+        background: var(--foreground-color);
+
+        padding: 4px;
+        border-radius: 4px;
       }
     }
   }

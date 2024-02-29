@@ -6,4 +6,5 @@ interface IProps {
 
 export const Container = styled.div<IProps>`
   width: 100%;
+  margin: 16px 0;
 `;
