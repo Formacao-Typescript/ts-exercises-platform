@@ -30,14 +30,16 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
   - [x] Implementar skeleton loading nas páginas principais (dasboard e listagem de tópicos)
   - [ ] Implementar skeleton loading na página de atividades
   - [ ] Marcador de progresso do tópico na sidebar
-  - [ ] Permitir usuário marcar/desmarcar atividade feita
+  - [x] Permitir usuário marcar/desmarcar atividade feita
 - [x] Implementar deploy no Github Pages
 - [x] Definir estratégias de Login/SSO
   - [x] Integração com SSO do discord
 - [ ] Definir integração com storage em nuvem (Deno Kv)
-- [ ] Ajustar renderizador de exercícios
-  - [ ] Remover frontmatter antes do rendering
-  - [ ] Adicionar formatação apropriada e estilos para títulos, paragrafos e afins
+- [x] Ajustar renderizador de exercícios
+  - [x] Remover frontmatter antes do rendering
+  - [x] Adicionar formatação apropriada e estilos para títulos, paragrafos e afins
+- [ ] Ajustar renderização dos códigos
+  - [ ] Definir interações que o usuário pode ter (botão de check? área pra mostrar as mensagens de erro?)
 - [ ] Estabelecer modelo de dados persistidos do usuário
   - [x] Consumir dados localmente nas interações do sistema
   - [ ] Salvar dados em nuvem (para usuários autenticados)
