@@ -55,6 +55,8 @@ export const Container = styled.div<IProps>`
 
   width: 100%;
   padding: 4px;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
   border-radius: 12px;
   background: linear-gradient(-45deg, #0164fe, #b902c6, #5e00ff, #fc5900);
   background-size: 400% 400%;
