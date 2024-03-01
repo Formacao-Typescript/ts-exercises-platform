@@ -94,12 +94,13 @@ export const Container = styled.div<IProps>`
     &-content {
       h1 {
         font-size: 1.75rem;
+        letter-spacing: -0.7px;
         line-height: 2.5rem;
         margin-bottom: 1rem;
 
         &:before {
           content: '# ';
-          color: #c0c0c0;
+          color: #6c6c6c; //#c0c0c0;
         }
       }
       p {
