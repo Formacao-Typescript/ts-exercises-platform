@@ -22,6 +22,7 @@ const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({
 
   useEffect(() => {
     async function load(_source: string) {
+      // const response = await fetch('../../../exercises/ts-avancado-tipos/compatibilidade-de-tipos/string-e-number.md');
       const response = await fetch(_source);
       const rawMdText = await response.text();
 
@@ -47,7 +48,7 @@ const ExerciseRenderer: React.FC<ExerciseRendererProps> = ({
                 const isInline = !node.children?.toString().includes('\n');
 
                 if (isInline) return <code>{node.children}</code>;
-
+                // Note: we can identify the language by using `node.classsName`, it should be 'language-typescript'
                 return <MonacoEditor code={node.children} />;
               },
             }}
