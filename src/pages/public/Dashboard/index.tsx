@@ -52,7 +52,7 @@ const Dashboard: React.FC = () => {
           </div>
         )}
       >
-        <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
+        <div className="grid gap-8 mb-6 lg:mb-16 grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
           {journeys?.map(journey => (
             <JourneyCard
               key={journey.id}

@@ -10,6 +10,10 @@ export default {
         'trade-purple': '#5E00FF',
         'trade-light-red': '#FC5900',
         'trade-red': '#C70100',
+        'branding-green': '#45BB8A',
+        'branding-red': '#ED1C24',
+        'branding-yellow': '#F3B019', //'#FFD200',
+        'branding-blue': '#1A7BC0', //'#00AEEF',
       },
       width: {
         300: '300px',

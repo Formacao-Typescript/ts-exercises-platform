@@ -1,3 +1,11 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.animate-spin-slow {
+  animation: spin 10s linear infinite;
+}
+
+.rounded-disform {
+  border-radius: 50% 70% 40% 60%;
+}
