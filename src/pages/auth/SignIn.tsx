@@ -1,4 +1,4 @@
-import { getAuthorizationCodeUrl } from '@/utils/discord';
+import { getAuthorizationCodeUrl } from '@/services/discord';
 import React from 'react';
 import { FaDiscord as DiscordIcon } from 'react-icons/fa';
 

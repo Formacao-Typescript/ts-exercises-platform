@@ -2,7 +2,7 @@ import LoadingIndicator from '@/components/LoadingIndicator';
 import { useSearchParams } from '@/hooks';
 import { useUser } from '@/store/user';
 import { SupportedPlatforms } from '@/types';
-import { fetchUser as fetchDiscordUser } from '@/utils/discord';
+import { fetchUser as fetchDiscordUser } from '@/services/discord';
 
 import { buildUrl } from '@/utils/url';
 import _ from 'lodash';
