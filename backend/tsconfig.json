@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "deno.ns", // FIXME: oh well...
+      "dom"
+    ],
+    "module": "ESNext",
+    "target": "ESNext",
+    "strict": true,
+    "noImplicitAny": false,
+    "experimentalDecorators": true,
+    "isolatedModules": true
+  }
+}
