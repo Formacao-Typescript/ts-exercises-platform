@@ -1,11 +1,17 @@
 import { IDiscordUser, IUserToken } from '@/types';
 const {
-  VITE_DISCORD_API_URL: DISCORD_API_URL,
-  VITE_DISCORD_OAUTH_API_URL: DISCORD_OAUTH_API_URL,
-  VITE_DISCORD_OAUTH_REDIRECT_URL: REDIRECT_URL,
-  VITE_DISCORD_OAUTH_CLIENT_ID: CLIENT_ID,
-  VITE_DISCORD_OAUTH_CLIENT_SECRET: CLIENT_SECRET,
+  VITE_DISCORD_API_URL,
+  VITE_DISCORD_OAUTH_API_URL,
+  VITE_DISCORD_OAUTH_REDIRECT_URL,
+  VITE_DISCORD_OAUTH_CLIENT_ID,
+  VITE_DISCORD_OAUTH_CLIENT_SECRET,
 } = import.meta.env;
+
+const DISCORD_API_URL = VITE_DISCORD_API_URL as string;
+const DISCORD_OAUTH_API_URL = VITE_DISCORD_OAUTH_API_URL as string;
+const REDIRECT_URL = VITE_DISCORD_OAUTH_REDIRECT_URL as string;
+const CLIENT_ID = VITE_DISCORD_OAUTH_CLIENT_ID as string;
+const CLIENT_SECRET = VITE_DISCORD_OAUTH_CLIENT_SECRET as string;
 
 /**
  * Generates the URL to redirect the user to for Discord OAuth
@@ -18,7 +24,7 @@ export const getAuthorizationCodeUrl = (): string => {
     client_id: CLIENT_ID,
     redirect_uri: REDIRECT_URL,
     scope: 'identify email',
-  });
+  }).toString();
 
   return `${BASE_URL}/authorize?${params}`;
 };
@@ -64,7 +70,7 @@ export const getUser = async (token: IUserToken): Promise<IDiscordUser> => {
     },
   });
 
-  const data = await response.json();
+  const data = (await response.json()) as IDiscordUser;
   return data;
 };
 
