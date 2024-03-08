@@ -25,21 +25,24 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 - [x] Implementar uso da indexação e metadados do github na plataforma
 - [x] Implementar carregamento de Jornadas, Tópicos e Atividades sob demanda
 - [x] Implementar renderização de exercícios com base na versão disponibilizada no github
+- [x] Implementar deploy no Github Pages
+- [x] Definir estratégias de Login/SSO
+  - [x] Integração com SSO do discord
 - [ ] Ajustar navegação/usabilidade da aplicação
   - [x] Refatoração do consumo de metadados em JSON e Markdown
   - [x] Implementar skeleton loading nas páginas principais (dasboard e listagem de tópicos)
   - [ ] Implementar skeleton loading na página de atividades
   - [ ] Marcador de progresso do tópico na sidebar
   - [x] Permitir usuário marcar/desmarcar atividade feita
-- [x] Implementar deploy no Github Pages
-- [x] Definir estratégias de Login/SSO
-  - [x] Integração com SSO do discord
 - [ ] Definir integração com storage em nuvem (Deno Kv)
 - [x] Ajustar renderizador de exercícios
   - [x] Remover frontmatter antes do rendering
   - [x] Adicionar formatação apropriada e estilos para títulos, paragrafos e afins
 - [ ] Ajustar renderização dos códigos
   - [ ] Definir interações que o usuário pode ter (botão de check? área pra mostrar as mensagens de erro?)
+  - [ ] Aplicar melhorias sugeridas:
+    - [ ] Mais espaço pro editor no container
+    - [ ] Permitir resize da atividade e/ou editor em fullscreen
 - [ ] Estabelecer modelo de dados persistidos do usuário
   - [x] Consumir dados localmente nas interações do sistema
   - [ ] Salvar dados em nuvem (para usuários autenticados)

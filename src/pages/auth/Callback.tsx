@@ -73,7 +73,6 @@ const Callback: React.FC = () => {
                   'Salve salve! 👋👋👋',
                 ])
               );
-              // use lodash to get a random index from an array
               // navigate('/');
             } catch (error) {
               informError('discord', 'unexpected_error'); // token request failed
