@@ -1,7 +1,7 @@
 import LoadingIndicator from '@/components/LoadingIndicator';
 import { useSearchParams } from '@/hooks';
-import { useUser } from '@/store/user';
-import { IUser, SupportedPlatforms } from '@/types';
+import { mergeLocalAndRemoteUser, useUser } from '@/store/user';
+import { IRemoteUser, IUser, SupportedPlatforms } from '@/types';
 import { fetchUser as fetchDiscordUser } from '@/services/discord';
 
 import { buildUrl } from '@/utils/url';
@@ -42,8 +42,8 @@ const Callback: React.FC = () => {
 
               const remoteUser = await fetchUserByDiscordId(discordUser.id);
 
+              // if new user
               if (!remoteUser) {
-                console.info('new user: ', discordUser.id);
                 const newUser: IUser = {
                   ...user,
                   id: _.uniqueId('user_'),
@@ -57,19 +57,19 @@ const Callback: React.FC = () => {
 
                 setUser(newUser);
 
-                const newRemoteUser = _.omit(newUser, 'token');
+                const newRemoteUser = _.omit(
+                  newUser,
+                  'token',
+                  'progress'
+                ) as IRemoteUser;
                 await createUser(newRemoteUser);
-                console.info('saving to remote');
 
                 toast.success('Bem-vindo(a) a bordo!');
                 // navigate('/');
                 return void 0;
               }
-
-              setUser(_user => ({
-                ..._user, // TODO: properly merge local and remote user progress
-                remoteUser, // FIXME: this will override local user progress on login
-              }));
+              // if existing user
+              setUser(mergeLocalAndRemoteUser(user, remoteUser));
 
               toast.success(
                 _.sample([

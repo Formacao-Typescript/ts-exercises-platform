@@ -1,5 +1,5 @@
 import { IActivityIdentifier } from './../types/Exercises.d';
-import { IActivity, IUser } from '@/types';
+import { IActivity, IRemoteUser, IUser } from '@/types';
 import store from './setup';
 import _ from 'lodash';
 import { toast } from 'react-toastify';
@@ -10,6 +10,7 @@ const INITIAL_STATE: IUser = {
   email: '',
   username: '',
   global_name: '',
+  rawProgress: [],
   progress: {
     journeys: {},
     topics: {},
@@ -33,9 +34,11 @@ export const updateActivityProgress = ({
     const { journeys, topics, activities } = _.cloneDeep(user.progress);
 
     const done = activities.includes(activityId);
+    const rawKey = `${journeyId}-${topicId}-${activityId}`;
 
     // checking activity
     if (!done) {
+      user.rawProgress.push(rawKey);
       activities.push(activityId);
 
       if (topics[topicId]) {
@@ -49,7 +52,9 @@ export const updateActivityProgress = ({
       toast.success('Atividade concluída!');
     } else {
       // unchecking activity
+      _.remove<string>(user.rawProgress, key => key === rawKey);
       _.remove<IActivity['id']>(activities, id => id === activityId);
+
       topics[topicId] -= 1;
       if (topics[topicId] === 0) {
         delete topics[topicId];
@@ -61,6 +66,37 @@ export const updateActivityProgress = ({
     }
     return { ...user, progress: { journeys, topics, activities } };
   });
+};
+
+export const mergeLocalAndRemoteUser = (
+  localUser: IUser,
+  remoteUser: IRemoteUser
+): IUser => {
+  const mergedRawProgress = _.uniq([
+    ...localUser.rawProgress,
+    ...remoteUser.rawProgress,
+  ]);
+
+  const progress: IUser['progress'] = {
+    journeys: {},
+    topics: {},
+    activities: [],
+  };
+
+  mergedRawProgress.forEach(rawKey => {
+    const [journeyId, topicId, activityId] = rawKey.split('-');
+
+    progress.journeys[journeyId] = (progress.journeys[journeyId] || 0) + 1;
+    progress.topics[topicId] = (progress.topics[topicId] || 0) + 1;
+    progress.activities.push(activityId);
+  });
+
+  return {
+    ...localUser,
+    ...remoteUser,
+    rawProgress: mergedRawProgress,
+    progress,
+  };
 };
 
 export default store;

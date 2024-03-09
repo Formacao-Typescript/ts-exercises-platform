@@ -19,6 +19,7 @@ export interface IUser {
   discord_id?: string;
   // google_id?: string;
   token?: IUserToken;
+  rawProgress: string[];
   progress: {
     journeys: Record<IJourney[id], number>;
     topics: Record<ITopic[id], number>;
@@ -26,4 +27,4 @@ export interface IUser {
   };
 }
 
-export type IRemoteUser = IUser & { token?: never };
+export type IRemoteUser = IUser & { token?: never; progress: never };
