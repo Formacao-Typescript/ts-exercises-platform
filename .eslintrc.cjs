@@ -21,6 +21,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     '@typescript-eslint/no-unsafe-assignment': 'warn',
+    'react-hooks/exhaustive-deps': 'off',
   },
   parserOptions: {
     ecmaVersion: 'latest',

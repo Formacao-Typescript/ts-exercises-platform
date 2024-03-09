@@ -12,7 +12,7 @@ const useActivity = (
   const [activity, setActivity] = useState<IActivity>();
   const [user] = useUser();
 
-  const activities = activitySet || exercises.activities;
+  const activities = activitySet ?? exercises.activities;
 
   useEffect(() => {
     if (!activities || activities.length === 0) return void 0;
@@ -30,7 +30,7 @@ const useActivity = (
           setActivity(
             activities.find(
               _activity => _activity.id === remainingActivities[0]
-            )!
+            )
           );
           return void 0;
         }

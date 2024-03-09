@@ -4,7 +4,7 @@ import { IJourney, IRawJourney } from '@/types';
 import { fetchMetadataMarkdown } from '@/utils/metadata';
 import { useEffect, useState } from 'react';
 
-const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL;
+const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL as string;
 
 const useJourney = (
   journeyId?: IJourney['id']
@@ -19,7 +19,7 @@ const useJourney = (
 
   useEffect(() => {
     if (!journeyId) return void 0;
-    loadJourney(journeyId);
+    void loadJourney(journeyId);
   }, []);
 
   useEffect(() => {

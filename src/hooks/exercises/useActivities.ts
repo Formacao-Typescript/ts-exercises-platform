@@ -1,8 +1,7 @@
 import store, { STATE_KEY, startLoading } from '@/store/exercises';
 import { IActivity, IExercisesStoreState, IJourney, ITopic } from '@/types';
-import _ from 'lodash';
 import { useEffect, useState } from 'react';
-const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL;
+const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL as string;
 
 const useActivity = (
   journeyId?: IJourney['id'],
@@ -20,7 +19,7 @@ const useActivity = (
 
     // activities not loaded yet
     if (activities?.length === 0) {
-      loadActivities(journeyId, topicId);
+      void loadActivities(journeyId, topicId);
       return void 0;
     }
   }, [activities]);

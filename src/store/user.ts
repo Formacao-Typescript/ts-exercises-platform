@@ -23,6 +23,7 @@ export const useUser = () => {
   return store.useState<IUser>(STATE_KEY);
 };
 
+// TODO: create strategy for saving progress from time to time if there are changes, or on specific actions
 export const updateActivityProgress = ({
   journeyId,
   topicId,
