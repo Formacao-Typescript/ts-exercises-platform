@@ -10,7 +10,7 @@ const INITIAL_STATE: IUser = {
   email: '',
   username: '',
   global_name: '',
-  rawProgress: [],
+  progress_raw: [],
   progress: {
     journeys: {},
     topics: {},
@@ -31,7 +31,7 @@ export const updateActivityProgress = ({
   activityId,
 }: IActivityIdentifier) => {
   store.getState<IUser>(STATE_KEY).setValue(user => {
-    const { rawProgress, progress } = _.cloneDeep(user);
+    const { progress_raw, progress } = _.cloneDeep(user);
     const { journeys, topics, activities } = progress;
 
     const done = activities.includes(activityId);
@@ -39,7 +39,7 @@ export const updateActivityProgress = ({
 
     // checking activity
     if (!done) {
-      rawProgress.push(rawKey);
+      progress_raw.push(rawKey);
       activities.push(activityId);
 
       if (topics[topicId]) {
@@ -53,7 +53,7 @@ export const updateActivityProgress = ({
       toast.success('Atividade concluída!');
     } else {
       // unchecking activity
-      _.remove<string>(rawProgress, key => key === rawKey);
+      _.remove<string>(progress_raw, key => key === rawKey);
       _.remove<IActivity['id']>(activities, id => id === activityId);
 
       topics[topicId] -= 1;
@@ -65,7 +65,11 @@ export const updateActivityProgress = ({
       }
       toast.info('Atividade desmarcada!');
     }
-    return { ...user, progress: { journeys, topics, activities }, rawProgress };
+    return {
+      ...user,
+      progress: { journeys, topics, activities },
+      progress_raw,
+    };
   });
 };
 
@@ -74,8 +78,8 @@ export const mergeLocalAndRemoteUser = (
   remoteUser: IRemoteUser
 ): IUser => {
   const mergedRawProgress = _.uniq([
-    ...localUser.rawProgress,
-    ...remoteUser.rawProgress,
+    ...localUser.progress_raw,
+    ...remoteUser.progress_raw,
   ]);
 
   const progress: IUser['progress'] = {
@@ -95,7 +99,7 @@ export const mergeLocalAndRemoteUser = (
   return {
     ...localUser,
     ...remoteUser,
-    rawProgress: mergedRawProgress,
+    progress_raw: mergedRawProgress,
     progress,
   };
 };

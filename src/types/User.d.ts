@@ -19,7 +19,7 @@ export interface IUser {
   discord_id?: string;
   // google_id?: string;
   token?: IUserToken;
-  rawProgress: string[];
+  progress_raw: string[];
   progress: {
     journeys: Record<IJourney[id], number>;
     topics: Record<ITopic[id], number>;
