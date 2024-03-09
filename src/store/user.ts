@@ -31,14 +31,15 @@ export const updateActivityProgress = ({
   activityId,
 }: IActivityIdentifier) => {
   store.getState<IUser>(STATE_KEY).setValue(user => {
-    const { journeys, topics, activities } = _.cloneDeep(user.progress);
+    const { rawProgress, progress } = _.cloneDeep(user);
+    const { journeys, topics, activities } = progress;
 
     const done = activities.includes(activityId);
-    const rawKey = `${journeyId}-${topicId}-${activityId}`;
+    const rawKey = `${journeyId}/${topicId}/${activityId}`;
 
     // checking activity
     if (!done) {
-      user.rawProgress.push(rawKey);
+      rawProgress.push(rawKey);
       activities.push(activityId);
 
       if (topics[topicId]) {
@@ -52,7 +53,7 @@ export const updateActivityProgress = ({
       toast.success('Atividade concluída!');
     } else {
       // unchecking activity
-      _.remove<string>(user.rawProgress, key => key === rawKey);
+      _.remove<string>(rawProgress, key => key === rawKey);
       _.remove<IActivity['id']>(activities, id => id === activityId);
 
       topics[topicId] -= 1;
@@ -64,7 +65,7 @@ export const updateActivityProgress = ({
       }
       toast.info('Atividade desmarcada!');
     }
-    return { ...user, progress: { journeys, topics, activities } };
+    return { ...user, progress: { journeys, topics, activities }, rawProgress };
   });
 };
 
