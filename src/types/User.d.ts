@@ -26,4 +26,4 @@ export interface IUser {
   };
 }
 
-export type IPersistedUser = Pick<IUser, 'progress', 'email', 'username'>;
+export type IRemoteUser = IUser & { token?: never };
