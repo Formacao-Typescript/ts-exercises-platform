@@ -10,7 +10,7 @@ import React, { useEffect, useMemo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { fetchUserByDiscordId } from '@/services/user';
+import { createUser, fetchUserByDiscordId } from '@/services/user';
 
 const Callback: React.FC = () => {
   const navigate = useNavigate();
@@ -43,6 +43,7 @@ const Callback: React.FC = () => {
               const remoteUser = await fetchUserByDiscordId(discordUser.id);
 
               if (!remoteUser) {
+                console.info('new user: ', discordUser.id);
                 const newUser: IUser = {
                   ...user,
                   id: _.uniqueId('user_'),
@@ -56,7 +57,10 @@ const Callback: React.FC = () => {
 
                 setUser(newUser);
 
-                // TODO: save user to remote, including offline user progress
+                const newRemoteUser = _.omit(newUser, 'token');
+                await createUser(newRemoteUser);
+                console.info('saving to remote');
+
                 toast.success('Bem-vindo(a) a bordo!');
                 // navigate('/');
                 return void 0;
