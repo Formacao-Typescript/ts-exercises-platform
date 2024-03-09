@@ -12,3 +12,21 @@ export const get = async <T = unknown>(path: string): Promise<T> => {
 
   return data;
 };
+
+export const post = async <T = unknown>(
+  path: string,
+  body: string
+): Promise<T> => {
+  const response = await fetch(API_URL + path, {
+    method: 'POST',
+    body,
+  });
+  const { success, data, error } = (await response.json()) as IAPIResponse<T>;
+
+  if (!success) {
+    // TODO: show personalized error message
+    throw new Error(error!.message);
+  }
+
+  return data;
+};
