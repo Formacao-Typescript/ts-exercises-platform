@@ -5,8 +5,8 @@
   */
 export const extractFrontmatter = (
   markdownContent: string
-): Record<string, any> => {
-  const frontmatter: Record<string, any> = {};
+): Record<string, unknown> => {
+  const frontmatter: Record<string, unknown> = {};
   const separatorIndex = markdownContent.indexOf('---', 4); // Find the second '---'
 
   if (separatorIndex !== -1) {
@@ -22,13 +22,13 @@ export const extractFrontmatter = (
   return frontmatter;
 };
 
-export const fetchMetadataJSON = async <T = any>(url: string) => {
+export const fetchMetadataJSON = async <T = unknown>(url: string) => {
   const response = await fetch(`${url}/metadata.json`);
   const data = (await response.json()) as T;
   return data;
 };
 
-export const fetchMetadataMarkdown = async <T = Record<string, any>>(
+export const fetchMetadataMarkdown = async <T = Record<string, unknown>>(
   url: string
 ) => {
   const response = await fetch(`${url}/INFO.md`);

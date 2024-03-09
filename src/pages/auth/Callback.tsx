@@ -85,7 +85,7 @@ const Callback: React.FC = () => {
           }
         },
       };
-    }, [searchParams, setUser, navigate]);
+    }, [searchParams, setUser, navigate, user]);
 
   useEffect(() => {
     if (!searchParams.platform) return void 0;
