@@ -11,6 +11,7 @@ import {
   IRawTopic,
   ITopic,
 } from '../src/types';
+import _ from 'lodash';
 
 class UsageError extends Error {}
 
@@ -142,6 +143,7 @@ function updateExercisesMetadata(exercisesFolderPath: string): void {
   debug(`updateExercisesMetadata for folder: ${exercisesFolderPath}`);
 
   try {
+    const activityIds: string[] = [];
     // --- READING AND VALIDATING ---
     const journeys: Partial<IJourney>[] =
       handlers.journey.read(exercisesFolderPath);
@@ -168,9 +170,24 @@ function updateExercisesMetadata(exercisesFolderPath: string): void {
         topic.activityCount = activities.length;
         topic.activities = activities;
 
+        activityIds.push(...activities.map(activity => activity.id));
+
         debug('Successfully read activities');
       });
     });
+    // --- VALIDATE UNIQUE IDS ---
+    const uniqueActivityIds = new Set(activityIds);
+    if (uniqueActivityIds.size !== activityIds.length) {
+      const itemCounts = _.countBy(activityIds);
+
+      // Filter items that have a count greater than 1 (non-unique)
+      const nonUniqueIds = _.filter(activityIds, item => itemCounts[item] > 1);
+
+      throw new UsageError(
+        'Activity ids must be unique, please rename the following files: ' +
+          nonUniqueIds.join(', ')
+      );
+    }
 
     // --- WRITING ---
     journeys.forEach(journey => {
