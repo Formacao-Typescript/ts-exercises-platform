@@ -89,7 +89,7 @@ export const mergeLocalAndRemoteUser = (
   };
 
   mergedRawProgress.forEach(rawKey => {
-    const [journeyId, topicId, activityId] = rawKey.split('-');
+    const [journeyId, topicId, activityId] = rawKey.split('/');
 
     progress.journeys[journeyId] = (progress.journeys[journeyId] || 0) + 1;
     progress.topics[topicId] = (progress.topics[topicId] || 0) + 1;
