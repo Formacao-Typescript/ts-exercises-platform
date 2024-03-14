@@ -8,15 +8,23 @@ interface Props {
 }
 
 import { Progress } from 'flowbite-react';
+import { usePageTransitionBubble } from '@/store/navigation';
 
 const JourneyCard: React.FC<Props> = ({ journey, onClick }) => {
+  const [, setBubbleState] = usePageTransitionBubble();
+
   return (
     <div
       className={cn(
         'items-center bg-gray-50 rounded-lg dark:bg-gray-800 dark:border-gray-700 shadow sm:flex relative overflow-hidden group transition-transform duration-300 ease-in hover:scale-110',
         onClick && 'cursor-pointer'
       )}
-      onClick={onClick}
+      onClick={() => {
+        setBubbleState({ open: true });
+        setTimeout(() => {
+          onClick?.();
+        }, 1000);
+      }}
     >
       <span className="background-sphere w-20 h-20 z-0 bg-branding-green absolute top-[-30px] right-[-30px] rounded-disform animate-spin-slow transition-all ease-in-out duration-300 group-hover:w-[600px] group-hover:h-[600px] group-hover:top-[-100px] group-hover:right-[-100px]"></span>
       <div className="p-5 z-10  ">
