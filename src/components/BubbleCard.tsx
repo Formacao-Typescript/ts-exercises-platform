@@ -3,18 +3,20 @@ import cn from 'classnames';
 
 interface Props {
   children: React.ReactNode;
+  className?: string;
   onClick?: () => void;
 }
 
 import { usePageTransitionBubble } from '@/store/navigation';
 
-const BubbleCard: React.FC<Props> = ({ children, onClick }) => {
+const BubbleCard: React.FC<Props> = ({ className, children, onClick }) => {
   const [, setBubbleState] = usePageTransitionBubble();
 
   return (
     <div
       className={cn(
         'items-center bg-gray-50 rounded-lg dark:bg-gray-800 dark:border-gray-700 shadow sm:flex relative overflow-hidden group transition-transform duration-300 ease-in hover:scale-110',
+        className,
         onClick && 'cursor-pointer'
       )}
       onClick={e => {
