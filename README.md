@@ -46,7 +46,7 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 - [ ] Estabelecer modelo de dados persistidos do usuário
   - [x] Consumir dados localmente nas interações do sistema
   - [x] Salvar dados em nuvem (para usuários autenticados)
-  - [ ] Interpolar dados em nuvem com dados locais no login
+  - [x] Interpolar dados em nuvem com dados locais no login
 - [ ] Definir estratégia de salvamento do progresso do usuário logado periodicamente
 - [x] Criar script de validação ao inserir exercícios novos que deve:
   - [x] Validar se todos os IDs dos exercícios são únicos
