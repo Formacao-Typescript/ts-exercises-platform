@@ -3,12 +3,14 @@ import Routes from './routes';
 import { ToastContainer } from 'react-toastify';
 import GlobalStyles from './styles/GlobalStyles';
 import './styles/index.css';
+import PageTransitionBubble from './components/PageTransitionBubble';
 
 const App: React.FC = () => {
   return (
     <Router>
       <GlobalStyles />
       <Routes />
+      <PageTransitionBubble />
       <ToastContainer
         autoClose={5000}
         closeOnClick
