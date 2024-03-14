@@ -20,6 +20,5 @@ export const Container = styled.span`
   &.animate-bubble {
     visibility: visible;
     animation: bubble-animation 1.5s ease-in-out forwards;
-    /* transition: all 1s ease-in-out; */
   }
 `;
