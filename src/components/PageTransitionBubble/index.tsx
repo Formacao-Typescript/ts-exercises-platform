@@ -12,10 +12,12 @@ const PageTransitionBubble: React.FC = () => {
   useEffect(() => {
     if (!ref.current) return;
     if (bubbleState.open) {
+      ref.current.style.left = `${bubbleState.position[0]}px`;
+      ref.current.style.top = `${bubbleState.position[1]}px`;
       ref.current.classList.add('animate-bubble');
       setTimeout(() => {
         ref.current!.classList.remove('animate-bubble');
-        setBubbleState({ open: false });
+        setBubbleState({ open: false, position: [0, 0] });
       }, ANIMATION_DURATION);
     }
   }, [bubbleState]);

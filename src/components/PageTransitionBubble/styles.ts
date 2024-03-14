@@ -13,8 +13,8 @@ export const Container = styled.span`
     }
   }
 
-  top: 368px;
-  left: 180px;
+  top: 0;
+  left: 0;
   visibility: hidden;
 
   &.animate-bubble {

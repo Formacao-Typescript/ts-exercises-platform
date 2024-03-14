@@ -5,12 +5,14 @@ const STATE_KEY = 'appnavigation';
 interface INavigationStore {
   pageTransitionBubble: {
     open: boolean;
+    position: [number, number];
   };
 }
 
 const INITIAL_STATE: INavigationStore = {
   pageTransitionBubble: {
     open: false,
+    position: [0, 0],
   },
 };
 

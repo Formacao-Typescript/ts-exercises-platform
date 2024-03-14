@@ -19,8 +19,8 @@ const JourneyCard: React.FC<Props> = ({ journey, onClick }) => {
         'items-center bg-gray-50 rounded-lg dark:bg-gray-800 dark:border-gray-700 shadow sm:flex relative overflow-hidden group transition-transform duration-300 ease-in hover:scale-110',
         onClick && 'cursor-pointer'
       )}
-      onClick={() => {
-        setBubbleState({ open: true });
+      onClick={e => {
+        setBubbleState({ open: true, position: [e.clientX, e.clientY] });
         setTimeout(() => {
           onClick?.();
         }, 1000);
