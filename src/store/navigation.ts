@@ -6,6 +6,7 @@ interface INavigationStore {
   pageTransitionBubble: {
     open: boolean;
     position: [number, number];
+    color?: 'green' | 'red' | 'yellow' | 'blue';
   };
 }
 

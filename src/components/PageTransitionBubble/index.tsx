@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import { Container } from './styles';
 import { usePageTransitionBubble } from '@/store/navigation';
+import cn from 'classnames';
 
 const ANIMATION_DURATION = 2000;
 
@@ -25,8 +26,15 @@ const PageTransitionBubble: React.FC = () => {
   return (
     <Container
       ref={ref}
-      className="absolute bg-branding-green w-0 h-0 rounded-disform z-10"
-    ></Container>
+      className={cn(
+        'absolute w-0 h-0 rounded-disform z-10',
+        `bg-branding-${bubbleState.color ?? 'blue'}`
+      )}
+    >
+      {/* FIXME: this is only needed for tailwind to not purge these colors since they're not being used anywhere else yet. 
+      As we find use for them we can remove them from here */}
+      <span className="bg-branding-green bg-branding-red bg-branding-yellow bg-branding-blue"></span>
+    </Container>
   );
 };
 

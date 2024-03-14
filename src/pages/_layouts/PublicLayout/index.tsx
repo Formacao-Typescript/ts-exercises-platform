@@ -17,7 +17,7 @@ import {
 } from '@/shared/marketing';
 // import Sidebar from './Sidebar';
 
-const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER;
+const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER as string;
 
 const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
   children,

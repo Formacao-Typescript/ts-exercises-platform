@@ -20,7 +20,11 @@ const JourneyCard: React.FC<Props> = ({ journey, onClick }) => {
         onClick && 'cursor-pointer'
       )}
       onClick={e => {
-        setBubbleState({ open: true, position: [e.clientX, e.clientY] });
+        setBubbleState({
+          open: true,
+          position: [e.clientX, e.clientY],
+          color: 'green',
+        });
         setTimeout(() => {
           onClick?.();
         }, 1000);
