@@ -21,6 +21,7 @@
     "node": ">=18.19.0"
   },
   "dependencies": {
+    "animejs": "^3.2.2",
     "classnames": "^2.5.1",
     "debug": "^4.3.4",
     "flowbite": "^2.2.1",
@@ -35,8 +36,7 @@
     "react-router-dom": "^6.21.0",
     "react-toastify": "^9.1.3",
     "state-pool": "^0.10.0",
-    "styled-components": "^6.1.1",
-    "animejs": "^3.2.2"
+    "styled-components": "^6.1.1"
   },
   "devDependencies": {
     "@types/animejs": "^3.1.12",
@@ -46,6 +46,7 @@
     "@types/react-dom": "^18.2.17",
     "@types/react-icons": "^3.0.0",
     "@types/react-router-dom": "^5.3.3",
+    "@types/tailwindcss": "^3.1.0",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
