@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import anime from 'animejs';
 import { Container } from './styles';
-import { TSFixMe } from '@/types';
-import { findClosestTile } from '@/utils/tilegrid';
+import { createGrid, findClosestTile } from '@/utils/tilegrid';
 
 const TiledBackground: React.FC = () => {
   useEffect(() => {
@@ -10,7 +9,8 @@ const TiledBackground: React.FC = () => {
     const wrapper = document.getElementById('tiles');
 
     let toggled = false;
-    const handleOnClick = (index: number, columns: number, rows: number) => {
+
+    const handleTileClick = (index: number, columns: number, rows: number) => {
       toggled = !toggled;
       anime({
         targets: '.tile',
@@ -29,48 +29,11 @@ const TiledBackground: React.FC = () => {
       });
     };
 
-    const createTile = (index: number, onClick: (index: number) => void) => {
-      const tile = document.createElement('div');
-      tile.classList.add('tile');
+    window.onresize = () => createGrid(wrapper!, TILE_SIZE, handleTileClick);
 
-      tile.onclick = () => onClick(index);
+    createGrid(wrapper!, TILE_SIZE, handleTileClick);
 
-      return tile;
-    };
-
-    const createTiles = (
-      elementWrapper: HTMLElement,
-      quantity: number,
-      onClick: (index: number) => void
-    ) => {
-      Array.from(Array(quantity)).map((_, index) => {
-        elementWrapper.appendChild(createTile(index, onClick));
-      });
-    };
-
-    const createGrid = (elementWrapper: HTMLElement, tileSize: TSFixMe) => {
-      elementWrapper.innerHTML = '';
-
-      const columns = Math.floor(window.innerWidth / tileSize);
-      const rows = Math.floor(window.innerHeight / tileSize);
-
-      elementWrapper.style.setProperty('--columns', String(columns));
-      elementWrapper.style.setProperty('--rows', String(rows));
-
-      document.getElementById('tiles')!.style.gridTemplateColumns =
-        `repeat(${columns}, 1fr)`;
-      document.getElementById('tiles')!.style.gridTemplateRows =
-        `repeat(${rows}, 1fr)`;
-
-      const onClick = (index: number) => handleOnClick(index, columns, rows);
-      createTiles(elementWrapper, columns * rows, onClick);
-      console.log(`Grid created with ${columns} columns and ${rows} rows`);
-    };
-
-    window.onresize = () => createGrid(wrapper!, TILE_SIZE);
-
-    createGrid(wrapper!, TILE_SIZE);
-
+    // mouse cursor
     let clickLocked = false;
 
     window.onclick = e => {
@@ -82,7 +45,7 @@ const TiledBackground: React.FC = () => {
       const columns = Math.floor(window.innerWidth / TILE_SIZE);
       const rows = Math.floor(window.innerHeight / TILE_SIZE);
 
-      handleOnClick(closestTile.index, columns, rows);
+      handleTileClick(closestTile.index, columns, rows);
 
       const cursor = document.getElementById('cursor')!;
 
