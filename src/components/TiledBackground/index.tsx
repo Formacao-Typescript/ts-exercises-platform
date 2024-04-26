@@ -3,57 +3,65 @@ import anime from 'animejs';
 import { Container } from './styles';
 import { createGrid, findClosestTile } from '@/utils/tilegrid';
 
-const TiledBackground: React.FC = () => {
+interface Props {
+  tileSize?: number;
+}
+
+const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
+  const [isTileToggled, setIsTileToggled] = React.useState(false);
+  const [isClickLocked, setIsClickLocked] = React.useState(false);
+
+  const handleTileClick = (index: number, columns: number, rows: number) => {
+    const toggled = !isTileToggled;
+    anime({
+      targets: '.tile',
+      easing: 'easeOutExpo',
+      // opacity: toggled ? 0 : 1,
+      // border: toggled ? '' : '1px solid #fff',
+      borderRadius: toggled ? ['0%', '50%'] : ['50%', '0%'],
+      scale: [
+        { value: 0.1, easing: 'easeOutSine', duration: 500 },
+        { value: 1, easing: 'easeInOutQuad', duration: 1200 },
+      ],
+      delay: anime.stagger(tileSize, {
+        grid: [columns, rows],
+        from: index,
+      }),
+    });
+    setIsTileToggled(!isTileToggled);
+  };
+
   useEffect(() => {
-    const TILE_SIZE = 50; // 50px X 50px
     const wrapper = document.getElementById('tiles');
 
-    let toggled = false;
+    window.onresize = () => createGrid(wrapper!, tileSize, handleTileClick);
 
-    const handleTileClick = (index: number, columns: number, rows: number) => {
-      toggled = !toggled;
-      anime({
-        targets: '.tile',
-        easing: 'easeOutExpo',
-        // opacity: toggled ? 0 : 1,
-        // border: toggled ? '' : '1px solid #fff',
-        borderRadius: toggled ? ['0%', '50%'] : ['50%', '0%'],
-        scale: [
-          { value: 0.1, easing: 'easeOutSine', duration: 500 },
-          { value: 1, easing: 'easeInOutQuad', duration: 1200 },
-        ],
-        delay: anime.stagger(TILE_SIZE, {
-          grid: [columns, rows],
-          from: index,
-        }),
-      });
+    createGrid(wrapper!, tileSize, handleTileClick);
+
+    return () => {
+      window.onresize = null;
     };
+  }, []);
 
-    window.onresize = () => createGrid(wrapper!, TILE_SIZE, handleTileClick);
-
-    createGrid(wrapper!, TILE_SIZE, handleTileClick);
-
-    // mouse cursor
-    let clickLocked = false;
+  useEffect(() => {
+    const cursor = document.getElementById('cursor')!;
 
     window.onclick = e => {
-      if (clickLocked) return;
+      if (isClickLocked) return;
 
-      clickLocked = true;
+      setIsClickLocked(true);
       const tiles = document.querySelectorAll('.tile');
       const closestTile = findClosestTile(tiles, e.clientX, e.clientY);
-      const columns = Math.floor(window.innerWidth / TILE_SIZE);
-      const rows = Math.floor(window.innerHeight / TILE_SIZE);
+      const columns = Math.floor(window.innerWidth / tileSize);
+      const rows = Math.floor(window.innerHeight / tileSize);
 
       handleTileClick(closestTile.index, columns, rows);
-
-      const cursor = document.getElementById('cursor')!;
 
       cursor.style.opacity = '0';
 
       setTimeout(() => {
-        clickLocked = false;
-      }, 2500);
+        setIsClickLocked(false);
+      }, 3500);
 
       anime({
         targets: [cursor],
@@ -65,18 +73,26 @@ const TiledBackground: React.FC = () => {
     };
 
     window.onmouseover = () => {
-      document.getElementById('cursor')!.style.visibility = 'visible';
+      cursor.style.visibility = 'visible';
     };
     window.onmouseout = () => {
-      document.getElementById('cursor')!.style.visibility = 'hidden';
+      cursor.style.visibility = 'hidden';
     };
     window.onmousemove = e => {
-      const cursor = document.getElementById('cursor')!;
       cursor.style.top = e.pageY + 'px';
       cursor.style.left = e.pageX + 'px';
     };
 
-    // Dispatch fake event on load to trigger cool animation
+    return () => {
+      window.onclick = null;
+      window.onmouseover = null;
+      window.onmouseout = null;
+      window.onmousemove = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    // Dispatch fake event to trigger background animation on page load
     window.dispatchEvent(
       new MouseEvent('click', {
         view: window,
