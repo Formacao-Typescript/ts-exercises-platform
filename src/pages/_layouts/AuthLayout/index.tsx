@@ -19,7 +19,7 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
       <TiledBackground />
-      <div className="text-white w-full h-full flex items-center justify-center relative opacity-80">
+      <div className="text-white w-full h-full flex items-center justify-center relative">
         <span className="absolute bottom-0 right-0 text-gray-800 mr-2">
           Build: {BUILD_NUMBER}
         </span>
@@ -36,7 +36,7 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               </span>
             </Link>
           </header>
-          <main className="h-64 flex items-center justify-center">
+          <main className="h-auto flex items-center justify-center py-3">
             {children}
           </main>
           <footer>
