@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  --tiled-background-color-1: rgb(98, 0, 234);
+  --tiled-background-color-2: rgb(236, 64, 122);
   @keyframes background-pan {
     from {
       background-position: 0% center;
@@ -19,9 +21,9 @@ export const Container = styled.div`
     animation: background-pan 10s linear infinite;
     background: linear-gradient(
       to right,
-      rgb(98, 0, 234),
-      rgb(236, 64, 122),
-      rgb(98, 0, 234)
+      var(--tiled-background-color-1),
+      var(--tiled-background-color-2),
+      var(--tiled-background-color-1)
     );
     background-size: 200%;
     overflow: hidden;
