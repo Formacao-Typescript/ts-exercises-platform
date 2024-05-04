@@ -46,7 +46,7 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
   - [ ] Aplicar melhorias sugeridas:
     - [ ] Mais espaço pro editor no container
     - [ ] Permitir resize da atividade e/ou editor em fullscreen
-- [ ] Estabelecer modelo de dados persistidos do usuário
+- [x] Estabelecer modelo de dados persistidos do usuário
   - [x] Consumir dados localmente nas interações do sistema
   - [x] Salvar dados em nuvem (para usuários autenticados)
   - [x] Interpolar dados em nuvem com dados locais no login
