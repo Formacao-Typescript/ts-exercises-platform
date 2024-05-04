@@ -23,7 +23,7 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <span className="absolute bottom-0 right-0 text-gray-800 mr-2">
           Build: {BUILD_NUMBER}
         </span>
-        <div className="bg-gray-800 p-8 rounded-lg w-1/2 shadow-lg">
+        <div className="bg-gray-800 p-8 rounded-lg sm:max-w-2/3 md:max-w-1/2 max-h-[calc(100%-5rem)] overflow-auto shadow-lg bg-opacity-90">
           <header>
             <Link to="/" className="flex justify-between">
               <img

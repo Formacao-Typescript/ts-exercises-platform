@@ -1,10 +1,11 @@
 import { getAuthorizationCodeUrl } from '@/services/discord';
 import React from 'react';
 import { FaDiscord as DiscordIcon } from 'react-icons/fa';
+import { Container } from './styles';
 
-const AuthLayout: React.FC = () => {
+const SignIn: React.FC = () => {
   return (
-    <div className="">
+    <Container className="">
       <h1 className="font-semibold text-xl">Junte-se à comunidade!</h1>
 
       <section className="unregistered-tier">
@@ -20,7 +21,7 @@ const AuthLayout: React.FC = () => {
           </ul>
         </p>
       </section>
-
+      <span className="divider"></span>
       <section className="registered-tier">
         Criando sua conta você terá acesso a funcionalidades exclusivas como:
         <ul>
@@ -38,6 +39,7 @@ const AuthLayout: React.FC = () => {
           Login com Discord
         </button>
       </section>
+      <span className="divider"></span>
 
       <section className="community-tier">
         Fazendo parte da comunidade responsável pela plataforma você pode:
@@ -58,8 +60,8 @@ const AuthLayout: React.FC = () => {
           Fazer parte da comunidade
         </button>
       </section>
-    </div>
+    </Container>
   );
 };
 
-export default AuthLayout;
+export default SignIn;
