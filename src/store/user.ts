@@ -104,4 +104,8 @@ export const mergeLocalAndRemoteUser = (
   };
 };
 
+export const signOut = () => {
+  store.setState<IUser>(STATE_KEY, INITIAL_STATE, { persist: true });
+};
+
 export default store;

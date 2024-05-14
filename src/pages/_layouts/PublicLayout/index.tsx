@@ -64,9 +64,6 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
 
         <div className="flex md:order-2">
           <UserWidget />
-          {/* <Link to="/auth">
-            <Button>Sign in</Button>
-          </Link> */}
         </div>
       </Navbar>
       <main className="bg-white dark:bg-gray-900 dark:text-white w-full h-full relative flex flex-col">
