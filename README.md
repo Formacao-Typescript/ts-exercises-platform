@@ -57,7 +57,7 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
   - [x] Reconhecer os diretórios de temas, ler front-matter de cada tema e gerar o metadado geral de cada Jornada
   - [x] Reconhecer os diretórios de jornadas, ler o front-matter de cada jornada e gerar o metadado geral raiz do projeto
 - [ ] Ajustar identidade visual de acordo com a Formação TS
-- [ ] Adicionar aviso de não compatibilidade com dispositivos móveis (por hora)
+- [x] Adicionar aviso de não compatibilidade com dispositivos móveis (por hora)
 - [ ] Criar ao menos 1 trilha com 3 tópicos e 5 atividades cada (15 exercícios)
 - [ ] Definir trilhas a ser disponibilizadas a seguir, e adicionar estilos pra isso (assim elas aparecem na listagem)
 
