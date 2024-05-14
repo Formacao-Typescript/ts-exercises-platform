@@ -61,6 +61,10 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
   - [ ] Ajustar animações
 - [ ] Definir estratégia de salvamento do progresso do usuário logado periodicamente
 - [ ] Ajustar identidade visual de acordo com a Formação TS
+  - [ ] Estilizar a página de sign-up
+  - [ ] Revisar tipografia e cores elementais da plataforma
+  - [ ] Implementar Logo CSS da plataforma (trazer da página de leads)
+  - [ ] Implementar Loading customizado na plataforma (trazer da página de leads)
 - [ ] Criar ao menos 1 trilha com 3 tópicos e 5 atividades cada (15 exercícios)
 - [ ] Definir trilhas a ser disponibilizadas a seguir, e adicionar estilos pra isso (assim elas aparecem na listagem)
 - [ ] Finalizar Backend v1:
