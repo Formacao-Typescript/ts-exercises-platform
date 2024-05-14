@@ -36,7 +36,11 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
   - [x] Permitir usuário marcar/desmarcar atividade feita
   - [x] Alterar card de jornada
   - [x] Adicionar animação de transição de página na jornada
-  - [ ] Alterar card de tópicos
+  - [x] Alterar card de tópicos
+- [ ] Alterar área do usuário
+  - [x] Widget "minha conta"
+  - [x] Login rápido com discord
+  - [ ] Mostrar foto e nome do usuário
 - [x] Definir integração com storage em nuvem (Deno Kv)
 - [x] Ajustar renderizador de exercícios
   - [x] Remover frontmatter antes do rendering
