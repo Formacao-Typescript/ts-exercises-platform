@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Navbar, Footer } from 'flowbite-react';
+import { Navbar, Footer } from 'flowbite-react';
 
 import { Container } from './styles';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,7 @@ import {
   MailIcon,
 } from '@/shared/marketing';
 import useMediaQuery from '@/hooks/util/useMediaQuery';
+import UserWidget from './UserWidget';
 // import Sidebar from './Sidebar';
 
 const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER as string;
@@ -62,21 +63,11 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
         </Link>
 
         <div className="flex md:order-2">
-          <Link to="/auth">
+          <UserWidget />
+          {/* <Link to="/auth">
             <Button>Sign in</Button>
-          </Link>
-          <Navbar.Toggle />
+          </Link> */}
         </div>
-
-        <Navbar.Collapse>
-          <Navbar.Link href="#" active>
-            Home
-          </Navbar.Link>
-          <Navbar.Link href="#">About</Navbar.Link>
-          <Navbar.Link href="#">Services</Navbar.Link>
-          <Navbar.Link href="#">Pricing</Navbar.Link>
-          <Navbar.Link href="#">Contact</Navbar.Link>
-        </Navbar.Collapse>
       </Navbar>
       <main className="bg-white dark:bg-gray-900 dark:text-white w-full h-full relative flex flex-col">
         <Breadcrumb className="m-2" />
