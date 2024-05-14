@@ -15,6 +15,7 @@ import {
   LinkedinIcon,
   MailIcon,
 } from '@/shared/marketing';
+import useMediaQuery from '@/hooks/util/useMediaQuery';
 // import Sidebar from './Sidebar';
 
 const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER as string;
@@ -22,6 +23,30 @@ const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER as string;
 const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
+  if (isMobile) {
+    return (
+      <Container>
+        <div className="h-screen flex justify-center">
+          <div className="text-white text-center w-2/3 h-auto self-center">
+            <h1 className="text-4xl tracking-tight font-extrabold mb-4">
+              Não temos suporte a celulares ainda
+            </h1>
+            <h2 className="font-light mb-4">
+              Para sua melhor experiência, recomendamos usar um tablet ou
+              notebook maiores por enquanto.
+            </h2>
+            <p>
+              Mas não se preocupe, adicionaremos suporte a dispositivos móveis
+              logo logo!
+            </p>
+          </div>
+        </div>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <Navbar fluid>
