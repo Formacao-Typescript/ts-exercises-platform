@@ -22,7 +22,7 @@ const Overlay: React.FC<Props> = ({
   return (
     <div className={cn(open ? 'block' : 'hidden')}>
       <span
-        className="backdrop fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-10"
+        className="backdrop hidden fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-10"
         onClick={() => onBackdropClick && onBackdropClick()}
       ></span>
       <span

@@ -2,6 +2,9 @@ import Overlay from '@/components/Overlay';
 import cn from 'classnames';
 import React, { useState } from 'react';
 import { FaUser } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaDiscord as DiscordIcon } from 'react-icons/fa';
+import { getAuthorizationCodeUrl } from '@/services/discord';
 
 // import { Container } from './styles';
 const UserWidget: React.FC = () => {
@@ -36,20 +39,24 @@ const UserWidget: React.FC = () => {
       >
         <ul className="py-2" aria-labelledby="dropdownButton">
           <li>
-            <a
-              href="#"
+            <Link
+              to="/auth"
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
             >
               Criar conta
-            </a>
+            </Link>
           </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          <li className="text-center">
+            <button
+              type="button"
+              className="text-white bg-[#5F69F3] hover:bg-[#5F69F3]/90 focus:ring-4 focus:outline-none focus:ring-[#5F69F3]/50 font-medium rounded-lg text-xs px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#5F69F3]/55"
+              onClick={() => {
+                window.location.href = getAuthorizationCodeUrl();
+              }}
             >
+              <DiscordIcon className="w-4 h-4 me-2" />
               Login com Discord
-            </a>
+            </button>
           </li>
         </ul>
       </Overlay>
