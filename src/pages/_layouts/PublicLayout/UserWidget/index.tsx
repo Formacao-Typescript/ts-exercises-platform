@@ -14,7 +14,7 @@ const UserWidget: React.FC = () => {
     <div className="container relative">
       <div
         className="flex rounded-3xl bg-gray-700 cursor-pointer hover:scale-105 transition-all duration-200"
-        onClick={() => setIsDropdownOpen(true)}
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         <div className="flex items-center pr-2 pl-4 text-gray-300">
           <span className="text-sm overflow-ellipsis overflow-hidden whitespace-nowrap max-w-24">
