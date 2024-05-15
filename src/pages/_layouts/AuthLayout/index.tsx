@@ -23,17 +23,20 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <span className="absolute bottom-0 right-0 text-gray-800 mr-2">
           Build: {BUILD_NUMBER}
         </span>
-        <div className="bg-gray-800 p-8 rounded-lg sm:max-w-2/3 md:max-w-1/2 max-h-[calc(100%-5rem)] overflow-auto shadow-lg bg-opacity-90">
-          <header>
+        <div className="w-9/12">
+          <header className="bg-trade-gray px-8 py-4 rounded-md w-full">
             <Link to="/" className="flex justify-between">
               <img
                 src={AppLogo}
                 className="mr-3 h-6 sm:h-9"
                 alt="Formação TS Logo"
               />
-              <span className="dark:text-gray-600 dark:hover:text-gray-500 hover:underline self-center whitespace-nowrap">
-                Ir para a plataforma &gt;
-              </span>
+              <button
+                type="button"
+                className="text-xs text-white uppercase rounded-md px-8 py-2 bg-gradient-to-r from-trade-light-blue to-trade-blue hover:scale-105 transition-all duration-200"
+              >
+                Acessar conteúdos
+              </button>
             </Link>
           </header>
           <main className="h-auto flex items-center justify-center py-3">

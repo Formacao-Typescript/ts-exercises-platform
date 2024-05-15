@@ -5,7 +5,7 @@ import { Container } from './styles';
 
 const SignIn: React.FC = () => {
   return (
-    <Container className="">
+    <Container className="relative">
       <h1 className="font-semibold text-xl">Junte-se à comunidade!</h1>
 
       <section className="unregistered-tier">
