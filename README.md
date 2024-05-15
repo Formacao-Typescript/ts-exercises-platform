@@ -58,7 +58,7 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 - [x] Adicionar aviso de não compatibilidade com dispositivos móveis (por hora)
 - [ ] Sidebar de exercícios
   - [ ] Implementar marcador de progresso do tópico na sidebar
-  - [ ] Ajustar animações
+  - [ ] Ajustar animações básicas (flickering do flowbite não é aceitável)
 - [ ] Definir estratégia de salvamento do progresso do usuário logado periodicamente
 - [ ] Ajustar identidade visual de acordo com a Formação TS
   - [ ] Estilizar a página de sign-up

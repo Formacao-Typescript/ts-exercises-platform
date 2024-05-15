@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  --tiled-background-color-1: rgb(98, 0, 234);
-  --tiled-background-color-2: rgb(236, 64, 122);
+  --tiled-background-color-1: var(--trade-light-blue);
+  --tiled-background-color-2: var(--trade-blue);
+  --tiled-background-color-3: var(--trade-blue);
+
   @keyframes background-pan {
     from {
       background-position: 0% center;
@@ -22,6 +24,8 @@ export const Container = styled.div`
     background: linear-gradient(
       to right,
       var(--tiled-background-color-1),
+      var(--tiled-background-color-2),
+      var(--tiled-background-color-3),
       var(--tiled-background-color-2),
       var(--tiled-background-color-1)
     );
@@ -48,6 +52,7 @@ export const Container = styled.div`
     content: '';
     position: absolute;
     inset: 0.5px;
+    box-shadow: 0 0 0 0.5px rgba(32, 32, 32, 0.9);
   }
 
   #cursor {

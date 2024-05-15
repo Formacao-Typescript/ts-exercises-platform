@@ -1,15 +1,6 @@
 import TiledBackground from '@/components/TiledBackground';
-import {
-  AppLogo,
-  LINKS,
-  FacebookIcon,
-  InstagramIcon,
-  TwitterIcon,
-  YoutubeIcon,
-  LinkedinIcon,
-  MailIcon,
-} from '@/shared/marketing';
-import { Footer } from 'flowbite-react';
+import { AppLogo } from '@/shared/marketing';
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -19,12 +10,12 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
       <TiledBackground />
-      <div className="text-white w-full h-full flex items-center justify-center relative">
+      <div className="text-white w-full min-h-screen flex items-center justify-center relative">
         <span className="absolute bottom-0 right-0 text-gray-800 mr-2">
           Build: {BUILD_NUMBER}
         </span>
-        <div className="w-9/12">
-          <header className="bg-trade-gray px-8 py-4 rounded-md w-full">
+        <div className="w-10/12 xl:w-9/12 min-h-screen flex flex-col justify-center relative">
+          <header className="bg-trade-gray px-8 py-4 rounded-md absolute top-10 w-full">
             <Link to="/" className="flex justify-between">
               <img
                 src={AppLogo}
@@ -42,7 +33,7 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <main className="h-auto flex items-center justify-center py-3">
             {children}
           </main>
-          <footer>
+          {/* <footer>
             <div className="w-full">
               <Footer.Divider className="m-4" />
               <div className="w-full sm:flex sm:items-center sm:justify-between">
@@ -63,7 +54,7 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 </div>
               </div>
             </div>
-          </footer>
+          </footer> */}
         </div>
       </div>
     </>

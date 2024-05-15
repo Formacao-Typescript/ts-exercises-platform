@@ -16,6 +16,7 @@ export default {
         'branding-yellow': '#F3B019', //'#FFD200',
         'branding-blue': '#1A7BC0', //'#00AEEF',
         // backgrounds
+        'trade-gray': '#191E25',
         'bg-default': '#000020',
         'bg-logo': '#0b0b20',
         'bg-dark-purple': '#0a0020',
