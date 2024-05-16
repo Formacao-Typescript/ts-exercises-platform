@@ -41,7 +41,7 @@ export const Container = styled.div`
       position: fixed;
       top: 0;
       left: 0;
-      transition: background 1s linear;
+      /* transition: background 1s linear; */
     }
   }
 
@@ -71,7 +71,11 @@ export const Container = styled.div`
     position: fixed;
     width: 500px;
     height: 500px;
-    background: radial-gradient(lime, transparent, transparent);
+    background: radial-gradient(
+      var(--trade-light-blue),
+      transparent,
+      transparent
+    );
     border-radius: 50%;
     transform: translate(-50%, -50%);
     visibility: visible;

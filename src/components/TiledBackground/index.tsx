@@ -46,13 +46,17 @@ const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
       background: [
         {
           value: `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)`,
+          duration: 500,
+          // easing: 'easeOutSine',
         },
         {
           value: `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)`,
+          duration: 1000,
+          // easing: 'easeInOutQuad',
         },
       ],
       easing: 'linear',
-      duration: 1000,
+      // duration: 1500,
       direction: 'alternate',
     });
   };
@@ -88,14 +92,14 @@ const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
 
       setTimeout(() => {
         setIsClickLocked(false);
-      }, 3500);
+      }, 3000);
 
       anime({
         targets: [cursor],
         opacity: [0, 1],
         easing: 'easeInOutQuad',
         duration: 1000,
-        delay: 2500,
+        delay: 3000,
       });
     };
 
@@ -127,6 +131,8 @@ const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
         cancelable: true,
       })
     );
+    document.getElementById('cursor')!.style.top = '0';
+    document.getElementById('cursor')!.style.left = '0';
   }, []);
 
   return (
