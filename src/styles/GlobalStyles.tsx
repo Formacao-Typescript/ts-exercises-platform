@@ -24,6 +24,7 @@ const GlobalStyles = createGlobalStyle`
     --trade-intermediate-gradient: linear-gradient(45deg, var(--accent-pink), var(--accent-dark-purple));
     --trade-essential-gradient: linear-gradient(45deg, var(--accent-teal), var(--accent-blue));
     
+
     --trade-light-blue: #04ABCA;
     --trade-blue: #0164FE;
     --trade-light-purple: #B902C6;
@@ -31,6 +32,7 @@ const GlobalStyles = createGlobalStyle`
     --trade-light-red: #FC5900;
     --trade-red: #C70100;
     --trade-gray: #191E25;
+    --trade-light-gray: #898989;
     
     /* LSantos branding */
     --branding-green: #45bb8b;

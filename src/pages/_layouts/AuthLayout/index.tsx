@@ -15,7 +15,7 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           Build: {BUILD_NUMBER}
         </span>
         <div className="w-10/12 xl:w-9/12 min-h-screen flex flex-col justify-center relative">
-          <header className="bg-trade-gray px-8 py-4 rounded-md absolute top-10 w-full">
+          <header className="bg-trade-gray px-8 py-4 rounded-lg absolute top-10 w-full">
             <Link to="/" className="flex justify-between">
               <img
                 src={AppLogo}

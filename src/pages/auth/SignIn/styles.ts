@@ -25,14 +25,25 @@ export const HeroBanner = styled.div`
     font-size: 24px;
     margin-top: 38px;
     margin-bottom: 48px;
+    font-weight: 300;
+    color: var(--trade-light-gray);
+
+    strong,
+    b {
+      color: white;
+    }
+
+    b {
+      font-weight: bold;
+    }
   }
 
   li {
-    padding: 30px 20px;
+    padding: 25px 20px;
     border-left: 2px solid var(--trade-light-blue);
     margin-bottom: 10px;
     background: var(--trade-gray);
-    border-radius: 0 8px 8px 0;
+    border-radius: 8px;
     opacity: 0.9;
   }
 
@@ -54,13 +65,14 @@ export const CTABanner = styled.div`
   justify-content: space-between;
 
   p {
+    font-size: 14px;
     color: #898989;
   }
 
   button {
     width: 100%;
     margin-top: 40px;
-    padding: 12px 32px;
+    padding: 20px 32px;
     text-transform: uppercase;
     display: inline-flex;
     justify-content: center;
@@ -77,7 +89,6 @@ export const CTABanner = styled.div`
   @media (max-width: 1024px) {
     margin-top: 5%;
     max-width: 100%;
-    flex-direction: row;
     align-items: center;
 
     p {
@@ -89,7 +100,7 @@ export const CTABanner = styled.div`
       width: 40%;
       margin-top: 0px;
       padding: 6px 10px;
-      border-radius: 6px;
+      border-radius: 8px;
     }
   }
 `;
