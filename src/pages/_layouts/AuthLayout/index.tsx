@@ -10,10 +10,11 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
       <TiledBackground />
-      <div className="text-white w-full min-h-screen flex items-center justify-center relative">
+      <div className="text-white w-full min-h-screen flex items-center justify-center relative overflow-hidden">
         <span className="absolute bottom-0 right-0 text-gray-800 mr-2">
           Build: {BUILD_NUMBER}
         </span>
+        <span className="absolute top-[-600px] right-[-600px] mr-2 w-[1200px] h-[1200px] bg-gradient-radial from-trade-light-blue via-trade-blue via-20% to-60% to-transparent rounded-full opacity-50"></span>
         <div className="w-10/12 xl:w-9/12 2xl:w-8/12 min-h-screen flex flex-col justify-center relative">
           <header className="bg-trade-gray px-8 py-4 rounded-lg absolute top-10 w-full">
             <Link to="/" className="flex justify-between">
