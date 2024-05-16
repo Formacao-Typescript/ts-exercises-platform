@@ -39,18 +39,18 @@ const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
       document.querySelector('.gray-background')!;
     grayBackground.style.setProperty('--x', `${xPercent}%`);
     grayBackground.style.setProperty('--y', `${yPercent}%`);
-    grayBackground.style.background = `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)`;
+    grayBackground.style.background = `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(42, 42, 42, 0) 0%, rgba(42, 42, 42, 1) 100%)`;
 
     anime({
       targets: grayBackground,
       background: [
         {
-          value: `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)`,
+          value: `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(42, 42, 42, 0) 0%, rgba(42, 42, 42, 1) 100%)`,
           duration: 500,
           // easing: 'easeOutSine',
         },
         {
-          value: `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)`,
+          value: `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(42, 42, 42, 0) 0%, rgba(42, 42, 42, 0) 100%)`,
           duration: 1000,
           // easing: 'easeInOutQuad',
         },
