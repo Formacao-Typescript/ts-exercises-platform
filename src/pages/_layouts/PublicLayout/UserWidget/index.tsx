@@ -43,7 +43,7 @@ const UserWidget: React.FC = () => {
         onInactive={() => setIsDropdownOpen(false)}
       >
         <ul className="py-2" aria-labelledby="dropdownButton">
-          {!user ? (
+          {!user.username ? (
             <>
               <li>
                 <Link

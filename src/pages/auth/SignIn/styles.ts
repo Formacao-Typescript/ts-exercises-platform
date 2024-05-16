@@ -23,8 +23,8 @@ export const HeroBanner = styled.div`
 
   p {
     font-size: 24px;
-    margin-top: 38px;
-    margin-bottom: 48px;
+    margin-top: 10px;
+    margin-bottom: 40px;
     font-weight: 300;
     color: var(--trade-light-gray);
 
