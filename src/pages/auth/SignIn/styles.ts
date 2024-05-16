@@ -92,15 +92,8 @@ export const CTABanner = styled.div`
     align-items: center;
 
     p {
-      width: 55%;
-      margin-right: 5%;
+      font-size: 18px;
       text-align: center;
-    }
-    button {
-      width: 40%;
-      margin-top: 0px;
-      padding: 6px 10px;
-      border-radius: 8px;
     }
   }
 `;
