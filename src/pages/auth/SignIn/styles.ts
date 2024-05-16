@@ -32,7 +32,7 @@ export const HeroBanner = styled.div`
     border-left: 2px solid var(--trade-light-blue);
     margin-bottom: 10px;
     background: var(--trade-gray);
-    border-radius: 12px;
+    border-radius: 0 8px 8px 0;
     opacity: 0.9;
   }
 
@@ -66,7 +66,7 @@ export const CTABanner = styled.div`
     justify-content: center;
     align-items: center;
     background: linear-gradient(to right, #7263d7, #444dca);
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 14px;
 
     &:hover {

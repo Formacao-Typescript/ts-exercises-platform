@@ -12,8 +12,10 @@ const SignIn: React.FC = () => {
           <strong className="text-ts-gradient-horizontal">Comunidade!</strong>
         </h1>
         <p>
-          A Plataforma da <strong>Formação TS</strong> <b>é gratuita</b> pra
-          aprender, e você <b>nem precisa de uma conta!</b>
+          A Plataforma da{' '}
+          <strong className="italic font-light">Formação TS</strong>{' '}
+          <b>é gratuita</b> pra aprender, e você{' '}
+          <b>nem precisa de uma conta!</b>
         </p>
 
         <ul>
