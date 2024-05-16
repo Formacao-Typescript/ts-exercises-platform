@@ -31,6 +31,18 @@ export const Container = styled.div`
     );
     background-size: 200%;
     overflow: hidden;
+
+    .gray-background {
+      --x: 50%;
+      --y: 50%;
+      width: 100%;
+      height: 100%;
+      background: #2a2a2a;
+      position: fixed;
+      top: 0;
+      left: 0;
+      transition: background 1s linear;
+    }
   }
 
   #tiles {
@@ -52,7 +64,7 @@ export const Container = styled.div`
     content: '';
     position: absolute;
     inset: 0.5px;
-    box-shadow: 0 0 0 0.5px rgba(32, 32, 32, 0.9);
+    /* box-shadow: 0 0 0 0.5px rgba(32, 32, 32, 0.9); */
   }
 
   #cursor {

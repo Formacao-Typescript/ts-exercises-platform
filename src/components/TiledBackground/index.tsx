@@ -31,6 +31,32 @@ const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
     setIsTileToggled(!isTileToggled);
   };
 
+  const handleGrayBackground = (clientX: number, clientY: number) => {
+    const xPercent = (clientX / window.innerWidth) * 100;
+    const yPercent = (clientY / window.innerHeight) * 100;
+
+    const grayBackground: HTMLElement =
+      document.querySelector('.gray-background')!;
+    grayBackground.style.setProperty('--x', `${xPercent}%`);
+    grayBackground.style.setProperty('--y', `${yPercent}%`);
+    grayBackground.style.background = `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)`;
+
+    anime({
+      targets: grayBackground,
+      background: [
+        {
+          value: `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)`,
+        },
+        {
+          value: `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)`,
+        },
+      ],
+      easing: 'linear',
+      duration: 1000,
+      direction: 'alternate',
+    });
+  };
+
   useEffect(() => {
     const wrapper = document.getElementById('tiles');
 
@@ -56,6 +82,7 @@ const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
       const rows = Math.floor(window.innerHeight / tileSize);
 
       handleTileClick(closestTile.index, columns, rows);
+      handleGrayBackground(e.clientX, e.clientY);
 
       cursor.style.opacity = '0';
 
@@ -105,6 +132,7 @@ const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
   return (
     <Container>
       <div className="tiled-background">
+        <div className="gray-background"></div>
         <div id="tiles"></div>
         <div id="cursor"></div>
       </div>
