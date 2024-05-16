@@ -8,7 +8,8 @@ const SignIn: React.FC = () => {
     <Container className="relative w-full flex justify-between flex-col lg:flex-row items-center lg:items-start">
       <HeroBanner>
         <h1>
-          Junte-se à <strong>Comunidade!</strong>
+          Junte-se à{' '}
+          <strong className="text-ts-gradient-horizontal">Comunidade!</strong>
         </h1>
         <p>
           A Plataforma da <strong>Formação TS</strong> <b>é gratuita</b> pra
