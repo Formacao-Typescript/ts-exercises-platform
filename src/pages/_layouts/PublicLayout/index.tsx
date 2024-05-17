@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Navbar, Footer } from 'flowbite-react';
 
@@ -17,6 +17,7 @@ import {
 } from '@/shared/marketing';
 import useMediaQuery from '@/hooks/util/useMediaQuery';
 import UserWidget from './UserWidget';
+import { useFTSLoading } from '@/store/navigation';
 // import Sidebar from './Sidebar';
 
 const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER as string;
@@ -25,6 +26,11 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const [, startLoading] = useFTSLoading();
+
+  useEffect(() => {
+    startLoading(true);
+  }, []);
 
   if (isMobile) {
     return (

@@ -8,6 +8,7 @@ interface INavigationStore {
     position: [number, number];
     color?: 'green' | 'red' | 'yellow' | 'blue';
   };
+  FTSLoading: boolean;
 }
 
 const INITIAL_STATE: INavigationStore = {
@@ -15,6 +16,7 @@ const INITIAL_STATE: INavigationStore = {
     open: false,
     position: [0, 0],
   },
+  FTSLoading: true,
 };
 
 Object.keys(INITIAL_STATE).forEach(key => {
@@ -28,5 +30,11 @@ Object.keys(INITIAL_STATE).forEach(key => {
 export const usePageTransitionBubble = () => {
   return store.useState<INavigationStore['pageTransitionBubble']>(
     `${STATE_KEY}:pageTransitionBubble`
+  );
+};
+
+export const useFTSLoading = () => {
+  return store.useState<INavigationStore['FTSLoading']>(
+    `${STATE_KEY}:FTSLoading`
   );
 };

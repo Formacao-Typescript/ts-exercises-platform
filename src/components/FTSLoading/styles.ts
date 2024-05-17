@@ -1,18 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  :root {
-    --logo-background: #0b0b20;
-    --background-gradient: linear-gradient(to bottom, #04a9cc, #0164fd);
-    --slash-gradient: linear-gradient(to top, #00aac9, #008ce7);
-    --ts-gradient: linear-gradient(to bottom, #00aac9 30%, #006bfd);
+  --logo-background: #0b0b20;
+  --background-gradient: linear-gradient(to bottom, #04a9cc, #0164fd);
+  --slash-gradient: linear-gradient(to top, #00aac9, #008ce7);
+  --ts-gradient: linear-gradient(to bottom, #00aac9 30%, #006bfd);
 
-    --z-index-0: 20;
-    --z-index-1: 21;
-    --z-index-2: 22;
+  --z-index-0: 40;
+  --z-index-1: 41;
+  --z-index-2: 42;
 
-    --logo-size: 4;
-  }
+  --logo-size: 3;
 
   @keyframes spin {
     0% {
@@ -28,22 +26,24 @@ export const Container = styled.div`
       transform: rotate(360deg);
     }
   }
-  &.fts-loading {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100svh;
-    background: #0b0b20;
-    z-index: var(--z-index-0);
 
+  position: fixed;
+  top: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100svh;
+  background: #0b0b20;
+  z-index: var(--z-index-0);
+
+  .fts-loading {
     &-changing-background {
       padding: 20px;
       background: var(--background-gradient);
       position: fixed;
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       z-index: var(--z-index-1);
       border-radius: 60% 50% 70% 60%;
       animation: spin 2s linear infinite;

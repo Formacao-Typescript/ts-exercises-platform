@@ -20,11 +20,6 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <header className="bg-trade-gray px-8 py-4 rounded-lg absolute top-10 w-full">
             <Link to="/" className="flex justify-between items-center">
               <FTSLogo scale={1.2} />
-              <img
-                src={AppLogo}
-                className="mr-3 h-6 sm:h-9"
-                alt="Formação TS Logo"
-              />
               <button
                 type="button"
                 className="text-xs text-white uppercase rounded-md px-8 py-2 bg-gradient-to-r from-trade-light-blue to-trade-blue hover:scale-105 transition-all duration-200"
