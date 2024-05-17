@@ -1,6 +1,5 @@
 import FTSLogo from '@/components/FTSLogo';
 import TiledBackground from '@/components/TiledBackground';
-import { AppLogo } from '@/shared/marketing';
 
 import React from 'react';
 import { Link } from 'react-router-dom';

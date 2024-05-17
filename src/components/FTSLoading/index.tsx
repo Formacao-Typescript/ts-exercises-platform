@@ -123,7 +123,6 @@ const FTSLoading: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log('aoba', active);
     if (active) {
       animationReset();
       setTimeout(() => {

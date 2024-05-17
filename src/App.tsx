@@ -10,9 +10,9 @@ const App: React.FC = () => {
   return (
     <Router>
       <GlobalStyles />
-      <Routes />
       <FTSLoading />
       <PageTransitionBubble />
+      <Routes />
       <ToastContainer
         autoClose={5000}
         closeOnClick
