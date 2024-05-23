@@ -8,17 +8,16 @@ interface Props {
 }
 
 const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
-  const [isTileToggled, setIsTileToggled] = React.useState(false);
-  const [isClickLocked, setIsClickLocked] = React.useState(false);
+  let isTileToggled = false;
+  let isClickLocked = false;
 
   const handleTileClick = (index: number, columns: number, rows: number) => {
-    const toggled = !isTileToggled;
     anime({
       targets: '.tile',
       easing: 'easeOutExpo',
       // opacity: toggled ? 0 : 1,
       // border: toggled ? '' : '1px solid #fff',
-      borderRadius: toggled ? ['0%', '50%'] : ['50%', '0%'],
+      borderRadius: isTileToggled ? ['0%', '50%'] : ['50%', '0%'],
       scale: [
         { value: 0.1, easing: 'easeOutSine', duration: 500 },
         { value: 1, easing: 'easeInOutQuad', duration: 1200 },
@@ -28,7 +27,7 @@ const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
         from: index,
       }),
     });
-    setIsTileToggled(!isTileToggled);
+    isTileToggled = !isTileToggled;
   };
 
   const handleGrayBackground = (clientX: number, clientY: number) => {
@@ -78,8 +77,7 @@ const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
 
     window.onclick = e => {
       if (isClickLocked) return;
-
-      setIsClickLocked(true);
+      isClickLocked = true;
       const tiles = document.querySelectorAll('.tile');
       const closestTile = findClosestTile(tiles, e.clientX, e.clientY);
       const columns = Math.floor(window.innerWidth / tileSize);
@@ -91,7 +89,7 @@ const TiledBackground: React.FC<Props> = ({ tileSize = 50 }) => {
       cursor.style.opacity = '0';
 
       setTimeout(() => {
-        setIsClickLocked(false);
+        isClickLocked = false;
       }, 3000);
 
       anime({
