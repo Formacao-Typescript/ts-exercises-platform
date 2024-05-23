@@ -38,7 +38,7 @@ store.persist({
         // No state saved
         return noState;
       }
-      return JSON.parse(serializedState);
+      return JSON.parse(serializedState) as unknown;
     } catch (err) {
       // Failed to load state
       return undefined;

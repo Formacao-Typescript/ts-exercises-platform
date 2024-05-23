@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   /* overflow: hidden; */
+  background: var(--background);
 
   > main {
     display: flex;

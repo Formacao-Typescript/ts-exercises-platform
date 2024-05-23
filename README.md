@@ -28,43 +28,68 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 - [x] Implementar deploy no Github Pages
 - [x] Definir estratégias de Login/SSO
   - [x] Integração com SSO do discord
-- [ ] Ajustar navegação/usabilidade da aplicação
+- [x] Ajustar navegação/usabilidade da aplicação
   - [x] Refatoração do consumo de metadados em JSON e Markdown
   - [x] Implementar skeleton loading nas páginas principais (dasboard e listagem de tópicos)
-  - [ ] Implementar skeleton loading na página de atividades
-  - [ ] Marcador de progresso do tópico na sidebar
+  - [x] Implementar skeleton loading na página de atividades
   - [x] Permitir usuário marcar/desmarcar atividade feita
-- [ ] Definir integração com storage em nuvem (Deno Kv)
+  - [x] Alterar card de jornada
+  - [x] Adicionar animação de transição de página na jornada
+  - [x] Alterar card de tópicos
+- [x] Alterar área do usuário
+  - [x] Widget "minha conta"
+  - [x] Login rápido com discord
+  - [x] Mostrar nome do usuário
+- [x] Definir integração com storage em nuvem (Deno Kv)
 - [x] Ajustar renderizador de exercícios
   - [x] Remover frontmatter antes do rendering
   - [x] Adicionar formatação apropriada e estilos para títulos, paragrafos e afins
-- [ ] Ajustar renderização dos códigos
-  - [ ] Definir interações que o usuário pode ter (botão de check? área pra mostrar as mensagens de erro?)
-  - [ ] Aplicar melhorias sugeridas:
-    - [ ] Mais espaço pro editor no container
-    - [ ] Permitir resize da atividade e/ou editor em fullscreen
-- [ ] Estabelecer modelo de dados persistidos do usuário
+- [x] Ajustar renderização dos códigos
+  - [x] Definir interações que o usuário pode ter (botão de check? área pra mostrar as mensagens de erro?)
+- [x] Estabelecer modelo de dados persistidos do usuário
   - [x] Consumir dados localmente nas interações do sistema
-  - [ ] Salvar dados em nuvem (para usuários autenticados)
-  - [ ] Interpolar dados em nuvem com dados locais no login
+  - [x] Salvar dados em nuvem (para usuários autenticados)
+  - [x] Interpolar dados em nuvem com dados locais no login
 - [x] Criar script de validação ao inserir exercícios novos que deve:
   - [x] Validar se todos os IDs dos exercícios são únicos
   - [x] Extrair dados do front-matter de atividade e gerar o metadado geral de atividades para cada Tema
   - [x] Reconhecer os diretórios de temas, ler front-matter de cada tema e gerar o metadado geral de cada Jornada
   - [x] Reconhecer os diretórios de jornadas, ler o front-matter de cada jornada e gerar o metadado geral raiz do projeto
+- [x] Adicionar aviso de não compatibilidade com dispositivos móveis (por hora)
+- [ ] Sidebar de exercícios
+  - [ ] Implementar marcador de progresso do tópico na sidebar
+  - [ ] Ajustar animações básicas (flickering do flowbite não é aceitável)
+- [ ] Definir estratégia de salvamento do progresso do usuário logado periodicamente
 - [ ] Ajustar identidade visual de acordo com a Formação TS
-- [ ] Adicionar aviso de não compatibilidade com dispositivos móveis (por hora)
+  - [x] Estilizar a página de sign-up
+  - [ ] Revisar tipografia e cores elementais da plataforma
+  - [ ] Implementar Logo CSS da plataforma (trazer da página de leads)
+  - [ ] Implementar Loading customizado na plataforma (trazer da página de leads)
 - [ ] Criar ao menos 1 trilha com 3 tópicos e 5 atividades cada (15 exercícios)
 - [ ] Definir trilhas a ser disponibilizadas a seguir, e adicionar estilos pra isso (assim elas aparecem na listagem)
+- [ ] Finalizar Backend v1:
+  - [ ] Implementar servidor local no projeto
+  - [ ] Implementar integração com deno KV
+  - [ ] Disponibilizar API básica de usuário
+  - [ ] intermediar chamadas com o discord (que requeiram secret)
 
 ### v2-vX - Melhorias (escopo a definir)
 
-- [ ] A definir:
-  - [ ] Salvar alterações no código localmente em base64?
-    - [ ] compensa salvar elas em nuvem?
-  - [ ] Adicionar suporte pra dispositivos móveis?
-  - [ ] Showcase da comunidade e contribuições dos alunos
-    > Brainstorm rápido a ser discutido no futuro: Salvar as soluções de cada aluno pras atividades? Talvez só pras atividades mais complexas no futuro? Permitir que os alunos compartilhem/vejam as soluções, tipo num “fórum stackoverflow de soluções”?
+Backlog da v1:
+
+- [ ] Alterar área do usuário
+  - [ ] Mostrar foto do usuário (requer integração com discord)
+- [ ] Ajustar renderização dos códigos (Aplicar melhorias sugeridas)
+  - [ ] Mais espaço pro editor no container
+  - [ ] Permitir resize da atividade e/ou editor em fullscreen
+
+A definir:
+
+- [ ] Salvar alterações no código localmente em base64?
+  - [ ] compensa salvar elas em nuvem?
+- [ ] Adicionar suporte pra dispositivos móveis?
+- [ ] Showcase da comunidade e contribuições dos alunos
+  > Brainstorm rápido a ser discutido no futuro: Salvar as soluções de cada aluno pras atividades? Talvez só pras atividades mais complexas no futuro? Permitir que os alunos compartilhem/vejam as soluções, tipo num “fórum stackoverflow de soluções”?
 
 ## Sobre o projeto
 

@@ -1,11 +1,11 @@
 [
   {
-    "id": "string-e-boolean",
-    "name": "String e boolean",
+    "id": "string-e-boolean-5",
+    "name": "String e number",
     "description": "como o typescript lida com tipos primitivos"
   },
   {
-    "id": "string-e-number",
+    "id": "string-e-number-5",
     "name": "String e number",
     "description": "como o typescript lida com tipos primitivos"
   }

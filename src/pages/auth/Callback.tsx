@@ -1,8 +1,8 @@
 import LoadingIndicator from '@/components/LoadingIndicator';
 import { useSearchParams } from '@/hooks';
-import { useUser } from '@/store/user';
-import { SupportedPlatforms } from '@/types';
-import { fetchUser as fetchDiscordUser } from '@/utils/discord';
+import { mergeLocalAndRemoteUser, useUser } from '@/store/user';
+import { IRemoteUser, IUser, SupportedPlatforms } from '@/types';
+import { fetchUser as fetchDiscordUser } from '@/services/discord';
 
 import { buildUrl } from '@/utils/url';
 import _ from 'lodash';
@@ -10,11 +10,12 @@ import React, { useEffect, useMemo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { createUser, fetchUserByDiscordId } from '@/services/user';
 
 const Callback: React.FC = () => {
   const navigate = useNavigate();
   const searchParams = useSearchParams('platform', 'error', 'code');
-  const [, setUser] = useUser();
+  const [user, setUser] = useUser();
 
   const handlers: Record<SupportedPlatforms, () => Promise<void>> =
     useMemo(() => {
@@ -39,13 +40,12 @@ const Callback: React.FC = () => {
                 searchParams.code
               );
 
-              // TODO: fetch remote user based on discordUser.id
-              // TODO: check if user already exists (discordUser.id === remote_user.discord_id)
-              const remoteUser = undefined;
+              const remoteUser = await fetchUserByDiscordId(discordUser.id);
 
+              // if new user
               if (!remoteUser) {
-                setUser(_user => ({
-                  ..._user,
+                const newUser: IUser = {
+                  ...user,
                   id: _.uniqueId('user_'),
                   email: discordUser.email,
                   username: discordUser.username,
@@ -53,18 +53,23 @@ const Callback: React.FC = () => {
                   avatar: { kind: 'discord', value: discordUser.avatar },
                   discord_id: discordUser.id,
                   token: token,
-                }));
+                };
 
-                // TODO: save user to remote, including offline user progress
+                setUser(newUser);
+
+                const newRemoteUser = _.omit(
+                  newUser,
+                  'token',
+                  'progress'
+                ) as IRemoteUser;
+                await createUser(newRemoteUser);
+
                 toast.success('Bem-vindo(a) a bordo!');
                 // navigate('/');
                 return void 0;
               }
-
-              setUser(_user => ({
-                ..._user, // TODO: properly merge local and remote user progress
-                remoteUser, // FIXME: this will override local user progress on login
-              }));
+              // if existing user
+              setUser(mergeLocalAndRemoteUser(user, remoteUser));
 
               toast.success(
                 _.sample([
@@ -80,7 +85,7 @@ const Callback: React.FC = () => {
           }
         },
       };
-    }, [searchParams, setUser, navigate]);
+    }, [searchParams, setUser, navigate, user]);
 
   useEffect(() => {
     if (!searchParams.platform) return void 0;

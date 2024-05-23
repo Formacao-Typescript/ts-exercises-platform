@@ -4,7 +4,7 @@ import { IJourney, IRawTopic, ITopic } from '@/types';
 import { useEffect, useState } from 'react';
 import { fetchMetadataJSON } from '@/utils/metadata';
 
-const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL;
+const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL as string;
 
 const useTopics = (
   journeyId?: IJourney['id']
@@ -16,7 +16,7 @@ const useTopics = (
   useEffect(() => {
     if (!journeyId) return void 0;
 
-    loadTopics(journeyId);
+    void loadTopics(journeyId);
   }, []);
 
   useEffect(() => {

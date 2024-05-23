@@ -1,13 +1,13 @@
 ---
-name: String e boolean
+name: String e number
 description: como o typescript lida com tipos primitivos
 ---
 
 # Exercício brabo de tipos
 
-Tipos são uns bagulho meio : Maluco que pode ficar `Complicado<T, K>`. Lorem ipsum dolor sit amet
+Tipos são uns bagulho meio : _Maluco_ que pode ficar `Complicado<T, K>`. Lorem ipsum dolor sit amet
 
-Modifique a interface pra que ela seja supimpa
+Modifique a **interface** pra que ela seja **supimpa**
 
 ```typescript
 interface Todo {
@@ -19,7 +19,7 @@ const aoba: TudoQuebradoAqui = {
 };
 ```
 
-Agora faz outro bagulho muito brabo nesse exercício composto, praticamente uma apostila que mexe óia só
+Agora faz outro bagulho muito brabo nesse `exercício composto`, praticamente uma apostila que mexe óia só
 
 ```typescript
 interface Todo {

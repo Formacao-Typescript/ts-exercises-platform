@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { Button, Navbar, Footer } from 'flowbite-react';
+import { Navbar, Footer } from 'flowbite-react';
 
 import { Container } from './styles';
 import { Link } from 'react-router-dom';
@@ -15,13 +15,45 @@ import {
   LinkedinIcon,
   MailIcon,
 } from '@/shared/marketing';
+import useMediaQuery from '@/hooks/util/useMediaQuery';
+import UserWidget from './UserWidget';
+import { useFTSLoading } from '@/store/navigation';
 // import Sidebar from './Sidebar';
 
-const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER;
+const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER as string;
 
 const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  const [, startLoading] = useFTSLoading();
+
+  useEffect(() => {
+    startLoading(true);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <Container>
+        <div className="h-screen flex justify-center">
+          <div className="text-white text-center w-2/3 h-auto self-center">
+            <h1 className="text-4xl tracking-tight font-extrabold mb-4">
+              Não temos suporte a celulares ainda
+            </h1>
+            <h2 className="font-light mb-4">
+              Para sua melhor experiência, recomendamos usar um tablet ou
+              notebook maiores por enquanto.
+            </h2>
+            <p>
+              Mas não se preocupe, adicionaremos suporte a dispositivos móveis
+              logo logo!
+            </p>
+          </div>
+        </div>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <Navbar fluid>
@@ -37,21 +69,8 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
         </Link>
 
         <div className="flex md:order-2">
-          <Link to="/auth">
-            <Button>Sign in</Button>
-          </Link>
-          <Navbar.Toggle />
+          <UserWidget />
         </div>
-
-        <Navbar.Collapse>
-          <Navbar.Link href="#" active>
-            Home
-          </Navbar.Link>
-          <Navbar.Link href="#">About</Navbar.Link>
-          <Navbar.Link href="#">Services</Navbar.Link>
-          <Navbar.Link href="#">Pricing</Navbar.Link>
-          <Navbar.Link href="#">Contact</Navbar.Link>
-        </Navbar.Collapse>
       </Navbar>
       <main className="bg-white dark:bg-gray-900 dark:text-white w-full h-full relative flex flex-col">
         <Breadcrumb className="m-2" />

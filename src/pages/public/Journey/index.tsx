@@ -5,6 +5,7 @@ import { ITopic } from '@/types';
 import { useJourney, useTopics } from '@/hooks';
 import LoadSkeleton from '@/components/LoadSkeleton';
 import { AiOutlinePicture } from 'react-icons/ai';
+import BubbleCard from '@/components/BubbleCard';
 
 const Journey: React.FC = () => {
   const { journeyId, topicId } = useParams<{
@@ -52,7 +53,7 @@ const Journey: React.FC = () => {
           </p>
         </LoadSkeleton>
       </div>
-      <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-3">
+      <div className="grid gap-8 mb-6 lg:mb-16 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         <LoadSkeleton
           isLoading={isLoadingTopics}
           skeleton={() => (
@@ -83,36 +84,33 @@ const Journey: React.FC = () => {
           )}
         >
           {topics.map(topic => (
-            <div
+            <BubbleCard
               key={topic.id}
-              className="bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 cursor-pointer flex flex-col"
               onClick={actions.navigateToTopic.bind(null, topic)}
             >
-              <div className="rounded-lg w-full h-64 bg-gradient-radial from-gray-600 to-gray-800 flex flex-col justify-center items-center">
-                <span className="w-full p-4 text-5xl bg-gradient-to-l from-trade-light-blue to-trade-blue inline-block text-transparent bg-clip-text break-words">
-                  {topic.name}
-                </span>
-              </div>
-              <div className="flex flex-col justify-between p-4 flex-grow">
-                <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
-                  {topic.name}
-                </h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400 mb-4">
-                  {topic.description}
-                </p>
-                <Progress
-                  progress={
-                    +((topic.progress / topic.activityCount) * 100).toFixed(2)
-                  }
-                  progressLabelPosition="outside"
-                  textLabel={`${topic.progress}/${topic.activityCount} Atividades concluídas`}
-                  textLabelPosition="outside"
-                  size="lg"
-                  labelProgress
-                  labelText
-                />
-              </div>
-            </div>
+              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+                {topic.name}
+              </h5>
+              <p className="font-normal text-gray-700 dark:text-gray-400 mb-4">
+                {topic.description}
+              </p>
+              <Progress
+                progress={
+                  +(
+                    ((topic.progress || 0) / topic.activityCount) *
+                    100
+                  ).toFixed(2)
+                }
+                progressLabelPosition="outside"
+                textLabel={`${topic.progress || 0}/${
+                  topic.activityCount
+                } Atividades concluídas`}
+                textLabelPosition="outside"
+                size="lg"
+                labelProgress
+                labelText
+              />
+            </BubbleCard>
           ))}
         </LoadSkeleton>
       </div>

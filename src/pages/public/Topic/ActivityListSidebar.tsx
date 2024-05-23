@@ -86,12 +86,10 @@ const ActivityListSidebar: React.FC<Props> = ({
                   'cursor-pointer relative h-10 flex flex-row-reverse p-0',
                   isChecked && 'text-green-500'
                 )}
-                icon={({ className, ...props }: SidebarItemProps) => {
-                  const Icon = UncheckedIcon;
-
+                icon={(props: SidebarItemProps) => {
                   return (
                     <div {...props} className="relative w-10 h-10">
-                      <Icon
+                      <UncheckedIcon
                         className={cn(
                           'absolute right-0 w-10 h-fit p-1.5 hover:bg-gray-600 cursor-pointer rounded-lg',
                           isChecked

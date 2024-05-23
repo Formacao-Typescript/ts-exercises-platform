@@ -3,7 +3,7 @@ import { useUser } from '@/store/user';
 import { IExercisesStoreState, IJourney, IRawJourney } from '@/types';
 import { fetchMetadataJSON } from '@/utils/metadata';
 import { useEffect, useState } from 'react';
-const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL;
+const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL as string;
 
 const useJourneys = (): [IJourney[], boolean, () => Promise<void>] => {
   const [exercises] = store.useState<IExercisesStoreState>(STATE_KEY);
@@ -15,8 +15,8 @@ const useJourneys = (): [IJourney[], boolean, () => Promise<void>] => {
   }, [user]);
 
   useEffect(() => {
-    if (!exercises || !exercises.journeys || exercises.journeys.length === 0) {
-      loadJourneys();
+    if (!exercises?.journeys || exercises.journeys.length === 0) {
+      void loadJourneys();
     }
   }, [exercises]);
 
