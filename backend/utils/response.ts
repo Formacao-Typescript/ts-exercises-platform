@@ -1,5 +1,5 @@
 // response standardization
-export interface IJSONSuccessResponse<T = any> {
+export interface IJSONSuccessResponse<T = unknown> {
   success: boolean;
   data: T;
 }
@@ -9,7 +9,9 @@ export interface IJSONFailureResponse {
   message: string;
 }
 
-export function JSONSuccessResponse<T = any>(data: T): IJSONSuccessResponse<T> {
+export function JSONSuccessResponse<T = unknown>(
+  data: T
+): IJSONSuccessResponse<T> {
   return {
     success: true,
     data,

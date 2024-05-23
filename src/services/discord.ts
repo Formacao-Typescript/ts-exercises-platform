@@ -23,7 +23,7 @@ export const getAuthorizationCodeUrl = (): string => {
     response_type: 'code',
     client_id: CLIENT_ID,
     redirect_uri: REDIRECT_URL,
-    scope: 'identify email',
+    scope: 'identify email guilds.join',
   }).toString();
 
   return `${BASE_URL}/authorize?${params}`;

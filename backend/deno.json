@@ -1,0 +1,12 @@
+{
+  "lock": true,
+  "fmt": {
+    "singleQuote": true,
+    "semiColons": false,
+    "useTabs": false,
+    "indentWidth": 2
+  },
+  "tasks": {
+    "dev": "deno run --watch ./mod.ts"
+  }
+}
