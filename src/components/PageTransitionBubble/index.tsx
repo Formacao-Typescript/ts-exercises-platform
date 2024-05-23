@@ -27,7 +27,7 @@ const PageTransitionBubble: React.FC = () => {
     <Container
       ref={ref}
       className={cn(
-        'absolute w-0 h-0 rounded-disform z-10',
+        'absolute w-0 h-0 rounded-disform z-20',
         `bg-branding-${bubbleState.color ?? 'blue'}`
       )}
     >
