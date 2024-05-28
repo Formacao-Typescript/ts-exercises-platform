@@ -1,14 +1,11 @@
-import { Hono, mongodb } from '../../deps.ts';
+import { Hono } from '../../deps.ts';
+import { UserService } from '../../services/UserService.ts';
 import {
-  JSONSuccessResponse,
   JSONFailureResponse,
+  JSONSuccessResponse,
 } from '../../utils/response.ts';
 
-export function userRoutes(app: Hono, dbClient: mongodb.MongoClient) {
-  const discordDB = dbClient.database('discord');
-  const usersCollection = discordDB.collection('students');
-  const platformDB = dbClient.database('exercises-platform');
-
+export function userRoutes(app: Hono, service: UserService) {
   // Redirect root URL
   app.get('/', c => c.redirect('/users'));
 

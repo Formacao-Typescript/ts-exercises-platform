@@ -1,13 +1,32 @@
 import { AppConfig } from '../../config.ts';
+import { UserRepository } from '../../data/UserRepository.ts';
 import { connectToDatabase } from '../../data/mongoConnection.ts';
 import { Hono } from '../../deps.ts';
-import { publicRoutes } from './public.ts';
+import { UserService } from '../../services/UserService.ts';
 import { userRoutes } from './users.ts';
+
+export async function initDependencies(config: AppConfig) {
+  const connection = await connectToDatabase(config);
+  const platformDatabase = connection.database('platform');
+  const repositories = {
+    userRepository: new UserRepository(platformDatabase),
+  };
+
+  const services = {
+    userService: new UserService(repositories.userRepository),
+  };
+
+  return {
+    repositories,
+    services,
+  } as const;
+}
 
 export default async function webLayer(appConfig: AppConfig) {
   let httpServer: Deno.HttpServer | null = null;
+  const { services } = await initDependencies(appConfig);
+
   const app = new Hono();
-  const database = await connectToDatabase(appConfig);
 
   app.use(async (c, next) => {
     c.res.headers.set(
@@ -19,10 +38,11 @@ export default async function webLayer(appConfig: AppConfig) {
     await next();
   });
 
-  publicRoutes(app, database);
+  // publicRoutes(app, connection);
 
+  // JWT
   app.use(async (c, next) => {});
-  userRoutes(app, database);
+  userRoutes(app, services.userService);
 
   return {
     start: () => {
