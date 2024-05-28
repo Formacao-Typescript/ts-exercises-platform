@@ -1,4 +1,4 @@
-import { IDiscordUser, IRemoteUser } from 'types/index';
+import { IDiscordUser, IRemoteUser } from '@/types/index';
 import { get, post } from './api';
 
 // export const getUserById = async () => {};

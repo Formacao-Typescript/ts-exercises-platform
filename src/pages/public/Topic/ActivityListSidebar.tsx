@@ -11,7 +11,7 @@ import {
   // GoCheckCircleFill as CheckedIcon,
 } from 'react-icons/go';
 
-import { IActivity, IActivityIdentifier } from 'types/index';
+import { IActivity, IActivityIdentifier } from '@/types/index';
 import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { updateActivityProgress, useUser } from '@/store/user';

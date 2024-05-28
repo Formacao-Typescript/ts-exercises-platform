@@ -1,6 +1,6 @@
 import store, { STATE_KEY, startLoading } from '@/store/exercises';
 import { useUser } from '@/store/user';
-import { IExercisesStoreState, IJourney, IRawJourney } from 'types/index';
+import { IExercisesStoreState, IJourney, IRawJourney } from '@/types/index';
 import { fetchMetadataJSON } from '@/utils/metadata';
 import { useEffect, useState } from 'react';
 const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL as string;

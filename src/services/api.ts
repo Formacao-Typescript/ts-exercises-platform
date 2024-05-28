@@ -1,3 +1,5 @@
+import { IAPIResponse } from '@/types/API';
+
 const { VITE_APP_API_URL } = import.meta.env;
 const API_URL = VITE_APP_API_URL as string;
 

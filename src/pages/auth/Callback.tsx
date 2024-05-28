@@ -1,7 +1,7 @@
 import LoadingIndicator from '@/components/LoadingIndicator';
 import { useSearchParams } from '@/hooks';
 import { mergeLocalAndRemoteUser, useUser } from '@/store/user';
-import { IRemoteUser, IUser, SupportedPlatforms } from 'types/index';
+import { IRemoteUser, IUser, SupportedPlatforms } from '@/types/index';
 import { fetchUser as fetchDiscordUser } from '@/services/discord';
 
 import { buildUrl } from '@/utils/url';

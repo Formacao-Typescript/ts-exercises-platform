@@ -1,5 +1,10 @@
 import store, { STATE_KEY, startLoading } from '@/store/exercises';
-import { IActivity, IExercisesStoreState, IJourney, ITopic } from 'types/index';
+import {
+  IActivity,
+  IExercisesStoreState,
+  IJourney,
+  ITopic,
+} from '@/types/index';
 import { useEffect, useState } from 'react';
 const BASE_URL = import.meta.env.VITE_JOURNEY_BASE_URL as string;
 

@@ -1,6 +1,6 @@
 import { useUser } from '@/store/user';
 import store from '@/store/exercises';
-import { IJourney, IRawJourney } from 'types/index';
+import { IJourney, IRawJourney } from '@/types/index';
 import { fetchMetadataMarkdown } from '@/utils/metadata';
 import { useEffect, useState } from 'react';
 

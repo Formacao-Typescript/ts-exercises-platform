@@ -1,4 +1,4 @@
-import { IDiscordUser, IUserToken } from 'types/index';
+import { IDiscordUser, IUserToken } from '@/types/index';
 const {
   VITE_DISCORD_API_URL,
   VITE_DISCORD_OAUTH_API_URL,
