@@ -66,12 +66,15 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
   - [ ] Implementar Logo CSS da plataforma (trazer da página de leads)
   - [ ] Implementar Loading customizado na plataforma (trazer da página de leads)
 - [ ] Criar ao menos 1 trilha com 3 tópicos e 5 atividades cada (15 exercícios)
+  - [ ] Falar com a Keit (exercícios traduzidos)
 - [ ] Definir trilhas a ser disponibilizadas a seguir, e adicionar estilos pra isso (assim elas aparecem na listagem)
 - [ ] Finalizar Backend v1:
-  - [ ] Implementar servidor local no projeto
-  - [ ] Implementar integração com deno KV
+  - [x] Implementar servidor local no projeto
+  - [ ] Implementar integração com mongoDB
   - [ ] Disponibilizar API básica de usuário
-  - [ ] intermediar chamadas com o discord (que requeiram secret)
+  - [ ] Implementar JWT e segurança
+  - [ ] Intermediar chamadas com o discord (que requeiram secret)
+  - [ ] Rever estrutura do banco de dados
 
 ### v2-vX - Melhorias (escopo a definir)
 
