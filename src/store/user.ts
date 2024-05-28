@@ -1,5 +1,5 @@
-import { IActivityIdentifier } from './../types/Exercises.d';
-import { IActivity, IRemoteUser, IUser } from '@/types';
+import { IActivityIdentifier } from '../../types/Exercises';
+import { IActivity, IRemoteUser, IUser } from 'types/index';
 import store from './setup';
 import _ from 'lodash';
 import { toast } from 'react-toastify';

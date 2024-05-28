@@ -1,6 +1,6 @@
 import store, { STATE_KEY } from '@/store/exercises';
 import { useUser } from '@/store/user';
-import { IActivity, IExercisesStoreState } from '@/types';
+import { IActivity, IExercisesStoreState } from 'types/index';
 import _ from 'lodash';
 import { useEffect, useState } from 'react';
 

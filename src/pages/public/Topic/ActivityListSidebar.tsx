@@ -11,7 +11,7 @@ import {
   // GoCheckCircleFill as CheckedIcon,
 } from 'react-icons/go';
 
-import { IActivity, IActivityIdentifier } from '@/types';
+import { IActivity, IActivityIdentifier } from 'types/index';
 import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { updateActivityProgress, useUser } from '@/store/user';
@@ -35,7 +35,7 @@ const ActivityListSidebar: React.FC<Props> = ({
     navigateToActivity: (activityId: string) => {
       // TODO: can add a warning if the user is currently on an activity and has unsaved changes
       navigate(`?activityId=${activityId}`);
-      /* 
+      /*
       Dev note: since Github Pages doesn't support browser history we have to use HashRouter instead of BrowserRouter.
       Unfortunately, with HashRouter, useNavigate only changes the url but it's not able to navigate to the new url.
       So we have to force refresh with navigate(0) after changing the url.

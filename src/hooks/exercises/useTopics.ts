@@ -1,6 +1,6 @@
 import store, { startLoading } from '@/store/exercises';
 import { useUser } from '@/store/user';
-import { IJourney, IRawTopic, ITopic } from '@/types';
+import { IJourney, IRawTopic, ITopic } from 'types/index';
 import { useEffect, useState } from 'react';
 import { fetchMetadataJSON } from '@/utils/metadata';
 

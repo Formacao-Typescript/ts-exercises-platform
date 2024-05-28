@@ -25,6 +25,9 @@
       "@/*": [
         "./src/*"
       ],
+      "types/*": [
+        "./types/*"
+      ],
       "#root/*": [
         "./*"
       ]
@@ -35,7 +38,7 @@
     ],
   },
   "include": [
-    "src/**/*",
+    "src/**/*", "types",
     // "node_modules/**/*"
   ],
   "exclude": [

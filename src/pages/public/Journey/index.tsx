@@ -1,7 +1,7 @@
 import React from 'react';
 import { Progress } from 'flowbite-react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
-import { ITopic } from '@/types';
+import { ITopic } from 'types/index';
 import { useJourney, useTopics } from '@/hooks';
 import LoadSkeleton from '@/components/LoadSkeleton';
 import { AiOutlinePicture } from 'react-icons/ai';

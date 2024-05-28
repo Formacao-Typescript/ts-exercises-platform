@@ -1,5 +1,5 @@
 import React from 'react';
-import { IJourney } from '@/types';
+import { IJourney } from 'types/index';
 
 interface Props {
   journey: IJourney;

@@ -1,4 +1,4 @@
-import { IExercisesStoreState } from '@/types';
+import { IExercisesStoreState } from 'types/index';
 import store from './setup';
 
 const STATE_KEY = 'exercises';
