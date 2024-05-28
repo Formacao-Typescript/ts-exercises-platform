@@ -1,3 +1,5 @@
+import { IJourney, ITopic, IActivity } from './Exercises';
+
 export interface IUserToken {
   token_type: string;
   access_token: string;
@@ -21,10 +23,10 @@ export interface IUser {
   token?: IUserToken;
   progress_raw: string[];
   progress: {
-    journeys: Record<IJourney[id], number>;
-    topics: Record<ITopic[id], number>;
-    activities: IActivity[id][];
+    journeys: Record<IJourney['id'], number>;
+    topics: Record<ITopic['id'], number>;
+    activities: IActivity['id'][];
   };
 }
 
-export type IRemoteUser = IUser & { token?: never; progress: never };
+export type IRemoteUser = Omit<IUser, 'token' | 'progress'>;
