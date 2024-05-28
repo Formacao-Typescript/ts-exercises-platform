@@ -32,15 +32,9 @@
         "./*"
       ]
     },
-    "types": [
-      "node",
-      // "node_modules/@types/*"
-    ],
+    "types": ["node"],
   },
-  "include": [
-    "src/**/*", "types",
-    // "node_modules/**/*"
-  ],
+  "include": ["src/**/*", "types"],
   "exclude": [
     "node_modules",
     "dist",
