@@ -16,7 +16,7 @@ const INITIAL_STATE: INavigationStore = {
     open: false,
     position: [0, 0],
   },
-  FTSLoading: true,
+  FTSLoading: false,
 };
 
 Object.keys(INITIAL_STATE).forEach(key => {

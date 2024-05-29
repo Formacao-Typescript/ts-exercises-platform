@@ -6,7 +6,6 @@ import { Container } from './styles';
 import { Link } from 'react-router-dom';
 import Breadcrumb from './Breadcrumb';
 import {
-  AppLogo,
   LINKS,
   FacebookIcon,
   InstagramIcon,
@@ -18,6 +17,7 @@ import {
 import useMediaQuery from '@/hooks/util/useMediaQuery';
 import UserWidget from './UserWidget';
 import { useFTSLoading } from '@/store/navigation';
+import FTSLogo from '@/components/FTSLogo';
 // import Sidebar from './Sidebar';
 
 const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER as string;
@@ -56,23 +56,19 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <Container>
-      <Navbar fluid>
+      <Navbar fluid className="dark:bg-trade-background">
         <Link to="/" className="flex">
-          <img
-            src={AppLogo}
-            className="mr-3 h-6 sm:h-9"
-            alt="Formação TS Logo"
-          />
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+          <FTSLogo scale={1.2} />
+          {/* <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             Plataforma de exercícios
-          </span>
+          </span> */}
         </Link>
 
         <div className="flex md:order-2">
           <UserWidget />
         </div>
       </Navbar>
-      <main className="bg-white dark:bg-gray-900 dark:text-white w-full h-full relative flex flex-col">
+      <main className="bg-white dark:bg-trade-background dark:text-white w-full h-full relative flex flex-col">
         <Breadcrumb className="m-2" />
         <div className="max-w-screen-xl">{children}</div>
       </main>
@@ -98,12 +94,8 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
           <Footer.Divider className="m-4" />
           <div className="flex sm:items-center sm:justify-between mb-2">
             <div className="flex justify-center items-center">
-              <Footer.Brand
-                href={LINKS.formacao}
-                src={AppLogo}
-                alt="Formação Typescript Logo"
-              />
-              <span className="text-slate-600">Build: {BUILD_NUMBER}</span>
+              <FTSLogo scale={1.2} />
+              <span className="text-slate-600 ml-2">Build: {BUILD_NUMBER}</span>
             </div>
             <Footer.Copyright
               href={LINKS.formacao}
