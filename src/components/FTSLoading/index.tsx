@@ -130,6 +130,7 @@ const FTSLoading: React.FC = () => {
       }, 1000);
     }
   }, [active]);
+
   return (
     <Container id="fts-loading" className="fts-loading">
       <div className="fts-loading-changing-background"></div>
