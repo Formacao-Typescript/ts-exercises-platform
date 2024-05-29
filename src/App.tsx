@@ -4,13 +4,13 @@ import { ToastContainer } from 'react-toastify';
 import GlobalStyles from './styles/GlobalStyles';
 import './styles/index.css';
 import PageTransitionBubble from './components/PageTransitionBubble';
-import FTSLoading from './components/FTSLoading';
+// import FTSLoading from './components/FTSLoading';
 
 const App: React.FC = () => {
   return (
     <Router>
       <GlobalStyles />
-      <FTSLoading />
+      {/* <FTSLoading /> */}
       <PageTransitionBubble />
       <Routes />
       <ToastContainer
