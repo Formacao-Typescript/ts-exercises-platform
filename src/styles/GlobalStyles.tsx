@@ -33,6 +33,7 @@ const GlobalStyles = createGlobalStyle`
     --trade-red: #C70100;
     --trade-gray: #191E25;
     --trade-light-gray: #898989;
+    --trade-background: #0b0b20;
     
     /* LSantos branding */
     --branding-green: #45bb8b;
