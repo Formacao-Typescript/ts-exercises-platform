@@ -10,13 +10,15 @@ export default {
         'trade-purple': '#5E00FF',
         'trade-light-red': '#FC5900',
         'trade-red': '#C70100',
+        'trade-gray': '#191E25',
+        'trade-light-gray': '#898989',
+        'trade-background': '#0b0b20',
         // LSantos branding
         'branding-green': '#45BB8A',
         'branding-red': '#ED1C24',
         'branding-yellow': '#F3B019', //'#FFD200',
         'branding-blue': '#1A7BC0', //'#00AEEF',
         // backgrounds
-        'trade-gray': '#191E25',
         'bg-default': '#000020',
         'bg-logo': '#0b0b20',
         'bg-dark-purple': '#0a0020',
