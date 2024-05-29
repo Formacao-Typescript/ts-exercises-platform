@@ -105,7 +105,7 @@ export const mergeLocalAndRemoteUser = (
 };
 
 export const signOut = () => {
-  store.setState<IUser>(STATE_KEY, INITIAL_STATE);
+  store.setState<IUser>(STATE_KEY, INITIAL_STATE, { persist: true });
   toast.success(
     _.sample([
       'Até a próxima!',
