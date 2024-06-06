@@ -15,21 +15,31 @@ const userSchema = zod.object({
   discordId: zod.string().optional(),
   progressRaw: zod.string().array(),
 });
-const userUpdateSchema = userSchema.partial();
 
-type InternalUserSchema = User & zod.infer<typeof User.validatedSchema>;
+export type UserCreationType = zod.infer<typeof User.creationSchema>;
+export type UserUpdateType = zod.infer<typeof User.updateSchema>;
+export type UserInstanceType = zod.infer<typeof User.validatedSchema>;
+
+export type UserObjectType = zod.infer<typeof User.creationSchema>;
+
+// schema with required ID mostly used as thisType in the functions
+// so we can access `this` in the class methods
+type UserThisType = User & UserInstanceType;
 
 export class User implements Serializable {
   static creationSchema = userSchema;
-  static updateSchema = userUpdateSchema;
+  static updateSchema = userSchema.partial();
   static validatedSchema = User.creationSchema.extend({
     id: User.creationSchema.shape.id.default(crypto.randomUUID()),
   });
+  static collectionName = 'users';
 
+  id: string = '';
   private constructor(data: unknown) {
     Object.assign(this, data);
   }
-  toJSON(this: InternalUserSchema): string {
+
+  toJSON(this: UserThisType): string {
     return JSON.stringify({
       id: this.id,
       email: this.email,
@@ -41,8 +51,20 @@ export class User implements Serializable {
     });
   }
 
-  static create(data: zod.infer<typeof userSchema>): InternalUserSchema {
+  toObject(this: UserThisType): UserInstanceType {
+    return {
+      id: this.id,
+      email: this.email,
+      avatar: this.avatar,
+      username: this.username,
+      globalName: this.globalName,
+      discordId: this.discordId,
+      progressRaw: this.progressRaw,
+    } as const;
+  }
+
+  static create(data: UserCreationType): UserThisType {
     return new User(User.validatedSchema.parse(data)) as User &
-      zod.infer<typeof User.validatedSchema>;
+      UserInstanceType;
   }
 }

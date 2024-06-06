@@ -2,18 +2,27 @@
 import { zod } from '../deps.ts';
 
 export interface Serializable {
+  id: string;
   toJSON(): string;
+  toObject(): Record<string, unknown>;
 }
 
 export interface SerializableStatic<
-  C extends zod.ZodSchema,
-  U extends zod.ZodOptional<any> = zod.ZodOptional<C>,
-  V extends zod.ZodSchema = zod.ZodSchema<C['_output'] & { id: zod.ZodString }>,
+  CreationSchema extends zod.ZodSchema,
+  UpdateSchema = zod.ZodObject<
+    {
+      [k in keyof CreationSchema['_output']]: zod.ZodOptional<
+        zod.ZodType<CreationSchema['_output'][k], any, any>
+      >;
+    },
+    'strip'
+  >,
+  ValidationSchema extends zod.ZodSchema = zod.ZodSchema<any>,
 > {
-  new (...args: any[]): any;
-  creationSchema: C;
-  updateSchema: U;
-  validatedSchema: V;
+  // new (...args: any[]): any;
+  creationSchema: CreationSchema;
+  updateSchema: UpdateSchema;
+  validatedSchema: ValidationSchema;
   collectionName: string;
-  create(data: C['_output']): Serializable;
+  create(data: CreationSchema['_output']): Serializable;
 }
