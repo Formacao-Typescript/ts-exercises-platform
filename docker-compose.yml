@@ -1,0 +1,8 @@
+services:
+  database:
+    image: mvertes/alpine-mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./.data:/data/db

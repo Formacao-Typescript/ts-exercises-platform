@@ -6,7 +6,13 @@
     "useTabs": false,
     "indentWidth": 2
   },
+  "imports": {
+    "@hono/hono": "jsr:@hono/hono@^4.4.6",
+    "jsonwebtoken": "npm:jsonwebtoken@^9.0.2",
+    "mongodb": "npm:mongodb@^6.7.0",
+    "zod": "npm:zod@^3.23.8"
+  },
   "tasks": {
-    "dev": "deno run --watch ./mod.ts"
+    "dev": "deno run -A --watch ./mod.ts"
   }
 }

@@ -1,3 +1,5 @@
+import { IActivity, IJourney, ITopic } from './Exercises';
+
 export interface IUserToken {
   token_type: string;
   access_token: string;
@@ -10,6 +12,7 @@ export interface IUserAvatar {
   kind: 'discord';
   value: string;
 }
+
 export interface IUser {
   id: string;
   email: string;
@@ -21,9 +24,9 @@ export interface IUser {
   token?: IUserToken;
   progress_raw: string[];
   progress: {
-    journeys: Record<IJourney[id], number>;
-    topics: Record<ITopic[id], number>;
-    activities: IActivity[id][];
+    journeys: Record<IJourney['id'], number>;
+    topics: Record<ITopic['id'], number>;
+    activities: IActivity['id'][];
   };
 }
 

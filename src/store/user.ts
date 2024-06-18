@@ -1,4 +1,4 @@
-import { IActivityIdentifier } from './../types/Exercises.d';
+import { IActivityIdentifier } from '../types/Exercises';
 import { IActivity, IRemoteUser, IUser } from '@/types';
 import store from './setup';
 import _ from 'lodash';

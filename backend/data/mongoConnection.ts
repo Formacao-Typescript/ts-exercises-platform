@@ -1,9 +1,13 @@
 import { AppConfig } from '../config.ts';
-import { mongodb } from '../deps.ts';
+import { MongoClient } from 'mongodb';
 
-export async function connectToDatabase(config: AppConfig) {
-  const client = new mongodb.MongoClient();
+export function connectToDatabase(config: AppConfig) {
   console.log('Connecting to MongoDB...');
-  await client.connect(config.MONGODB_CONNECTION_STRING);
-  return client;
+  const client = new MongoClient(config.MONGODB_CONNECTION_STRING, {
+    pkFactory: { createPk: () => crypto.randomUUID() },
+  });
+  client.on('connectionReady', () => {
+    console.log('Connected to MongoDB');
+  });
+  return client.db(config.MONGODB_DATABASE);
 }

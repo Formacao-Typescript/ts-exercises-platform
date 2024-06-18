@@ -1,13 +1,15 @@
-import { Hono, mongodb } from '../../deps.ts';
+import { Hono } from '@hono/hono';
+import { Db } from 'mongodb';
 import {
   JSONSuccessResponse,
   JSONFailureResponse,
 } from '../../utils/response.ts';
+import { UserCreateSchema } from '../../utils/schemas/user.ts';
+import { zodValidationMiddleware } from './middlewares/zodValidator.ts';
+import { HTTPException } from 'jsr:@hono/hono@^4.4.6/http-exception';
 
-export function userRoutes(app: Hono, dbClient: mongodb.MongoClient) {
-  const discordDB = dbClient.database('discord');
-  const usersCollection = discordDB.collection('students');
-  const platformDB = dbClient.database('exercises-platform');
+export function userRoutes(app: Hono, dbClient: Db) {
+  const usersCollection = dbClient.collection('users');
 
   // Redirect root URL
   app.get('/', c => c.redirect('/users'));
@@ -22,64 +24,67 @@ export function userRoutes(app: Hono, dbClient: mongodb.MongoClient) {
     return c.json(JSONSuccessResponse(users));
   });
 
-  app.post('/users', async c => {
-    const body = await c.req.json();
-
-    const userKv = await kv.set(['users', body.id], body);
-
-    if (!userKv.ok) {
-      return c.json(JSONFailureResponse('failed to create user'));
+  app.post('/users', zodValidationMiddleware(UserCreateSchema), async c => {
+    const { validatedBody: body } = c.var;
+    const existingUser = await usersCollection.findOne({
+      $or: [{ email: body.email }, { discord_id: body.discord_id }],
+    });
+    if (existingUser) {
+      throw new HTTPException(409, {
+        message: 'User already exists',
+      });
     }
-    if (body.discord_id) {
-      const discordKv = await kv.set(
-        ['users', 'discord', body.discord_id],
-        body.id
-      );
-      if (!discordKv.ok) {
-        // TODO: rollback user creation above
-        return c.json(JSONFailureResponse('failed to create discord user'));
-      }
+    const user = await usersCollection.insertOne({ ...body });
+    if (!user.insertedId) {
+      throw new HTTPException(500, {
+        message: 'Failed to create user',
+        cause: { ack: user.acknowledged, insertedId: user.insertedId },
+      });
     }
 
-    return c.json(JSONSuccessResponse(body));
+    c.status(201);
+    return c.json(JSONSuccessResponse({ ...body, _id: user.insertedId }));
   });
 
-  app.get('/users/:id', async c => {
-    const id = c.req.param('id');
-    const userKv = await kv.get(['users', id]);
-    if (!userKv.value) {
-      return c.json(JSONFailureResponse('user not found'));
-    }
-    return c.json(JSONSuccessResponse(userKv.value));
-  });
+  //   return c.json(JSONSuccessResponse(body));
+  // });
 
-  app.get('/users/discord/:discord_id', async c => {
-    const discordID = c.req.param('discord_id');
-    const userID = await kv.get<string>([
-      'users',
-      'discord',
-      discordID,
-      'userID',
-    ]);
+  // app.get('/users/:id', async c => {
+  //   const id = c.req.param('id');
+  //   const userKv = await kv.get(['users', id]);
+  //   if (!userKv.value) {
+  //     return c.json(JSONFailureResponse('user not found'));
+  //   }
+  //   return c.json(JSONSuccessResponse(userKv.value));
+  // });
 
-    if (!userID.value) {
-      return c.json(JSONFailureResponse('user not found for this discord id'));
-    }
+  // app.get('/users/discord/:discord_id', async c => {
+  //   const discordID = c.req.param('discord_id');
+  //   const userID = await kv.get<string>([
+  //     'users',
+  //     'discord',
+  //     discordID,
+  //     'userID',
+  //   ]);
 
-    const userKv = await kv.get(['users', userID.value]);
+  //   if (!userID.value) {
+  //     return c.json(JSONFailureResponse('user not found for this discord id'));
+  //   }
 
-    if (!userKv.value) {
-      return c.json(JSONFailureResponse('user not found for this discord id'));
-    }
+  //   const userKv = await kv.get(['users', userID.value]);
 
-    return c.json(JSONSuccessResponse(userKv.value));
-  });
+  //   if (!userKv.value) {
+  //     return c.json(JSONFailureResponse('user not found for this discord id'));
+  //   }
 
-  app.delete('/users/:id', async c => {
-    const id = c.req.param('id');
-    await kv.delete(['users', id]);
-    return c.text('');
-  });
+  //   return c.json(JSONSuccessResponse(userKv.value));
+  // });
 
-  return app;
+  // app.delete('/users/:id', async c => {
+  //   const id = c.req.param('id');
+  //   await kv.delete(['users', id]);
+  //   return c.text('');
+  // });
+
+  // return app;
 }

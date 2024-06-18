@@ -1,12 +1,12 @@
 // response standardization
 export interface IJSONSuccessResponse<T = unknown> {
-  success: boolean;
-  data: T;
+  success: true;
+  response: T;
 }
 
 export interface IJSONFailureResponse {
-  success: boolean;
-  message: string;
+  success: false;
+  message: string | Record<string, unknown>;
 }
 
 export function JSONSuccessResponse<T = unknown>(
@@ -14,11 +14,13 @@ export function JSONSuccessResponse<T = unknown>(
 ): IJSONSuccessResponse<T> {
   return {
     success: true,
-    data,
+    response: data ?? ({} as T),
   };
 }
 
-export function JSONFailureResponse(message: string): IJSONFailureResponse {
+export function JSONFailureResponse(
+  message: string | Record<string, unknown>
+): IJSONFailureResponse {
   return {
     success: false,
     message,

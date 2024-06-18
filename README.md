@@ -70,7 +70,7 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 - [ ] Definir trilhas a ser disponibilizadas a seguir, e adicionar estilos pra isso (assim elas aparecem na listagem)
 - [ ] Finalizar Backend v1:
   - [x] Implementar servidor local no projeto
-  - [ ] Implementar integração com mongoDB
+  - [x] Implementar integração com mongoDB
   - [ ] Disponibilizar API básica de usuário
   - [ ] Implementar JWT e segurança
   - [ ] Intermediar chamadas com o discord (que requeiram secret)
