@@ -71,8 +71,9 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 - [ ] Finalizar Backend v1:
   - [x] Implementar servidor local no projeto
   - [x] Implementar integração com mongoDB
-  - [ ] Disponibilizar API básica de usuário
-  - [ ] Implementar JWT e segurança
+  - [x] Disponibilizar API básica de usuário
+  - [x] Implementar JWT e segurança
+    - [ ] Implementar autenticação com discord (atualmente está só recebendo um login rápido)
   - [ ] Intermediar chamadas com o discord (que requeiram secret)
   - [ ] Rever estrutura do banco de dados
 

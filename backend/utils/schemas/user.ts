@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const UserSchema = z.object({
-  id: z.string().ulid(),
+  _id: z.string().uuid(),
   email: z.string().email(),
   username: z.string(),
   global_name: z.string(),
@@ -32,7 +32,7 @@ export const UserSchema = z.object({
 export type User = z.infer<typeof UserSchema>;
 
 export const UserCreateSchema = UserSchema.omit({
-  id: true,
+  _id: true,
   token: true,
   progress_raw: true,
   progress: true,
@@ -41,6 +41,6 @@ export const UserCreateSchema = UserSchema.omit({
 export type UserCreateParams = z.infer<typeof UserCreateSchema>;
 
 export const UserUpdateSchema = UserSchema.omit({
-  id: true,
+  _id: true,
   token: true,
 }).partial();
