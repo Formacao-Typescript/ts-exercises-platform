@@ -9,12 +9,16 @@ import JourneyCard from './JourneyCard';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
+
   const [journeys, isLoading] = useJourneys();
 
   return (
     <div className="px-4 mx-auto lg:px-6">
       <div className="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
-        <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+        <h2
+          className="mb-4 text-4xl tracking-tight 
+        font-extrabold text-gray-900 dark:text-white"
+        >
           Trilhas/Jornadas personalizadas
         </h2>
         <p className="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">
@@ -33,7 +37,8 @@ const Dashboard: React.FC = () => {
                 <div
                   key={'status' + i}
                   role="status"
-                  className="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center"
+                  className="space-y-8 animate-pulse md:space-y-0
+                   md:space-x-8 rtl:space-x-reverse md:flex md:items-center"
                 >
                   <div className="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
                     <AiOutlinePicture size={32} className="text-gray-500" />
