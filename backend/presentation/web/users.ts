@@ -14,7 +14,7 @@ export function userRoutes(dbClient: Db) {
   const router = new Hono<WithAuthUser>();
   const usersCollection = dbClient.collection('users');
 
-  // router.use(withJWT);
+  router.use(withJWT);
 
   /**
    * Current user routes
@@ -27,7 +27,7 @@ export function userRoutes(dbClient: Db) {
 
   router.patch('/me', zodValidationMiddleware(UserUpdateSchema), async c => {
     const { user } = c.var;
-    const { validatedBody: body } = c.var;
+    const { validatedData: body } = c.var;
     const updatedUser = await usersCollection.updateOne(
       { _id: user.id },
       { $set: body }
@@ -48,14 +48,14 @@ export function userRoutes(dbClient: Db) {
    */
   // TODO: Create a new middleware to check if the user is an admin
   // FIX: Create another router for admin routes here and merge both in a single app router with two different middlewares
-  router.get('/', async c => {
-    const users: User[] = await usersCollection.find().toArray();
+  // router.get('/', async c => {
+  //   const users: User[] = await usersCollection.find().toArray();
 
-    return c.json(JSONSuccessResponse(users));
-  });
+  //   return c.json(JSONSuccessResponse(users));
+  // });
 
   router.post('/', zodValidationMiddleware(UserCreateSchema), async c => {
-    const { validatedBody: body } = c.var;
+    const { validatedData: body } = c.var;
     // Shitty workaround since if the discord doesn't exist it will be an empty string
     // and this returns all the objects
     const query = [

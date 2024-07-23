@@ -63,19 +63,19 @@ Este repositório será a base da plataforma onde os estudantes irão praticar t
 - [ ] Ajustar identidade visual de acordo com a Formação TS
   - [x] Estilizar a página de sign-up
   - [ ] Revisar tipografia e cores elementais da plataforma
-  - [X] Implementar Logo CSS da plataforma (trazer da página de leads)
+  - [x] Implementar Logo CSS da plataforma (trazer da página de leads)
   - [ ] Implementar Loading customizado na plataforma (trazer da página de leads)
 - [ ] Criar ao menos 1 trilha com 3 tópicos e 5 atividades cada (15 exercícios)
   - [ ] Falar com a Keit (exercícios traduzidos)
 - [ ] Definir trilhas a ser disponibilizadas a seguir, e adicionar estilos pra isso (assim elas aparecem na listagem)
-- [ ] Finalizar Backend v1:
+- [x] Finalizar Backend v1:
   - [x] Implementar servidor local no projeto
   - [x] Implementar integração com mongoDB
   - [x] Disponibilizar API básica de usuário
   - [x] Implementar JWT e segurança
-    - [ ] Implementar autenticação com discord (atualmente está só recebendo um login rápido)
-  - [ ] Intermediar chamadas com o discord (que requeiram secret)
-  - [ ] Rever estrutura do banco de dados
+    - [x] Implementar autenticação com discord (atualmente está só recebendo um login rápido)
+  - [x] Intermediar chamadas com o discord (que requeiram secret)
+  - [x] Rever estrutura do banco de dados
 
 ### v2-vX - Melhorias (escopo a definir)
 
@@ -86,6 +86,7 @@ Backlog da v1:
 - [ ] Ajustar renderização dos códigos (Aplicar melhorias sugeridas)
   - [ ] Mais espaço pro editor no container
   - [ ] Permitir resize da atividade e/ou editor em fullscreen
+- [ ] Refatorar para melhor manutenção
 
 A definir:
 

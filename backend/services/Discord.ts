@@ -1,4 +1,9 @@
+import { encodeBase64 } from '@std/encoding';
+import { Collection, Db } from 'mongodb';
+import { IDiscordUser } from '../../src/types/SignIn.ts';
+import { IUserToken } from '../../src/types/User.ts';
 import { AppConfig } from '../config.ts';
+import { User, UserCreateParams } from '../utils/schemas/user.ts';
 import { PlatformService } from './PlatformService.ts';
 
 export class DiscordService extends PlatformService {
@@ -7,23 +12,11 @@ export class DiscordService extends PlatformService {
   private readonly redirectUrl: string;
   private readonly oauthUrl: string;
   private readonly apiBaseUrl: string;
-  private readonly client: <T>(
-    url: string,
-    headers?: Record<string, string>,
-    options?: { method: string; body?: Record<string, unknown> }
-  ) => Promise<T> = async (url, headers, body) => {
-    const response = await fetch(`${this.apiBaseUrl}/${url}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        ...(headers ?? {}),
-      },
-      body: JSON.stringify(body),
-    });
 
-    return response.json();
-  };
-
-  constructor(config: AppConfig) {
+  constructor(
+    config: AppConfig,
+    private readonly database: Db
+  ) {
     super();
 
     this.apiBaseUrl = config.DISCORD_API_URL;
@@ -42,5 +35,60 @@ export class DiscordService extends PlatformService {
     }).toString();
 
     return `${this.oauthUrl}/authorize?${params}`;
+  }
+
+  async getAccessToken(code: string): Promise<IUserToken> {
+    const params = new URLSearchParams({
+      grant_type: 'authorization_code',
+      code,
+      redirect_uri: this.redirectUrl,
+    });
+
+    const response = await fetch(`${this.oauthUrl}/token`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization:
+          'Basic ' + encodeBase64(`${this.clientId}:${this.clientSecret}`),
+      },
+      body: params.toString(),
+    });
+
+    return await response.json();
+  }
+
+  async getTokenUser(token: string): Promise<IDiscordUser> {
+    const response = await fetch(`${this.apiBaseUrl}/users/@me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return await response.json();
+  }
+
+  async saveUser(user: IDiscordUser) {
+    const usersCollection = this.database.collection<User>('users');
+
+    const existingUser = await usersCollection.findOne({ discord_id: user.id });
+
+    if (existingUser) {
+      return existingUser;
+    }
+
+    const newUser = await (
+      usersCollection as unknown as Collection<UserCreateParams>
+    ).insertOne({
+      email: user.email,
+      username: user.username,
+      global_name: user.global_name,
+      avatar: {
+        kind: 'discord',
+        value: user.avatar,
+      },
+      discord_id: user.id,
+    });
+
+    return (await usersCollection.findOne({ _id: newUser.insertedId })) as User;
   }
 }

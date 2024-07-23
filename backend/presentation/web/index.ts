@@ -12,7 +12,7 @@ export default async function webLayer(appConfig: AppConfig) {
   let httpServer: Deno.HttpServer | null = null;
   const app = new Hono();
   const { database, disconnect } = await connectToDatabase(appConfig);
-  const discordService = new DiscordService(appConfig);
+  const discordService = new DiscordService(appConfig, database);
 
   app.use(logger());
 
@@ -44,7 +44,7 @@ export default async function webLayer(appConfig: AppConfig) {
     await next();
   });
 
-  app.route('/public', publicRoutes(database, discordService));
+  app.route('/public', publicRoutes(discordService));
   app.route('/users', userRoutes(database));
 
   return {

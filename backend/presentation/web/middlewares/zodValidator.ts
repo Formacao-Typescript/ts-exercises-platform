@@ -9,7 +9,7 @@ export function zodValidationMiddleware<T extends ZodSchema>(
 ) {
   return async (
     c: Context<{
-      Variables: { validatedBody: Awaited<ReturnType<T['parseAsync']>> };
+      Variables: { validatedData: Awaited<ReturnType<T['parseAsync']>> };
     }>,
     next: Next
   ) => {
@@ -32,7 +32,7 @@ export function zodValidationMiddleware<T extends ZodSchema>(
       }
 
       const validatedData = await schema.parseAsync(dataToValidate);
-      c.set('validatedBody', validatedData);
+      c.set('validatedData', validatedData);
     } catch (error) {
       if (error instanceof ZodError) {
         throw new HTTPException(422, {
