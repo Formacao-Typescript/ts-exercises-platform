@@ -11,11 +11,11 @@ import {
 
 const LINKS = {
   formacao: 'https://formacaots.com.br/',
-  instagram: 'https://formacaots.com.br/instagram.lsantos.dev',
-  facebook: 'https://formacaots.com.br/facebook.lsantos.dev',
-  twitter: 'https://formacaots.com.br/twitter.lsantos.dev',
-  youtube: 'https://formacaots.com.br/youtube.lsantos.dev',
-  linkedin: 'https://formacaots.com.br/linkedin.lsantos.dev',
+  instagram: 'https://instagram.lsantos.dev',
+  facebook: 'https://facebook.lsantos.dev',
+  twitter: 'https://twitter.lsantos.dev',
+  youtube: 'https://youtube.lsantos.dev',
+  linkedin: 'https://linkedin.lsantos.dev',
   mail: 'mailto:hello@lsantos.dev',
 };
 
