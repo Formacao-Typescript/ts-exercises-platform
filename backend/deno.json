@@ -9,7 +9,7 @@
   "imports": {
     "@hono/hono": "jsr:@hono/hono@^4.4.6",
     "@std/dotenv": "jsr:@std/dotenv@^0.224.2",
-    "@std/encoding": "jsr:@std/encoding@^1.0.0",
+    "@std/encoding": "jsr:@std/encoding@^1.0.1",
     "jsonwebtoken": "npm:jsonwebtoken@^9.0.2",
     "mongodb": "npm:mongodb@^6.7.0",
     "zod": "npm:zod@^3.23.8"

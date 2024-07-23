@@ -7,7 +7,7 @@
       "jsr:@std/crypto@^0.220.1": "jsr:@std/crypto@0.220.1",
       "jsr:@std/dotenv@^0.224.2": "jsr:@std/dotenv@0.224.2",
       "jsr:@std/encoding@^0.220.1": "jsr:@std/encoding@0.220.1",
-      "jsr:@std/encoding@^1.0.0": "jsr:@std/encoding@1.0.0",
+      "jsr:@std/encoding@^1.0.1": "jsr:@std/encoding@1.0.1",
       "npm:@types/jsonwebtoken@^9.0.6": "npm:@types/jsonwebtoken@9.0.6",
       "npm:@types/node": "npm:@types/node@18.11.17",
       "npm:jsonwebtoken@^9.0.2": "npm:jsonwebtoken@9.0.2",
@@ -30,8 +30,8 @@
       "@std/encoding@0.220.1": {
         "integrity": "8dc38dd72e36cd68857a5837e24eb09a64bb296b96c295239c75eec17d45d23f"
       },
-      "@std/encoding@1.0.0": {
-        "integrity": "3cabf87b3eadb69126b42998188c87155238ceef805af3f241acca00ddb0cbb2"
+      "@std/encoding@1.0.1": {
+        "integrity": "5955c6c542ebb4ce6587c3b548dc71e07a6c27614f1976d1d3887b1196cf4e65"
       }
     },
     "npm": {
@@ -317,7 +317,7 @@
     "dependencies": [
       "jsr:@hono/hono@^4.4.6",
       "jsr:@std/dotenv@^0.224.2",
-      "jsr:@std/encoding@^1.0.0",
+      "jsr:@std/encoding@^1.0.1",
       "npm:jsonwebtoken@^9.0.2",
       "npm:mongodb@^6.7.0",
       "npm:zod@^3.23.8"

@@ -6,11 +6,13 @@ import { userRoutes } from './users.ts';
 import { logger } from '@hono/hono/logger';
 import { JSONFailureResponse } from '../../utils/response.ts';
 import { HTTPException } from 'jsr:@hono/hono@^4.4.6/http-exception';
+import { DiscordService } from '../../services/Discord.ts';
 
 export default async function webLayer(appConfig: AppConfig) {
   let httpServer: Deno.HttpServer | null = null;
   const app = new Hono();
   const { database, disconnect } = await connectToDatabase(appConfig);
+  const discordService = new DiscordService(appConfig);
 
   app.use(logger());
 
@@ -42,7 +44,7 @@ export default async function webLayer(appConfig: AppConfig) {
     await next();
   });
 
-  app.route('/public', publicRoutes(database));
+  app.route('/public', publicRoutes(database, discordService));
   app.route('/users', userRoutes(database));
 
   return {

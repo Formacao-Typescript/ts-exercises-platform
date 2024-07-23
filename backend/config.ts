@@ -10,10 +10,14 @@ const configSchema = z.object({
   MONGODB_DATABASE: z.string().default('exercise_platform'),
   MONGODB_CONNECTION_STRING: z.string().default('mongodb://localhost:27017'),
   JWT_SECRET: z.string(),
-  // DISCORD_CLIENT_ID: z.string(),
-  // DISCORD_API_URL: z.string().url().default(''),
-  // DISCORD_OAUTH_API_URL: z.string().url(),
-  // DISCORD_CLIENT_SECRET: z.string(),
+  DISCORD_OAUTH_CLIENT_ID: z.string(),
+  DISCORD_API_URL: z.string().url().default('https://discordapp.com/api'),
+  DISCORD_OAUTH_REDIRECT_URL: z.string().url(),
+  DISCORD_OAUTH_API_URL: z
+    .string()
+    .url()
+    .default('https://discordapp.com/api/oauth2'),
+  DISCORD_OAUTH_CLIENT_SECRET: z.string(),
 });
 export type AppConfig = z.infer<typeof configSchema>;
 
