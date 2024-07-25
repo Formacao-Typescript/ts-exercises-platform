@@ -1,8 +1,8 @@
 import LoadingIndicator from '@/components/LoadingIndicator';
 import { useSearchParams } from '@/hooks';
 import { mergeLocalAndRemoteUser, useUser } from '@/store/user';
-import { IRemoteUser, IUser, SupportedPlatforms } from '@/types';
-import { fetchUser as fetchDiscordUser } from '@/services/discord';
+import { IRemoteUser, SupportedPlatforms } from '@/types';
+import { fetchUser } from '@/services/discord';
 
 import { buildUrl } from '@/utils/url';
 import _ from 'lodash';
@@ -10,7 +10,6 @@ import React, { useEffect, useMemo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { createUser, fetchUserByDiscordId } from '@/services/user';
 
 const Callback: React.FC = () => {
   const navigate = useNavigate();
@@ -36,40 +35,9 @@ const Callback: React.FC = () => {
 
           if (searchParams.code) {
             try {
-              const { user: discordUser, token } = await fetchDiscordUser(
-                searchParams.code
-              );
+              const remoteUser = await fetchUser(searchParams.code);
 
-              const remoteUser = await fetchUserByDiscordId(discordUser.id);
-
-              // if new user
-              if (!remoteUser) {
-                const newUser: IUser = {
-                  ...user,
-                  id: _.uniqueId('user_'),
-                  email: discordUser.email,
-                  username: discordUser.username,
-                  global_name: discordUser.global_name,
-                  avatar: { kind: 'discord', value: discordUser.avatar },
-                  discord_id: discordUser.id,
-                  token: token,
-                };
-
-                setUser(newUser);
-
-                const newRemoteUser = _.omit(
-                  newUser,
-                  'token',
-                  'progress'
-                ) as IRemoteUser;
-                await createUser(newRemoteUser);
-
-                toast.success('Bem-vindo(a) a bordo!');
-                // navigate('/');
-                return void 0;
-              }
-              // if existing user
-              setUser(mergeLocalAndRemoteUser(user, remoteUser));
+              setUser(mergeLocalAndRemoteUser(user, remoteUser as IRemoteUser));
 
               toast.success(
                 _.sample([
@@ -78,7 +46,6 @@ const Callback: React.FC = () => {
                   'Salve salve! 👋👋👋',
                 ])
               );
-              // navigate('/');
             } catch (error) {
               informError('discord', 'unexpected_error'); // token request failed
             }
