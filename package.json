@@ -14,7 +14,8 @@
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
     "validate": "tsx ./scripts/validate.ts",
-    "validate:debug": "DEBUG=ts-exercises:validate npx tsx ./scripts/validate.ts"
+    "validate:debug": "DEBUG=ts-exercises:validate npx tsx ./scripts/validate.ts",
+    "backend:dev": "cd ./backend && deno run -A --unstable-sloppy-imports --watch mod.ts"
   },
   "engines": {
     "node": ">=18.19.0"
