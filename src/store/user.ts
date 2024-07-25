@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const STATE_KEY = 'user';
 const INITIAL_STATE: IUser = {
-  id: '',
+  _id: '',
   email: '',
   username: '',
   global_name: '',
@@ -79,7 +79,7 @@ export const mergeLocalAndRemoteUser = (
 ): IUser => {
   const mergedRawProgress = _.uniq([
     ...localUser.progress_raw,
-    ...remoteUser.progress_raw,
+    ...(remoteUser.progress_raw ?? []),
   ]);
 
   const progress: IUser['progress'] = {
@@ -91,8 +91,8 @@ export const mergeLocalAndRemoteUser = (
   mergedRawProgress.forEach(rawKey => {
     const [journeyId, topicId, activityId] = rawKey.split('/');
 
-    progress.journeys[journeyId] = (progress.journeys[journeyId] || 0) + 1;
-    progress.topics[topicId] = (progress.topics[topicId] || 0) + 1;
+    progress.journeys[journeyId] = (progress.journeys[journeyId] ?? 0) + 1;
+    progress.topics[topicId] = (progress.topics[topicId] ?? 0) + 1;
     progress.activities.push(activityId);
   });
 

@@ -14,7 +14,7 @@ export interface IUserAvatar {
 }
 
 export interface IUser {
-  id: string;
+  _id: string;
   email: string;
   username: string;
   global_name: string;
