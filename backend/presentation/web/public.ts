@@ -21,7 +21,11 @@ export function publicRoutes(discordService: DiscordService) {
 
   // Returns the URL to redirect the user to the Discord OAuth2 page
   router.get('/auth/discord', c => {
-    return c.redirect(discordService.getAuthorizationUrl());
+    return c.json(
+      JSONSuccessResponse({
+        redirect: discordService.getAuthorizationUrl(),
+      })
+    );
   });
 
   // Receives the code from Discord OAuth2 and exchanges it for an internal application token
