@@ -11,8 +11,8 @@ const PublicRoute: React.FC<Props> = ({ children }: Props) => {
   return <PublicLayout>{children}</PublicLayout>;
 };
 
-PublicRoute.defaultProps = {
-  fallback: '/dashboard',
-};
+// PublicRoute.defaultProps = {
+//   fallback: '/dashboard',
+// };
 
 export default PublicRoute;

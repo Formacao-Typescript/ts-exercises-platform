@@ -11,8 +11,8 @@ const AuthRoute: React.FC<Props> = ({ children }: Props) => {
   return <AuthLayout>{children}</AuthLayout>;
 };
 
-AuthRoute.defaultProps = {
-  fallback: '/',
-};
+// AuthRoute.defaultProps = {
+//   fallback: '/',
+// };
 
 export default AuthRoute;
