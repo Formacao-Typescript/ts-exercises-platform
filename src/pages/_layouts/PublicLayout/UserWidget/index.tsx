@@ -58,7 +58,11 @@ const UserWidget: React.FC = () => {
                   type="button"
                   className="text-white bg-[#5F69F3] hover:bg-[#5F69F3]/90 focus:ring-4 focus:outline-none focus:ring-[#5F69F3]/50 font-medium rounded-lg text-xs px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#5F69F3]/55"
                   onClick={() => {
-                    window.location.href = getAuthorizationCodeUrl();
+                    getAuthorizationCodeUrl()
+                      .then(response => {
+                        window.location.href = response;
+                      })
+                      .catch(console.error);
                   }}
                 >
                   <DiscordIcon className="w-4 h-4 me-2" />
