@@ -4,6 +4,7 @@ import { Context, Next } from '@hono/hono';
 import { HTTPException } from '@hono/hono/http-exception';
 import { config } from '../../../config.ts';
 import { User } from '../../../utils/schemas/user.ts'
+import { encodeHex } from 'jsr:@std/encoding@^1.0.1/hex';
 const JWT_EXPIRATION = 60 * 60 * 24; // one day
 
 export interface IJWTPayload {
@@ -20,7 +21,7 @@ function buildURN(type: string, property: string) {
   return `urn:fts:${type}:${property}`;
 }
 
-export function createToken(user: User) {
+export async function createToken(user: User) {
   const payload = {
     sub: user._id,
     [buildURN('user', 'discord_id')]: user.discord_id,
@@ -36,7 +37,9 @@ export function createToken(user: User) {
   return {
     token,
     type: 'Bearer',
-    hash: crypto.subtle.digest('SHA-256', new TextEncoder().encode(token)),
+    hash: encodeHex(
+      await crypto.subtle.digest('SHA-256', new TextEncoder().encode(token))
+    ),
     createdAt: new Date(),
     expiresIn: new Date(Date.now() + JWT_EXPIRATION * 1000),
   };
