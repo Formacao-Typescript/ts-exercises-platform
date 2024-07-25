@@ -1,7 +1,7 @@
 import { encodeBase64 } from '@std/encoding';
 import { Collection, Db } from 'mongodb';
-import { IDiscordUser } from '../../src/types/SignIn.ts';
-import { IUserToken } from '../../src/types/User.ts';
+import type { IDiscordUser } from '../../src/types/SignIn.ts';
+import type { IUserToken } from '../../src/types/User.ts';
 import { AppConfig } from '../config.ts';
 import { User, UserCreateParams } from '../utils/schemas/user.ts';
 import { PlatformService } from './PlatformService.ts';
