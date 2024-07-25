@@ -45,7 +45,7 @@ export function publicRoutes(discordService: DiscordService) {
 
       const discordUser = await discordService.getTokenUser(access_token);
       const savedUser = await discordService.saveUser(discordUser);
-      const userToken = createToken(savedUser);
+      const userToken = await createToken(savedUser);
 
       return c.json(
         JSONSuccessResponse({
