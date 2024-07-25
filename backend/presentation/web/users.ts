@@ -21,7 +21,7 @@ export function userRoutes(dbClient: Db) {
    */
   router.get('/me', async c => {
     const { user } = c.var;
-    const fullUser = await usersCollection.findOne({ _id: user.id });
+    const fullUser = await usersCollection.findOne<User>({ _id: user.id });
     return c.json(JSONSuccessResponse(fullUser));
   });
 
@@ -64,7 +64,7 @@ export function userRoutes(dbClient: Db) {
     ];
 
     // $or is here because otherwise the type breaks
-    const existingUser: User | undefined = await usersCollection.findOne({
+    const existingUser = await usersCollection.findOne<User>({
       $or: query,
     });
 
@@ -89,7 +89,7 @@ export function userRoutes(dbClient: Db) {
 
   router.get('/:id', async c => {
     const id = c.req.param('id');
-    const user: User = await usersCollection.findOne({ _id: id });
+    const user = await usersCollection.findOne<User>({ _id: id });
     if (!user) {
       throw new HTTPException(404, {
         message: 'User not found',
