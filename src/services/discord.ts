@@ -1,4 +1,5 @@
 import { IDiscordUser, IUserToken } from '@/types';
+import { get } from './api';
 const {
   VITE_DISCORD_API_URL,
   VITE_DISCORD_OAUTH_API_URL,
@@ -17,16 +18,13 @@ const CLIENT_SECRET = VITE_DISCORD_OAUTH_CLIENT_SECRET as string;
  * Generates the URL to redirect the user to for Discord OAuth
  * @returns {url: string} - The URL to redirect the user to
  */
-export const getAuthorizationCodeUrl = (): string => {
-  const BASE_URL = DISCORD_OAUTH_API_URL;
-  const params = new URLSearchParams({
-    response_type: 'code',
-    client_id: CLIENT_ID,
-    redirect_uri: REDIRECT_URL,
-    scope: 'identify email guilds.join',
-  }).toString();
+export const getAuthorizationCodeUrl = async (): Promise<string> => {
+  const [error, response] = await get<{ redirect: string }>(
+    '/public/auth/discord'
+  );
+  if (error) throw new Error(error);
 
-  return `${BASE_URL}/authorize?${params}`;
+  return response!.redirect;
 };
 
 /**

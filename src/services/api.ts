@@ -1,32 +1,35 @@
+import { IAPIResponse } from '@/types';
+
 const { VITE_APP_API_URL } = import.meta.env;
 const API_URL = VITE_APP_API_URL as string;
 
-export const get = async <T = unknown>(path: string): Promise<T> => {
-  const response = await fetch(API_URL + path);
-  const { success, data, error } = (await response.json()) as IAPIResponse<T>;
-
-  if (!success) {
+const _handle = <T = unknown>(data: IAPIResponse<T>): [string?, T?] => {
+  if (!data.success) {
     // TODO: show personalized error message
-    throw new Error(error!.message);
+    return [data.message];
   }
 
-  return data;
+  return [undefined, data.response];
+};
+
+export const get = async <T = unknown>(
+  path: string
+): Promise<[string?, T?]> => {
+  const res = await fetch(API_URL + path);
+  const data = (await res.json()) as IAPIResponse<T>;
+
+  return _handle(data);
 };
 
 export const post = async <T = unknown>(
   path: string,
   body: string
-): Promise<T> => {
+): Promise<[string?, T?]> => {
   const response = await fetch(API_URL + path, {
     method: 'POST',
     body,
   });
-  const { success, data, error } = (await response.json()) as IAPIResponse<T>;
+  const data = (await response.json()) as IAPIResponse<T>;
 
-  if (!success) {
-    // TODO: show personalized error message
-    throw new Error(error!.message);
-  }
-
-  return data;
+  return _handle(data);
 };

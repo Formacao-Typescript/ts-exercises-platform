@@ -31,7 +31,11 @@ const SignIn: React.FC = () => {
           <button
             type="button"
             onClick={() => {
-              window.location.href = getAuthorizationCodeUrl();
+              getAuthorizationCodeUrl()
+                .then(response => {
+                  window.location.href = response;
+                })
+                .catch(console.error);
             }}
           >
             <DiscordIcon className="w-4 h-4 me-2" />
@@ -49,7 +53,11 @@ const SignIn: React.FC = () => {
             type="button"
             className="text-sm"
             onClick={() => {
-              window.location.href = getAuthorizationCodeUrl();
+              getAuthorizationCodeUrl()
+                .then(response => {
+                  window.location.href = response;
+                })
+                .catch(console.error);
             }}
           >
             <DiscordIcon className="w-4 h-4 me-2" />
