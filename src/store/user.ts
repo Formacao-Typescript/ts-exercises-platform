@@ -105,6 +105,7 @@ export const mergeLocalAndRemoteUser = (
 };
 
 export const signOut = () => {
+  store.remove(STATE_KEY);
   store.setState<IUser>(STATE_KEY, INITIAL_STATE, { persist: true });
   toast.success(
     _.sample([
