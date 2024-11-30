@@ -420,60 +420,6 @@
   };
   Disposable.None = Object.freeze({ dispose() {
   } });
-  var DisposableMap = class {
-    constructor() {
-      this._store = /* @__PURE__ */ new Map();
-      this._isDisposed = false;
-      trackDisposable(this);
-    }
-    /**
-     * Disposes of all stored values and mark this object as disposed.
-     *
-     * Trying to use this object after it has been disposed of is an error.
-     */
-    dispose() {
-      markAsDisposed(this);
-      this._isDisposed = true;
-      this.clearAndDisposeAll();
-    }
-    /**
-     * Disposes of all stored values and clear the map, but DO NOT mark this object as disposed.
-     */
-    clearAndDisposeAll() {
-      if (!this._store.size) {
-        return;
-      }
-      try {
-        dispose(this._store.values());
-      } finally {
-        this._store.clear();
-      }
-    }
-    get(key) {
-      return this._store.get(key);
-    }
-    set(key, value, skipDisposeOnOverwrite = false) {
-      var _a5;
-      if (this._isDisposed) {
-        console.warn(new Error("Trying to add a disposable to a DisposableMap that has already been disposed of. The added object will be leaked!").stack);
-      }
-      if (!skipDisposeOnOverwrite) {
-        (_a5 = this._store.get(key)) === null || _a5 === void 0 ? void 0 : _a5.dispose();
-      }
-      this._store.set(key, value);
-    }
-    /**
-     * Delete the value stored for `key` from this map and also dispose of it.
-     */
-    deleteAndDispose(key) {
-      var _a5;
-      (_a5 = this._store.get(key)) === null || _a5 === void 0 ? void 0 : _a5.dispose();
-      this._store.delete(key);
-    }
-    [Symbol.iterator]() {
-      return this._store[Symbol.iterator]();
-    }
-  };
 
   // node_modules/monaco-editor/esm/vs/base/common/linkedList.js
   var Node = class _Node {
@@ -8597,54 +8543,53 @@
       let ambiguousCharacterCount = 0;
       let invisibleCharacterCount = 0;
       let nonBasicAsciiCharacterCount = 0;
-      forLoop:
-        for (let lineNumber = startLine, lineCount = endLine; lineNumber <= lineCount; lineNumber++) {
-          const lineContent = model.getLineContent(lineNumber);
-          const lineLength = lineContent.length;
-          searcher.reset(0);
-          do {
-            m = searcher.next(lineContent);
-            if (m) {
-              let startIndex = m.index;
-              let endIndex = m.index + m[0].length;
-              if (startIndex > 0) {
-                const charCodeBefore = lineContent.charCodeAt(startIndex - 1);
-                if (isHighSurrogate(charCodeBefore)) {
-                  startIndex--;
-                }
-              }
-              if (endIndex + 1 < lineLength) {
-                const charCodeBefore = lineContent.charCodeAt(endIndex - 1);
-                if (isHighSurrogate(charCodeBefore)) {
-                  endIndex++;
-                }
-              }
-              const str = lineContent.substring(startIndex, endIndex);
-              let word = getWordAtText(startIndex + 1, DEFAULT_WORD_REGEXP, lineContent, 0);
-              if (word && word.endColumn <= startIndex + 1) {
-                word = null;
-              }
-              const highlightReason = codePointHighlighter.shouldHighlightNonBasicASCII(str, word ? word.word : null);
-              if (highlightReason !== 0) {
-                if (highlightReason === 3) {
-                  ambiguousCharacterCount++;
-                } else if (highlightReason === 2) {
-                  invisibleCharacterCount++;
-                } else if (highlightReason === 1) {
-                  nonBasicAsciiCharacterCount++;
-                } else {
-                  assertNever(highlightReason);
-                }
-                const MAX_RESULT_LENGTH = 1e3;
-                if (ranges.length >= MAX_RESULT_LENGTH) {
-                  hasMore = true;
-                  break forLoop;
-                }
-                ranges.push(new Range(lineNumber, startIndex + 1, lineNumber, endIndex + 1));
+      forLoop: for (let lineNumber = startLine, lineCount = endLine; lineNumber <= lineCount; lineNumber++) {
+        const lineContent = model.getLineContent(lineNumber);
+        const lineLength = lineContent.length;
+        searcher.reset(0);
+        do {
+          m = searcher.next(lineContent);
+          if (m) {
+            let startIndex = m.index;
+            let endIndex = m.index + m[0].length;
+            if (startIndex > 0) {
+              const charCodeBefore = lineContent.charCodeAt(startIndex - 1);
+              if (isHighSurrogate(charCodeBefore)) {
+                startIndex--;
               }
             }
-          } while (m);
-        }
+            if (endIndex + 1 < lineLength) {
+              const charCodeBefore = lineContent.charCodeAt(endIndex - 1);
+              if (isHighSurrogate(charCodeBefore)) {
+                endIndex++;
+              }
+            }
+            const str = lineContent.substring(startIndex, endIndex);
+            let word = getWordAtText(startIndex + 1, DEFAULT_WORD_REGEXP, lineContent, 0);
+            if (word && word.endColumn <= startIndex + 1) {
+              word = null;
+            }
+            const highlightReason = codePointHighlighter.shouldHighlightNonBasicASCII(str, word ? word.word : null);
+            if (highlightReason !== 0) {
+              if (highlightReason === 3) {
+                ambiguousCharacterCount++;
+              } else if (highlightReason === 2) {
+                invisibleCharacterCount++;
+              } else if (highlightReason === 1) {
+                nonBasicAsciiCharacterCount++;
+              } else {
+                assertNever(highlightReason);
+              }
+              const MAX_RESULT_LENGTH = 1e3;
+              if (ranges.length >= MAX_RESULT_LENGTH) {
+                hasMore = true;
+                break forLoop;
+              }
+              ranges.push(new Range(lineNumber, startIndex + 1, lineNumber, endIndex + 1));
+            }
+          }
+        } while (m);
+      }
       return {
         ranges,
         hasMore,
@@ -9960,34 +9905,33 @@
       const paths = new FastArrayNegativeIndices();
       paths.set(0, V.get(0) === 0 ? null : new SnakePath(null, 0, 0, V.get(0)));
       let k = 0;
-      loop:
-        while (true) {
-          d++;
-          if (!timeout.isValid()) {
-            return DiffAlgorithmResult.trivialTimedOut(seqX, seqY);
+      loop: while (true) {
+        d++;
+        if (!timeout.isValid()) {
+          return DiffAlgorithmResult.trivialTimedOut(seqX, seqY);
+        }
+        const lowerBound = -Math.min(d, seqY.length + d % 2);
+        const upperBound = Math.min(d, seqX.length + d % 2);
+        for (k = lowerBound; k <= upperBound; k += 2) {
+          let step = 0;
+          const maxXofDLineTop = k === upperBound ? -1 : V.get(k + 1);
+          const maxXofDLineLeft = k === lowerBound ? -1 : V.get(k - 1) + 1;
+          step++;
+          const x = Math.min(Math.max(maxXofDLineTop, maxXofDLineLeft), seqX.length);
+          const y = x - k;
+          step++;
+          if (x > seqX.length || y > seqY.length) {
+            continue;
           }
-          const lowerBound = -Math.min(d, seqY.length + d % 2);
-          const upperBound = Math.min(d, seqX.length + d % 2);
-          for (k = lowerBound; k <= upperBound; k += 2) {
-            let step = 0;
-            const maxXofDLineTop = k === upperBound ? -1 : V.get(k + 1);
-            const maxXofDLineLeft = k === lowerBound ? -1 : V.get(k - 1) + 1;
-            step++;
-            const x = Math.min(Math.max(maxXofDLineTop, maxXofDLineLeft), seqX.length);
-            const y = x - k;
-            step++;
-            if (x > seqX.length || y > seqY.length) {
-              continue;
-            }
-            const newMaxX = getXAfterSnake(x, y);
-            V.set(k, newMaxX);
-            const lastPath = x === maxXofDLineTop ? paths.get(k + 1) : paths.get(k - 1);
-            paths.set(k, newMaxX !== x ? new SnakePath(lastPath, x, y, newMaxX - x) : lastPath);
-            if (V.get(k) === seqX.length && V.get(k) - k === seqY.length) {
-              break loop;
-            }
+          const newMaxX = getXAfterSnake(x, y);
+          V.set(k, newMaxX);
+          const lastPath = x === maxXofDLineTop ? paths.get(k + 1) : paths.get(k - 1);
+          paths.set(k, newMaxX !== x ? new SnakePath(lastPath, x, y, newMaxX - x) : lastPath);
+          if (V.get(k) === seqX.length && V.get(k) - k === seqY.length) {
+            break loop;
           }
         }
+      }
       let path = paths.get(k);
       const result = [];
       let lastAligningPosS1 = seqX.length;
@@ -12353,22 +12297,21 @@
       const sw = new StopWatch();
       const wordDefRegExp = new RegExp(wordDef, wordDefFlags);
       const seen = /* @__PURE__ */ new Set();
-      outer:
-        for (const url of modelUrls) {
-          const model = this._getModel(url);
-          if (!model) {
+      outer: for (const url of modelUrls) {
+        const model = this._getModel(url);
+        if (!model) {
+          continue;
+        }
+        for (const word of model.words(wordDefRegExp)) {
+          if (word === leadingWord || !isNaN(Number(word))) {
             continue;
           }
-          for (const word of model.words(wordDefRegExp)) {
-            if (word === leadingWord || !isNaN(Number(word))) {
-              continue;
-            }
-            seen.add(word);
-            if (seen.size > _EditorSimpleWorker._suggestionsLimit) {
-              break outer;
-            }
+          seen.add(word);
+          if (seen.size > _EditorSimpleWorker._suggestionsLimit) {
+            break outer;
           }
         }
+      }
       return { words: Array.from(seen), duration: sw.elapsed() };
     }
     // ---- END suggest --------------------------------------------------------------------------
@@ -13110,7 +13053,7 @@
     }
     return s;
   }
-  var __extends = function() {
+  var __extends = /* @__PURE__ */ function() {
     var extendStatics = function(d, b) {
       extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
         d2.__proto__ = b2;
@@ -14939,7 +14882,7 @@
     return localize2;
   }
   var localize22 = loadMessageBundle();
-  var CSSIssueType = function() {
+  var CSSIssueType = /* @__PURE__ */ function() {
     function CSSIssueType2(id, message) {
       this.id = id;
       this.message = message;
@@ -18810,7 +18753,7 @@
     }
     return result;
   }
-  var __extends2 = function() {
+  var __extends2 = /* @__PURE__ */ function() {
     var extendStatics = function(d, b) {
       extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
         d2.__proto__ = b2;
@@ -18896,7 +18839,7 @@
     }
     return GlobalScope2;
   }(Scope);
-  var Symbol2 = function() {
+  var Symbol2 = /* @__PURE__ */ function() {
     function Symbol3(name, value, node, type) {
       this.name = name;
       this.value = value;
@@ -19354,7 +19297,7 @@
       }
       var l = "", p = "/", g = /^(([^:/?#]+?):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/, d = function() {
         function t3(t4, e3, r3, n2, o2, i2) {
-          void 0 === i2 && (i2 = false), "object" == typeof t4 ? (this.scheme = t4.scheme || l, this.authority = t4.authority || l, this.path = t4.path || l, this.query = t4.query || l, this.fragment = t4.fragment || l) : (this.scheme = function(t5, e4) {
+          void 0 === i2 && (i2 = false), "object" == typeof t4 ? (this.scheme = t4.scheme || l, this.authority = t4.authority || l, this.path = t4.path || l, this.query = t4.query || l, this.fragment = t4.fragment || l) : (this.scheme = /* @__PURE__ */ function(t5, e4) {
             return t5 || e4 ? t5 : "file";
           }(t4, i2), this.authority = e3 || l, this.path = function(t5, e4) {
             switch (t5) {
@@ -20989,7 +20932,7 @@
   function isColorString(s) {
     return s.toLowerCase() in colors || /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(s);
   }
-  var __extends3 = function() {
+  var __extends3 = /* @__PURE__ */ function() {
     var extendStatics = function(d, b) {
       extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
         d2.__proto__ = b2;
@@ -21201,7 +21144,7 @@
     }
     quotes2.remove = remove;
   })(quotes || (quotes = {}));
-  var Specificity = function() {
+  var Specificity = /* @__PURE__ */ function() {
     function Specificity2() {
       this.id = 0;
       this.attr = 0;
@@ -22141,7 +22084,7 @@
   var Warning = Level.Warning;
   var Error2 = Level.Error;
   var Ignore = Level.Ignore;
-  var Rule = function() {
+  var Rule = /* @__PURE__ */ function() {
     function Rule2(id, message, defaultValue) {
       this.id = id;
       this.message = message;
@@ -22149,7 +22092,7 @@
     }
     return Rule2;
   }();
-  var Setting = function() {
+  var Setting = /* @__PURE__ */ function() {
     function Setting2(id, message, defaultValue) {
       this.id = id;
       this.message = message;
@@ -22282,7 +22225,7 @@
     };
     return CSSCodeActions2;
   }();
-  var Element2 = function() {
+  var Element2 = /* @__PURE__ */ function() {
     function Element3(decl) {
       this.fullPropertyName = decl.getFullPropertyName().toLowerCase();
       this.node = decl;
@@ -22980,7 +22923,7 @@
     };
     return CSSValidation2;
   }();
-  var __extends4 = function() {
+  var __extends4 = /* @__PURE__ */ function() {
     var extendStatics = function(d, b) {
       extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
         d2.__proto__ = b2;
@@ -23087,7 +23030,7 @@
     return SCSSScanner2;
   }(Scanner);
   var localize10 = loadMessageBundle();
-  var SCSSIssueType = function() {
+  var SCSSIssueType = /* @__PURE__ */ function() {
     function SCSSIssueType2(id, message) {
       this.id = id;
       this.message = message;
@@ -23099,7 +23042,7 @@
     ThroughOrToExpected: new SCSSIssueType("scss-throughexpected", localize10("expected.through", "'through' or 'to' expected")),
     InExpected: new SCSSIssueType("scss-fromexpected", localize10("expected.in", "'in' expected"))
   };
-  var __extends5 = function() {
+  var __extends5 = /* @__PURE__ */ function() {
     var extendStatics = function(d, b) {
       extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
         d2.__proto__ = b2;
@@ -23845,7 +23788,7 @@
     };
     return SCSSParser2;
   }(Parser);
-  var __extends6 = function() {
+  var __extends6 = /* @__PURE__ */ function() {
     var extendStatics = function(d, b) {
       extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
         d2.__proto__ = b2;
@@ -24212,7 +24155,7 @@
       }
     });
   }
-  var __extends7 = function() {
+  var __extends7 = /* @__PURE__ */ function() {
     var extendStatics = function(d, b) {
       extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
         d2.__proto__ = b2;
@@ -24289,7 +24232,7 @@
     };
     return LESSScanner2;
   }(Scanner);
-  var __extends8 = function() {
+  var __extends8 = /* @__PURE__ */ function() {
     var extendStatics = function(d, b) {
       extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
         d2.__proto__ = b2;
@@ -24975,7 +24918,7 @@
     };
     return LESSParser2;
   }(Parser);
-  var __extends9 = function() {
+  var __extends9 = /* @__PURE__ */ function() {
     var extendStatics = function(d, b) {
       extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
         d2.__proto__ = b2;
@@ -48807,7 +48750,7 @@
       return result;
     }
   }
-  var __extends10 = function() {
+  var __extends10 = /* @__PURE__ */ function() {
     var extendStatics = function(d, b) {
       extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
         d2.__proto__ = b2;
