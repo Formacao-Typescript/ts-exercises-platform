@@ -1,5 +1,5 @@
 ---
-name: String e number
+name: String e boolean
 description: como o typescript lida com tipos primitivos
 ---
 
