@@ -220,14 +220,14 @@ const Container = styled.div<{ $collapsed: boolean }>`
         border-radius: 12px;
         padding: 0 20px;
 
-        <<<<<<< Updated upstream ======= h3 {
+        h3 {
           max-width: 80%;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
         }
 
-        >>>>>>>Stashed changes .marker {
+        .marker {
           opacity: 0.8;
           font-size: 0.9rem;
           margin-right: 10px;
@@ -238,7 +238,8 @@ const Container = styled.div<{ $collapsed: boolean }>`
         }
 
         &.active {
-          background: #374151;
+          /* background: #374151; */
+          background: #374151cc;
         }
       }
     }
