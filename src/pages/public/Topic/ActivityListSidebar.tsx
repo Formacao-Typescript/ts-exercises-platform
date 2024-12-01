@@ -98,8 +98,10 @@ const ActivityListSidebar: React.FC<Props> = ({
   //     </Sidebar.Item>
   //   );
   // })}
+
+  console.log(activities);
   return (
-    <Container collapsed={collapsed}>
+    <Container $collapsed={collapsed}>
       <header>
         <h1>Nome do tópico</h1>
         <button
@@ -116,7 +118,7 @@ const ActivityListSidebar: React.FC<Props> = ({
           <p>
             <span>1</span> / <span>10</span> atividades completas
           </p>
-          <Progress value={10} maxValue={10} />
+          <Progress value={10} />
         </div>
 
         <ol className="activity-list">
@@ -124,9 +126,16 @@ const ActivityListSidebar: React.FC<Props> = ({
             const isChecked = user?.progress?.activities?.includes(activity.id);
             const isActive = activityIdentifier?.activityId === activity.id;
 
+            console.log({ activity, isChecked, isActive, activityIdentifier });
             return (
-              <li key={activity.id} className="activity-list-item">
-                <h3>
+              <li
+                key={activity.id}
+                className={cn('activity-list-item', isActive && 'active')}
+                onClick={() => {
+                  !isActive && actions.navigateToActivity(activity.id);
+                }}
+              >
+                <h3 title={activity.name}>
                   <span className="marker">
                     {(index + 1).toString().padStart(2, '0')}.
                   </span>
@@ -135,6 +144,10 @@ const ActivityListSidebar: React.FC<Props> = ({
                 <button
                   type="button"
                   className="flex items-center justify-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 cursor-pointer"
+                  onClick={e => {
+                    e.stopPropagation();
+                    actions.toggleActivityCheck(activity.id);
+                  }}
                 >
                   <UncheckedIcon
                     className={
@@ -153,7 +166,7 @@ const ActivityListSidebar: React.FC<Props> = ({
   );
 };
 
-const Container = styled.div<{ collapsed: boolean }>`
+const Container = styled.div<{ $collapsed: boolean }>`
   --sidebar-width: 400px;
   --header-height: 70px;
   width: var(--sidebar-width);
@@ -195,6 +208,7 @@ const Container = styled.div<{ collapsed: boolean }>`
       counter-reset: activity-counter;
 
       &-item {
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -206,7 +220,14 @@ const Container = styled.div<{ collapsed: boolean }>`
         border-radius: 12px;
         padding: 0 20px;
 
-        .marker {
+        <<<<<<< Updated upstream ======= h3 {
+          max-width: 80%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        >>>>>>>Stashed changes .marker {
           opacity: 0.8;
           font-size: 0.9rem;
           margin-right: 10px;
@@ -214,6 +235,10 @@ const Container = styled.div<{ collapsed: boolean }>`
 
         button {
           font-size: 1.6rem;
+        }
+
+        &.active {
+          background: #374151;
         }
       }
     }
