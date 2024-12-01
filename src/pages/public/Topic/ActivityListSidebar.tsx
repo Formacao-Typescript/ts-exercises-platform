@@ -130,7 +130,11 @@ const ActivityListSidebar: React.FC<Props> = ({
             return (
               <li
                 key={activity.id}
-                className={cn('activity-list-item', isActive && 'active')}
+                className={cn(
+                  'activity-list-item',
+                  isActive && 'active',
+                  isChecked && 'checked'
+                )}
                 onClick={() => {
                   !isActive && actions.navigateToActivity(activity.id);
                 }}
@@ -240,6 +244,12 @@ const Container = styled.div<{ $collapsed: boolean }>`
         &.active {
           /* background: #374151; */
           background: #374151cc;
+        }
+
+        &.checked {
+          .marker {
+            color: #31c48d;
+          }
         }
       }
     }
