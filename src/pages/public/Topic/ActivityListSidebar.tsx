@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Sidebar, SidebarItemProps } from 'flowbite-react';
+import { Progress, Sidebar, SidebarItemProps } from 'flowbite-react';
 import {
   RiMenuFoldLine as SidebarClosedIcon,
   RiMenuUnfoldLine as SidebarOpenedIcon,
@@ -15,6 +15,7 @@ import { IActivity, IActivityIdentifier } from '@/types';
 import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { updateActivityProgress, useUser } from '@/store/user';
+import styled from 'styled-components';
 
 interface Props {
   activityIdentifier: IActivityIdentifier;
@@ -51,72 +52,172 @@ const ActivityListSidebar: React.FC<Props> = ({
       });
     },
   };
+
+  //   <button
+  //               type="button"
+  //               className="flex items-center justify-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 cursor-pointer"
+  //               onClick={() => setCollapsed(!collapsed)}
+  //             >
+  //               {collapsed ? <SidebarClosedIcon /> : <SidebarOpenedIcon />}
+  //             </button>
+
+  // {activities.map(activity => {
+  //   const isChecked = user?.progress?.activities?.includes(activity.id);
+  //   const isActive = activityIdentifier?.activityId === activity.id;
+  //   return (
+  //     <Sidebar.Item
+  //       key={activity.id}
+  //       className={cn(
+  //         'cursor-pointer relative h-10 flex flex-row-reverse p-0',
+  //         isChecked && 'text-green-500'
+  //       )}
+  //       icon={(props: SidebarItemProps) => {
+  //         return (
+  //           <div {...props} className="relative w-10 h-10">
+  //             <UncheckedIcon
+  //               className={cn(
+  //                 'absolute right-0 w-10 h-fit p-1.5 hover:bg-gray-600 cursor-pointer rounded-lg',
+  //                 isChecked
+  //                   ? 'text-green-400 hover:text-cyan-400'
+  //                   : 'text-gray-500 hover:text-gray-300'
+  //               )}
+  //               onClick={(e: MouseEvent) => {
+  //                 e.stopPropagation();
+  //                 actions.toggleActivityCheck(activity.id);
+  //               }}
+  //             />
+  //           </div>
+  //         );
+  //       }}
+  //       active={isActive}
+  //       onClick={() =>
+  //         !isActive && actions.navigateToActivity(activity.id)
+  //       }
+  //     >
+  //       {activity.name}
+  //     </Sidebar.Item>
+  //   );
+  // })}
   return (
-    <Sidebar
-      aria-label="Sidebar with multi-level dropdown example"
-      collapsed={collapsed}
-      collapseBehavior="collapse"
-      className={cn('transition-all duration-300 ease-in-out', className)}
-    >
-      <Sidebar.Items>
-        <Sidebar.ItemGroup>
-          <div
-            className={cn(
-              'flex items-center',
-              collapsed ? 'justify-center' : 'justify-end'
-            )}
-          >
-            <button
-              type="button"
-              className="flex items-center justify-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 cursor-pointer"
-              onClick={() => setCollapsed(!collapsed)}
-            >
-              {collapsed ? <SidebarClosedIcon /> : <SidebarOpenedIcon />}
-            </button>
-          </div>
-        </Sidebar.ItemGroup>
-        <Sidebar.ItemGroup>
-          {activities.map(activity => {
+    <Container collapsed={collapsed}>
+      <header>
+        <h1>Nome do tópico</h1>
+        <button
+          type="button"
+          className="flex items-center justify-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 cursor-pointer"
+          onClick={() => setCollapsed(!collapsed)}
+        >
+          <SidebarOpenedIcon />
+        </button>
+      </header>
+      <section className="content">
+        <div className="topic-progress">
+          <h2>Progresso do tópico</h2>
+          <p>
+            <span>1</span> / <span>10</span> atividades completas
+          </p>
+          <Progress value={10} maxValue={10} />
+        </div>
+
+        <ol className="activity-list">
+          {activities.map((activity, index) => {
             const isChecked = user?.progress?.activities?.includes(activity.id);
             const isActive = activityIdentifier?.activityId === activity.id;
+
             return (
-              <Sidebar.Item
-                key={activity.id}
-                className={cn(
-                  'cursor-pointer relative h-10 flex flex-row-reverse p-0',
-                  isChecked && 'text-green-500'
-                )}
-                icon={(props: SidebarItemProps) => {
-                  return (
-                    <div {...props} className="relative w-10 h-10">
-                      <UncheckedIcon
-                        className={cn(
-                          'absolute right-0 w-10 h-fit p-1.5 hover:bg-gray-600 cursor-pointer rounded-lg',
-                          isChecked
-                            ? 'text-green-400 hover:text-cyan-400'
-                            : 'text-gray-500 hover:text-gray-300'
-                        )}
-                        onClick={(e: MouseEvent) => {
-                          e.stopPropagation();
-                          actions.toggleActivityCheck(activity.id);
-                        }}
-                      />
-                    </div>
-                  );
-                }}
-                active={isActive}
-                onClick={() =>
-                  !isActive && actions.navigateToActivity(activity.id)
-                }
-              >
-                {activity.name}
-              </Sidebar.Item>
+              <li key={activity.id} className="activity-list-item">
+                <h3>
+                  <span className="marker">
+                    {(index + 1).toString().padStart(2, '0')}.
+                  </span>
+                  {activity.name}
+                </h3>
+                <button
+                  type="button"
+                  className="flex items-center justify-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  <UncheckedIcon
+                    className={
+                      isChecked
+                        ? 'text-green-400 hover:text-cyan-400'
+                        : 'text-gray-500 hover:text-gray-300'
+                    }
+                  />
+                </button>
+              </li>
             );
           })}
-        </Sidebar.ItemGroup>
-      </Sidebar.Items>
-    </Sidebar>
+        </ol>
+      </section>
+    </Container>
   );
 };
+
+const Container = styled.div<{ collapsed: boolean }>`
+  --sidebar-width: 400px;
+  --header-height: 70px;
+  width: var(--sidebar-width);
+  height: calc(100% - var(--header-height));
+  background: var(--bg-black);
+  position: fixed;
+  top: var(--header-height);
+  right: 0;
+  z-index: 1000;
+  box-shadow: -15px 16px 20px 0px rgba(0, 0, 0, 0.5);
+
+  header {
+    height: var(--header-height);
+    background: var(--bg-mid-black);
+    border-bottom: 1px solid white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+
+    button svg {
+      transition: transform 0.3s ease-in-out;
+      transform: ${({ collapsed }) => (collapsed ? 'rotate(180deg)' : 'none')};
+    }
+  }
+
+  .content {
+    padding: 20px;
+
+    .topic-progress {
+      margin-bottom: 20px;
+    }
+
+    .activity-list {
+      list-style: decimal-leading-zero;
+      padding: 0;
+      margin: 0;
+      counter-reset: activity-counter;
+
+      &-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+        color: white;
+        font-size: 1.2rem;
+        background: #212033;
+        margin-bottom: 10px;
+        border-radius: 12px;
+        padding: 0 20px;
+
+        .marker {
+          opacity: 0.8;
+          font-size: 0.9rem;
+          margin-right: 10px;
+        }
+
+        button {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+`;
 
 export default ActivityListSidebar;

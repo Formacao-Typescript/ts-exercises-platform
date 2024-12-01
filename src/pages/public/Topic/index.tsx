@@ -34,7 +34,6 @@ const Topic: React.FC = () => {
             activityId: activity.id,
           }}
           activities={activities}
-          className="absolute top-0 right-0 h-full bg-white dark:bg-gray-800 shadow-lg"
         />
       </div>
     </>
